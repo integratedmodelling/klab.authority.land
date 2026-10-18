@@ -1,0 +1,325 @@
+# Tentative testing material. Expressions are proposals, not official definitions.
+schemaVersion: 1
+id: corine_2018_draft
+title: "CORINE land cover: tentative testing legend"
+domain: LULC
+version: draft-1
+sourceVersion: "CLC 1990-2018 nomenclature, guidelines version 10 (2019)"
+source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index.html"
+tentative: true
+acceptsProposals: false
+notes:
+  - "All 44 level-3 codes are represented. This is a lossy testing proposal, not a validated CORINE implementation."
+  - "Uses existing imod arrangement configurations and a separately supplied draft identity vocabulary, landcover.seed."
+  - "Absolute cover, height, minimum mapping unit, spatial context and temporal criteria are not executable constraints."
+  - "Argument order is stable serialization order except the explicitly schematic agroforestry nesting. It is not an official spatial ordering."
+  - "Some leaf identities summarize use or state rather than directly observed material; maintainers must review their ontology placement."
+entries:
+  - code: "111"
+    alias: ContinuousUrbanFabric
+    label: "Continuous urban fabric"
+    expression: "physical:HorizontalArrangement(landcover.seed:BuiltSurface)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-111.html"
+    notes:
+      - "Sealing fraction, urban use and mapping-unit rules are omitted; incidental vegetation is not required."
+  - code: "112"
+    alias: DiscontinuousUrbanFabric
+    label: "Discontinuous urban fabric"
+    expression: "physical:HorizontalArrangement(landcover.seed:BuiltSurface,landcover.seed:Vegetation)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-112.html"
+    notes:
+      - "Schematic built and vegetated mixture; sealing thresholds and settlement context are omitted."
+  - code: "121"
+    alias: IndustrialOrCommercialUnits
+    label: "Industrial or commercial units"
+    expression: "physical:HorizontalArrangement(landcover.seed:IndustrialOrCommercialSurface)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-121.html"
+    notes:
+      - "Uses a provisional functional identity; associated transport, yards and detailed exclusions are omitted."
+  - code: "122"
+    alias: RoadAndRailNetworks
+    label: "Road and rail networks and associated land"
+    expression: "physical:HorizontalArrangement(landcover.seed:RoadOrRailSurface)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-122.html"
+    notes:
+      - "Transport function is schematic; network geometry, width and associated land are omitted."
+  - code: "123"
+    alias: PortAreas
+    label: "Port areas"
+    expression: "physical:HorizontalArrangement(landcover.seed:PortSurface)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-123.html"
+    notes:
+      - "Port function is represented as a draft identity; adjoining water and infrastructure are optional, not required here."
+  - code: "124"
+    alias: Airports
+    label: "Airports"
+    expression: "physical:HorizontalArrangement(landcover.seed:AirportSurface)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-124.html"
+    notes:
+      - "Airport function only; runway dimensions, adjacent grass and ancillary units are omitted."
+  - code: "131"
+    alias: MineralExtractionSites
+    label: "Mineral extraction sites"
+    expression: "physical:HorizontalArrangement(landcover.seed:ExtractionSurface)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-131.html"
+    notes:
+      - "Extraction function only; operational state, excavation structure and substrate are omitted."
+  - code: "132"
+    alias: DumpSites
+    label: "Dump sites"
+    expression: "physical:HorizontalArrangement(landcover.seed:WasteDeposit)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-132.html"
+    notes:
+      - "Deposit presence only; waste composition, management and surface sealing are omitted."
+  - code: "133"
+    alias: ConstructionSites
+    label: "Construction sites"
+    expression: "physical:HorizontalArrangement(landcover.seed:ConstructionSurface)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-133.html"
+    notes:
+      - "Construction function only; temporal stage and disturbed-material mixtures are omitted."
+  - code: "141"
+    alias: GreenUrbanAreas
+    label: "Green urban areas"
+    expression: "physical:HorizontalArrangement(landcover.seed:UrbanVegetation)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-141.html"
+    notes:
+      - "Urban vegetation identity is provisional; urban setting, public use and geometry require review."
+  - code: "142"
+    alias: SportAndLeisureFacilities
+    label: "Sport and leisure facilities"
+    expression: "physical:HorizontalArrangement(landcover.seed:RecreationSurface)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-142.html"
+    notes:
+      - "Functional identity only; heterogeneous vegetation and artificial cover are unspecified."
+  - code: "211"
+    alias: NonIrrigatedArableLand
+    label: "Non-irrigated arable land"
+    expression: "physical:HorizontalArrangement(landcover.seed:RainfedCrop)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-211.html"
+    notes:
+      - "Provisional management identity; rotation, fallow, irrigation exceptions and crop seasonality are omitted."
+  - code: "212"
+    alias: PermanentlyIrrigatedLand
+    label: "Permanently irrigated land"
+    expression: "physical:HorizontalArrangement(landcover.seed:IrrigatedCrop)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-212.html"
+    notes:
+      - "Irrigation is a proposed identity, not a modeled process; persistence and exceptions are omitted."
+  - code: "213"
+    alias: RiceFields
+    label: "Rice fields"
+    expression: "physical:HorizontalArrangement(landcover.seed:RiceCrop)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-213.html"
+    notes:
+      - "Crop identity only; flooding schedule and cultivation stage are omitted."
+  - code: "221"
+    alias: Vineyards
+    label: "Vineyards"
+    expression: "physical:HorizontalArrangement(landcover.seed:GrapevineCrop)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-221.html"
+    notes:
+      - "Crop identity only; planting geometry, inter-row cover and abandonment rules are omitted."
+  - code: "222"
+    alias: FruitTreesAndBerryPlantations
+    label: "Fruit trees and berry plantations"
+    expression: "physical:HorizontalArrangement(landcover.seed:FruitOrBerryCrop)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-222.html"
+    notes:
+      - "A broad functional crop identity avoids requiring all fruit and berry types together; management rules are omitted."
+  - code: "223"
+    alias: OliveGroves
+    label: "Olive groves"
+    expression: "physical:HorizontalArrangement(landcover.seed:OliveCrop)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-223.html"
+    notes:
+      - "Crop identity only; tree spacing, understory and abandonment rules are omitted."
+  - code: "231"
+    alias: Pastures
+    label: "Pastures"
+    expression: "physical:HorizontalArrangement(landcover.seed:PastureVegetation)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-231.html"
+    notes:
+      - "Pasture use is distinct from natural grassland in the draft vocabulary; duration and management criteria are omitted."
+  - code: "241"
+    alias: AnnualCropsWithPermanentCrops
+    label: "Annual crops associated with permanent crops"
+    expression: "physical:HorizontalArrangement(landcover.seed:AnnualCrop,landcover.seed:PermanentCrop)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-241.html"
+    notes:
+      - "A schematic mixture; parcel relationships, crop cycle and area requirements are omitted."
+  - code: "242"
+    alias: ComplexCultivationPatterns
+    label: "Complex cultivation patterns"
+    expression: "physical:HorizontalArrangement(landcover.seed:CropMosaic)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-242.html"
+    notes:
+      - "A broad mosaic identity avoids falsely requiring particular crop types; spatial grain and composition need review."
+  - code: "243"
+    alias: AgricultureWithNaturalVegetation
+    label: "Land principally occupied by agriculture, with significant areas of natural vegetation"
+    expression: "physical:HorizontalArrangement(+++landcover.seed:Crop,+landcover.seed:NaturalVegetation)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-243.html"
+    notes:
+      - "Plus counts illustrate agriculture dominance only; 3:1 is a testing choice, not an official ratio or threshold."
+  - code: "244"
+    alias: AgroForestryAreas
+    label: "Agro-forestry areas"
+    expression: "physical:VerticalArrangement(physical:HorizontalArrangement(landcover.seed:Tree),physical:HorizontalArrangement(landcover.seed:Crop))"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-244.html"
+    notes:
+      - "Tentative canopy-over-crop nesting exercises the grammar; management, spatial association and non-crop understories need review."
+  - code: "311"
+    alias: BroadLeavedForest
+    label: "Broad-leaved forest"
+    expression: "physical:HorizontalArrangement(landcover.seed:BroadleavedTree)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-311.html"
+    notes:
+      - "Tree height, canopy closure and broadleaf share above 75 percent are omitted; an evergreen or deciduous habit is not required."
+  - code: "312"
+    alias: ConiferousForest
+    label: "Coniferous forest"
+    expression: "physical:HorizontalArrangement(landcover.seed:ConiferTree)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-312.html"
+    notes:
+      - "Tree height, canopy closure and conifer share above 75 percent are omitted; conifer is not equated to evergreen."
+  - code: "313"
+    alias: MixedForest
+    label: "Mixed forest"
+    expression: "physical:HorizontalArrangement(landcover.seed:BroadleavedTree,landcover.seed:ConiferTree)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-313.html"
+    notes:
+      - "Both tree groups are present; their admissible shares and forest structure are omitted. Unmarked does not mean equal shares."
+  - code: "321"
+    alias: NaturalGrassland
+    label: "Natural grassland"
+    expression: "physical:HorizontalArrangement(landcover.seed:NaturalHerbaceousVegetation)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-321.html"
+    notes:
+      - "Natural herbaceous identity only; productivity, use, woody cover and local interpretation rules are omitted."
+  - code: "322"
+    alias: MoorsAndHeathland
+    label: "Moors and heathland"
+    expression: "physical:HorizontalArrangement(landcover.seed:HeathVegetation)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-322.html"
+    notes:
+      - "Broad heath identity; dwarf-shrub composition, climate and height criteria are omitted."
+  - code: "323"
+    alias: SclerophyllousVegetation
+    label: "Sclerophyllous vegetation"
+    expression: "physical:HorizontalArrangement(landcover.seed:SclerophyllousVegetation)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-323.html"
+    notes:
+      - "Functional vegetation identity only; shrub structure, evergreen habit and regional rules need review."
+  - code: "324"
+    alias: TransitionalWoodlandShrub
+    label: "Transitional woodland/shrub"
+    expression: "physical:HorizontalArrangement(landcover.seed:SuccessionalWoodyVegetation)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-324.html"
+    notes:
+      - "Successional state is provisional; no specific tree-shrub mixture or succession direction is imposed."
+  - code: "331"
+    alias: BeachesDunesSands
+    label: "Beaches, dunes, sands"
+    expression: "physical:HorizontalArrangement(landcover.seed:SandSurface)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-331.html"
+    notes:
+      - "Sand presence only; beach and dune geomorphology, vegetation limits and coastal context are omitted."
+  - code: "332"
+    alias: BareRock
+    label: "Bare rock"
+    expression: "physical:HorizontalArrangement(landcover.seed:RockSurface)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-332.html"
+    notes:
+      - "Exposed-rock identity only; vegetation limits and substrate exceptions are omitted."
+  - code: "333"
+    alias: SparselyVegetatedAreas
+    label: "Sparsely vegetated areas"
+    expression: "physical:HorizontalArrangement(landcover.seed:SparseVegetation)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-333.html"
+    notes:
+      - "Sparsity is a placeholder identity pending quantitative constraints; substrate and cover ranges are omitted."
+  - code: "334"
+    alias: BurntAreas
+    label: "Burnt areas"
+    expression: "physical:HorizontalArrangement(landcover.seed:BurntVegetationSurface)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-334.html"
+    notes:
+      - "Burn state is provisional; elapsed time, residual cover and fire history are omitted."
+  - code: "335"
+    alias: GlaciersAndPerpetualSnow
+    label: "Glaciers and perpetual snow"
+    expression: "physical:HorizontalArrangement(landcover.seed:SnowOrIce)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-335.html"
+    notes:
+      - "Union-like snow-or-ice identity avoids requiring both; persistence and glacier dynamics are omitted."
+  - code: "411"
+    alias: InlandMarshes
+    label: "Inland marshes"
+    expression: "physical:HorizontalArrangement(landcover.seed:InlandMarshVegetation)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-411.html"
+    notes:
+      - "Marsh vegetation identity only; hydrology, salinity, flood duration and inland setting need review."
+  - code: "412"
+    alias: Peatbogs
+    label: "Peatbogs"
+    expression: "physical:HorizontalArrangement(landcover.seed:PeatFormingVegetation)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-412.html"
+    notes:
+      - "Peat-forming vegetation only; existing peat, trophic conditions and hydrological regime are omitted."
+  - code: "421"
+    alias: SaltMarshes
+    label: "Salt marshes"
+    expression: "physical:HorizontalArrangement(landcover.seed:SaltMarshVegetation)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-421.html"
+    notes:
+      - "Salt-marsh identity only; tidal regime, salinity and coastal setting are omitted."
+  - code: "422"
+    alias: Salines
+    label: "Salines"
+    expression: "physical:HorizontalArrangement(landcover.seed:SaltExtractionSurface)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-422.html"
+    notes:
+      - "Extraction function only; evaporative basins, water management and operational state are omitted."
+  - code: "423"
+    alias: IntertidalFlats
+    label: "Intertidal flats"
+    expression: "physical:HorizontalArrangement(landcover.seed:IntertidalSediment)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-423.html"
+    notes:
+      - "Intertidal sediment identity only; inundation timing and vegetation exclusions are omitted."
+  - code: "511"
+    alias: WaterCourses
+    label: "Water courses"
+    expression: "physical:HorizontalArrangement(landcover.seed:FlowingWater)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-511.html"
+    notes:
+      - "Flow identity only; width, channel continuity and natural versus artificial origins are omitted."
+  - code: "512"
+    alias: InlandWaterBodies
+    label: "Water bodies"
+    expression: "physical:HorizontalArrangement(landcover.seed:StandingInlandWater)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-512.html"
+    notes:
+      - "Standing inland water identity only; size, salinity and artificial reservoirs need review."
+  - code: "521"
+    alias: CoastalLagoons
+    label: "Coastal lagoons"
+    expression: "physical:HorizontalArrangement(landcover.seed:LagoonWater)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-521.html"
+    notes:
+      - "Lagoon identity only; isolation from the sea, salinity and coastal geometry are omitted."
+  - code: "522"
+    alias: Estuaries
+    label: "Estuaries"
+    expression: "physical:HorizontalArrangement(landcover.seed:EstuarineWater)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-522.html"
+    notes:
+      - "Estuarine identity only; river-sea mixing, tides and geometry are omitted."
+  - code: "523"
+    alias: SeaAndOcean
+    label: "Sea and ocean"
+    expression: "physical:HorizontalArrangement(landcover.seed:MarineWater)"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-523.html"
+    notes:
+      - "Marine-water identity only; coastal boundaries and mapping-unit rules are omitted."

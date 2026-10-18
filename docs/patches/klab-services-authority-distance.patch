@@ -1,0 +1,543 @@
+diff --git a/docs/AUTHORITIES.md b/docs/AUTHORITIES.md
+index 8471fd8af..979b89856 100644
+--- a/docs/AUTHORITIES.md
++++ b/docs/AUTHORITIES.md
+@@ -96,7 +96,7 @@ must prevent concept creation.
+ The old `api.knowledge.Authority` interface is deprecated and is no longer a discoverable provider
+ contract. Its `setup()`, `Configuration.getResolutionEndpoint()`, documentation, and distance methods
+ have not been carried over as an operational remote protocol. New providers use `api.services.Authority`.
+-Distance delegation still needs an API decision. Identity documentation is published through the authenticated Reasoner documentation routes.
++Configured distance delegation is described in [authority distance](AUTHORITY_DISTANCE.md). Identity documentation is published through the authenticated Reasoner documentation routes.
+ 
+ Provider projects using the previous service interface must add `configure(ConfigurationRequest)`,
+ pass configuration IDs to `resolveIdentity` and `search`, and return the annotated URN from
+@@ -418,7 +418,7 @@ This syntax must preserve the complete bracketed payload rather than applying or
+ rules. It enables an authority to expose intuitive local aliases while evaluating equivalence,
+ subsumption, or distance from a multidimensional external definition. Ordinary OWL reasoning can
+ still use the materialized parent structure; comparisons whose meaning belongs to the external
+-classification will need a configured-provider distance API, which is not currently exposed.
++classification can use the configured-provider distance hook described in [authority distance](AUTHORITY_DISTANCE.md).
+ 
+ Concepts materialized from an authority should behave like normal concepts for hierarchy,
+ restriction, caching, display, and transport. Their origin remains significant: normal asserted
+@@ -431,7 +431,7 @@ configuration equivalence.
+ 
+ | Area | Status |
+ | --- | --- |
+-| Java annotation and provider interface | Available for provider identity, bridge configuration, search, codelists and hierarchy data. Reasoner documentation transport is available; authority-specific distance remains pending. |
++| Java annotation and provider interface | Available for provider identity, bridge configuration, search, codelists and hierarchy data. Reasoner documentation transport and configured authority distance are available; remote provider hosting remains pending. |
+ | Component scanning and validation | Available. Empty URNs, wrong interface types, missing no-argument constructors, and annotation/implementation URN mismatches are rejected. |
+ | Descriptor advertisement and serialization | Available. `ComponentDescriptor.authorities()` is published with service capabilities. |
+ | Reasoner-only instantiation | Available. Resources indexes and advertises providers without hosting them. |
+@@ -447,7 +447,7 @@ configuration equivalence.
+ | Search-only sub-authority dispatch | Implemented for opted-in providers: advertised dotted suffixes resolve through the base bridge, cache and canonical ontology. Exact configured dotted bindings take precedence. |
+ | Taxonomic provider | The sibling `klab.authority.taxa` implements pinned COL XR configuration, code lookup, synonym canonicalization, hierarchy validation, scientific/vernacular search and explicit reconciliation. See its README for parameters and limits. |
+ | Explicit reconciliation | Optional shared Java API and capability flag available. TAXA rejects ambiguous and higher-rank matches; service/UI transport remains pending. |
+-| Authority-aware semantic distance | Not implemented in Reasoner matching. |
++| Authority-aware semantic distance | Configured provider hook and normal matcher delegation implemented; see [direction, status, caching and capture limits](AUTHORITY_DISTANCE.md). |
+ | Bracketed complex expressions (`NAME:[...]`) | Canonical serialization, Resources parser/adapter retention, OWL decoding, and HTTP semantic insertion/undo are implemented and regression-tested. |
+ | Remote authority API | Authenticated Reasoner configuration, search, documentation, and semantic identity insertion are available. Standalone provider hosting, distance, and CRUD protocols remain undefined. |
+ 
+@@ -472,9 +472,9 @@ The next implementation work should proceed in dependency order:
+    expressions (`NAME:[...]`). Preserve payloads, including embedded colons and escaped closing
+    brackets, through qualified-name splitting, provider dispatch and canonicalization. Canonical
+    forms must remain unambiguous and round-trip through service DTOs.
+-6. **Integrate reasoning.** Route authority identity comparisons to the correct configured binding,
+-   combine provider distance with ordinary concept reasoning, and invalidate all related caches on
+-   binding, component, or worldview revision changes.
++6. **Extend reasoning integration.** Configured authority identity comparisons now delegate through
++   the normal matcher. Specify policy-revision caching, cross-binding mediation and captured distance
++   replay; preserve ordinary observable-head and contextual restrictions.
+ 7. **Define remote hosting.** Specify request/response DTOs for capabilities, configuration,
+    identity lookup, search, distance, documentation, and optional CRUD. Include authorization,
+    timeouts, cancellation, health, and failure semantics before treating
+diff --git a/klab.core.api/src/main/java/org/integratedmodelling/klab/api/services/Authority.java b/klab.core.api/src/main/java/org/integratedmodelling/klab/api/services/Authority.java
+index 6ab85b510..ec9273427 100644
+--- a/klab.core.api/src/main/java/org/integratedmodelling/klab/api/services/Authority.java
++++ b/klab.core.api/src/main/java/org/integratedmodelling/klab/api/services/Authority.java
+@@ -9,6 +9,33 @@ import org.integratedmodelling.klab.api.services.runtime.Notification;
+ 
+ public interface Authority {
+ 
++  /** Directional resolution result: can candidate supply target? UNKNOWN is not disjointness.
++   * UNSUPPORTED alone permits fallback to ordinary asserted hierarchy matching. */
++  record SemanticDistance(DistanceStatus status, int distance, List<String> explanations) {
++    public SemanticDistance {
++      java.util.Objects.requireNonNull(status);
++      explanations = List.copyOf(explanations);
++      if (status == DistanceStatus.COMPATIBLE ? distance < 0 || distance > 100 : distance != -1)
++        throw new IllegalArgumentException("Compatible distance must be 0..100; other statuses use -1");
++    }
++    public static SemanticDistance unsupported() {
++      return new SemanticDistance(DistanceStatus.UNSUPPORTED, -1, List.of());
++    }
++    public static SemanticDistance unknown(String reason) {
++      return new SemanticDistance(DistanceStatus.UNKNOWN, -1, List.of(reason));
++    }
++  }
++  enum DistanceStatus { COMPATIBLE, INCOMPATIBLE, UNKNOWN, UNSUPPORTED }
++
++  /** Compare canonical IDs within this exact live bridge. Zero is equivalence; positive values
++   * rank admitted candidate specializations. Do not return compatibility for mere overlap.
++   * Providers own their comparison policy in ConfigurationRequest parameters. Results are not cached
++   * by the host: mutable policy/evidence must not reuse identity/search cache lifetimes.
++   * Default preserves existing providers' asserted-hierarchy behavior. */
++  default SemanticDistance semanticDistance(String configurationId, String targetId, String candidateId) {
++    return SemanticDistance.unsupported();
++  }
++
+   enum HierarchyStatus { COMPLETE, DEFERRED }
+   enum ResolutionMode { CONFIGURED, FULL_HIERARCHY }
+ 
+@@ -229,6 +256,9 @@ public interface Authority {
+   }
+ 
+   interface Capabilities {
++    /** Advertises provider-defined distance for captured/accepted execution environments. */
++    default boolean isSemanticDistanceSupported() { return false; }
++
+ 
+     /**
+      * @return
+diff --git a/klab.core.api/src/main/java/org/integratedmodelling/klab/api/services/reasoner/objects/AuthorityIdentitySyntax.java b/klab.core.api/src/main/java/org/integratedmodelling/klab/api/services/reasoner/objects/AuthorityIdentitySyntax.java
+index 7af07d4fd..29f5e4f1d 100644
+--- a/klab.core.api/src/main/java/org/integratedmodelling/klab/api/services/reasoner/objects/AuthorityIdentitySyntax.java
++++ b/klab.core.api/src/main/java/org/integratedmodelling/klab/api/services/reasoner/objects/AuthorityIdentitySyntax.java
+@@ -2,6 +2,8 @@ package org.integratedmodelling.klab.api.services.reasoner.objects;
+ 
+ /** Canonical authority terminals for the observable grammar (AUTHORITY_CONCEPT and EXPR). */
+ public final class AuthorityIdentitySyntax {
++  /** Bounded complex definitions (including typed pattern envelopes), before bracket escaping. */
++  public static final int MAX_CODE_LENGTH = 131072;
+   private AuthorityIdentitySyntax() {}
+   public static void validateAuthority(String authority) {
+     if (authority == null || !authority.matches("[A-Z][A-Z0-9_]+(\\.[A-Z][A-Z0-9_]+)*"))
+@@ -9,9 +11,9 @@ public final class AuthorityIdentitySyntax {
+   }
+   public static String encode(String authority, String code) {
+     validateAuthority(authority);
+-    if (code == null || code.isBlank() || code.length() > 2048
++    if (code == null || code.isBlank() || code.length() > MAX_CODE_LENGTH
+         || code.chars().anyMatch(Character::isISOControl))
+-      throw new IllegalArgumentException("A nonblank authority code of at most 2048 characters is required");
++      throw new IllegalArgumentException("A nonblank authority code of at most " + MAX_CODE_LENGTH + " characters is required");
+     if (code.matches("[a-z][a-z0-9_]*|[A-Z][A-Z0-9_]+|[0-9]+")) return authority + ":" + code;
+     return authority + ":[" + code.replace("\\", "\\\\").replace("]", "\\]") + "]";
+   }
+diff --git a/klab.core.api/src/test/java/org/integratedmodelling/klab/api/services/reasoner/objects/AuthorityIdentitySyntaxTest.java b/klab.core.api/src/test/java/org/integratedmodelling/klab/api/services/reasoner/objects/AuthorityIdentitySyntaxTest.java
+index ccea665b7..c3b9fb9ad 100644
+--- a/klab.core.api/src/test/java/org/integratedmodelling/klab/api/services/reasoner/objects/AuthorityIdentitySyntaxTest.java
++++ b/klab.core.api/src/test/java/org/integratedmodelling/klab/api/services/reasoner/objects/AuthorityIdentitySyntaxTest.java
+@@ -11,6 +11,12 @@ class AuthorityIdentitySyntaxTest {
+     assertEquals("TAXA:123", AuthorityIdentitySyntax.encode("TAXA", "123"));
+     assertEquals("TAXA:[A B]", AuthorityIdentitySyntax.encode("TAXA", "A B"));
+   }
++  @Test void boundedComplexDefinitionsRoundTripWithoutTruncation() {
++    String code="rule2:" + "x]".repeat(2000);
++    String token=AuthorityIdentitySyntax.encode("LAND",code);
++    assertEquals(code,AuthorityIdentitySyntax.decode(token.substring(5)));
++    assertThrows(IllegalArgumentException.class,()->AuthorityIdentitySyntax.encode("LAND","x".repeat(AuthorityIdentitySyntax.MAX_CODE_LENGTH+1)));
++  }
+   @Test void requestBoundsAndInjectedAuthorityNamesAreRejected() {
+     assertThrows(IllegalArgumentException.class, () -> AuthorityIdentitySyntax.encode("TAXA:bad", "123"));
+     assertThrows(IllegalArgumentException.class, () -> AuthorityIdentitySyntax.decode("[a] bad]"));
+diff --git a/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/ReasonerService.java b/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/ReasonerService.java
+index 3ee522c2d..66e3b14bd 100644
+--- a/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/ReasonerService.java
++++ b/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/ReasonerService.java
+@@ -324,6 +324,14 @@ public class ReasonerService extends BaseService implements Reasoner, Reasoner.A
+     org.integratedmodelling.klab.api.services.reasoner.objects.AuthorityIdentitySyntax.encode(authority, code);
+     return authorityIdentityResolver.resolve(authority, code, true);
+   }
++  /** Internal matching hook; public semanticDistance routes retain contextual and head checks. */
++  public Authority.SemanticDistance authoritySemanticDistance(Concept target, Concept candidate) {
++    return authorityIdentityResolver == null ? Authority.SemanticDistance.unsupported()
++        : authorityIdentityResolver.semanticDistance(target, candidate);
++  }
++
++  public boolean hasConfiguredAuthorities() { return !authorityBindings.snapshot().isEmpty(); }
++
+   private volatile List<Notification> worldviewLoadDiagnostics = List.of();
+   private SyntacticMatcher syntacticMatcher;
+   private SemanticMatcher semanticMatcher;
+diff --git a/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/SemanticMatcher.java b/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/SemanticMatcher.java
+index dc878afb7..8517065cd 100644
+--- a/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/SemanticMatcher.java
++++ b/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/SemanticMatcher.java
+@@ -56,6 +56,12 @@ public class SemanticMatcher {
+     Scope serviceScope();
+ 
+     long knowledgeRevision();
++
++    default org.integratedmodelling.klab.api.services.Authority.SemanticDistance authorityDistance(
++        Concept target, Concept candidate) {
++      return org.integratedmodelling.klab.api.services.Authority.SemanticDistance.unsupported();
++    }
++    default boolean hasConfiguredAuthorities() { return false; }
+   }
+ 
+   private static final class ServiceOperations implements Operations {
+@@ -139,6 +145,12 @@ public class SemanticMatcher {
+       return service.serviceScope();
+     }
+ 
++    public org.integratedmodelling.klab.api.services.Authority.SemanticDistance authorityDistance(
++        Concept target, Concept candidate) {
++      return service.authoritySemanticDistance(target, candidate);
++    }
++    public boolean hasConfiguredAuthorities() { return service.hasConfiguredAuthorities(); }
++
+     public long knowledgeRevision() {
+       return service.knowledgeRevision();
+     }
+@@ -177,6 +189,10 @@ public class SemanticMatcher {
+     Concept targetConcept = target.asConcept();
+     Concept otherConcept = other.asConcept();
+     Concept contextConcept = context == null ? null : context.asConcept();
++    // Authority policy may change independently of OWL revision, including inside modifiers.
++    // Bypass the aggregate cache whenever live bridges exist until a policy revision API is defined.
++    if (operations.hasConfiguredAuthorities()) return semanticDistance(targetConcept, otherConcept,
++        contextConcept, true, null, operations.serviceScope());
+     var key =
+         new DistanceKey(
+             operations.knowledgeRevision(), targetConcept, otherConcept, contextConcept);
+@@ -249,10 +265,15 @@ public class SemanticMatcher {
+         distance += predicateDistance;
+         acceptedTraits.add(resolvedAbstractPredicates.get(t));
+       } else {
+-        boolean ok = operations.hasTrait(to, t);
+-        if (!ok) {
+-          return -50;
++        boolean delegated = false; Concept match = null; int best = Integer.MAX_VALUE;
++        for (Concept candidate : operations.traits(to)) {
++          var result = operations.authorityDistance(t, candidate);
++          if (result.status() != org.integratedmodelling.klab.api.services.Authority.DistanceStatus.UNSUPPORTED) delegated = true;
++          if (result.status() == org.integratedmodelling.klab.api.services.Authority.DistanceStatus.COMPATIBLE
++              && result.distance() < best) { match = candidate; best = result.distance(); }
+         }
++        if (match != null) { acceptedTraits.add(match); distance += best; }
++        else if (delegated || !operations.hasTrait(to, t)) return -50;
+       }
+     }
+ 
+@@ -466,7 +487,7 @@ public class SemanticMatcher {
+     } else if (from != null && to == null) {
+       ret = -50;
+     } else if (from != null) {
+-      ret = operations.is(to, from) ? assertedDistance(to, from) : -100;
++      ret = assertedDistance(to, from);
+       if (ret >= 0) {
+         for (Concept t : operations.traits(from)) {
+           boolean ok = operations.hasTrait(to, t);
+@@ -488,6 +509,11 @@ public class SemanticMatcher {
+   public int assertedDistance(Semantics from, Semantics to) {
+     Objects.requireNonNull(from, "from");
+     Objects.requireNonNull(to, "to");
++    if (from.asConcept().getUrn().equals(to.asConcept().getUrn())) return 0;
++    var delegated = operations.authorityDistance(to.asConcept(), from.asConcept());
++    if (delegated.status() != org.integratedmodelling.klab.api.services.Authority.DistanceStatus.UNSUPPORTED)
++      return delegated.status() == org.integratedmodelling.klab.api.services.Authority.DistanceStatus.COMPATIBLE
++          ? delegated.distance() : -1;
+     var key = new HierarchyKey(operations.knowledgeRevision(), from, to);
+     return assertedDistanceCache.get(
+         key, ignored -> shortestAssertedDistance(from, to, operations::parents));
+diff --git a/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/internal/AuthorityIdentityResolver.java b/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/internal/AuthorityIdentityResolver.java
+index baf431bc8..23860041d 100644
+--- a/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/internal/AuthorityIdentityResolver.java
++++ b/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/internal/AuthorityIdentityResolver.java
+@@ -97,12 +97,36 @@ public final class AuthorityIdentityResolver {
+       }
+       concept.getMetadata().put(Authority.HIERARCHY_STATUS,
+           (pending ? Authority.HierarchyStatus.DEFERRED : Authority.HierarchyStatus.COMPLETE).name());
+-      references.put(concept.getUrn(), new String[] {authorityName, externalId});
++      references.put(concept.getUrn(), new String[] {authorityName, identity.getId()});
+     });
+     if (expanded) enriched.run();
+     return known.get(id);
+   }
+ 
++  /** Only concepts admitted by this live resolver can select a configured provider. Metadata alone
++   * never authorizes dispatch. Different bindings are deliberately not compared by one provider. */
++  public synchronized Authority.SemanticDistance semanticDistance(Concept target, Concept candidate) {
++    var a = admittedReference(target); var b = admittedReference(candidate);
++    if (a == null || b == null) return Authority.SemanticDistance.unsupported();
++    var binding = bindings.get(a[0]);
++    if (!a[0].equals(b[0])) return Authority.SemanticDistance.unknown("Different authority configurations");
++    try {
++      var result = binding.provider().semanticDistance(binding.id(), a[1], b[1]);
++      return result == null ? Authority.SemanticDistance.unknown("Provider returned no distance") : result;
++    } catch (RuntimeException failure) {
++      return Authority.SemanticDistance.unknown("Authority distance evaluation failed");
++    }
++  }
++
++  private String[] admittedReference(Concept concept) {
++    var reference = references.get(concept.getUrn());
++    if (reference == null) return null;
++    var binding = bindings.get(reference[0]);
++    var known = binding == null ? null : resolved.get(binding);
++    return known != null && known.values().stream().anyMatch(c -> c.getUrn().equals(concept.getUrn()))
++        ? reference : null;
++  }
++
+   /** Explicit parent inspection or authority-to-authority subsumption may request enrichment. */
+   public synchronized void ensureHierarchy(Concept concept) {
+     var reference = references.get(concept.getUrn());
+diff --git a/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/internal/CachedAuthority.java b/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/internal/CachedAuthority.java
+index ba7cc3d99..cda7ba603 100644
+--- a/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/internal/CachedAuthority.java
++++ b/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/internal/CachedAuthority.java
+@@ -78,6 +78,11 @@ public final class CachedAuthority implements Authority {
+     }
+   }
+ 
++  @Override public synchronized SemanticDistance semanticDistance(String id, String target, String candidate) {
++    check(id);
++    return source.semanticDistance(providerId, target, candidate);
++  }
++
+   @Override public synchronized Identity resolveIdentity(String id, String identity) {
+     check(id);
+     return resolve(source, "", identity, ResolutionMode.CONFIGURED);
+diff --git a/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/internal/CapturedAuthorityCatalog.java b/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/internal/CapturedAuthorityCatalog.java
+index a451ff42a..3a56def60 100644
+--- a/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/internal/CapturedAuthorityCatalog.java
++++ b/klab.services.reasoner/src/main/java/org/integratedmodelling/klab/services/reasoner/internal/CapturedAuthorityCatalog.java
+@@ -393,6 +393,14 @@ public final class CapturedAuthorityCatalog {
+       try { return JSON.treeToValue(owned, CachedAuthority.StoredIdentity.class); }
+       catch (IOException failure) { throw new IllegalStateException(failure); }
+     }
++    @Override public synchronized SemanticDistance semanticDistance(String id, String target, String candidate) {
++      check(id);
++      if (!getCapabilities().isSemanticDistanceSupported()) return SemanticDistance.unsupported();
++      if (interactive.getAsBoolean()) return live().semanticDistance(bridge.liveId, target, candidate);
++      // Candidate compilation must not instantiate a mutable live provider or invent uncaptured results.
++      return SemanticDistance.unknown("Authority distance is not captured for candidate compilation");
++    }
++
+     @Override public synchronized Identity resolveIdentity(String id, String code) { return resolveIdentity(id, code, ResolutionMode.CONFIGURED); }
+     @Override public synchronized Identity resolveIdentity(String id, String code, ResolutionMode mode) {
+       check(id);
+diff --git a/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/authority/taxa/TaxaAuthority.java b/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/authority/taxa/TaxaAuthority.java
+index 96a977952..eaa956a35 100644
+--- a/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/authority/taxa/TaxaAuthority.java
++++ b/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/authority/taxa/TaxaAuthority.java
+@@ -16,10 +16,15 @@ public class TaxaAuthority implements Authority {
+         id, "taxon_" + id, "TAXA", null, List.of(), List.of(), "Live result", "Live " + id,
+         1, "TAXA:" + id, Map.of(), Set.of("SPECIES"), HierarchyStatus.COMPLETE);
+   }
++  public SemanticDistance semanticDistance(String configuration,String target,String candidate) {
++    if (!Objects.equals(configuration,configured)) throw new IllegalStateException("Unconfigured fixture");
++    return new SemanticDistance(DistanceStatus.COMPATIBLE,2,List.of("Owned live fixture"));
++  }
+   public List<Identity> search(String query, String filter, String id) { return List.of(resolveIdentity(id, query)); }
+   public Authority subAuthority(String catalog) { return this; }
+   public Capabilities getCapabilities() { return new FixtureCapabilities(); }
+   public static class FixtureCapabilities implements Capabilities {
++    public boolean isSemanticDistanceSupported() { return true; }
+     public String getDescription() { return "Portable recorded public-provider fixture"; }
+     public boolean isSearchable() { return true; } public boolean isFuzzy() { return false; }
+     public boolean areSubAuthoritiesSearchFilters() { return true; }
+diff --git a/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/SemanticMatcherTest.java b/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/SemanticMatcherTest.java
+index 70253276a..a42cf9c34 100644
+--- a/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/SemanticMatcherTest.java
++++ b/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/SemanticMatcherTest.java
+@@ -165,6 +165,33 @@ class SemanticMatcherTest {
+     assertTrue(matcher.semanticDistance(characterization, classification) < 0);
+   }
+ 
++  @Test void authorityDistanceIsDirectionalAndUnknownDoesNotFallBackToParentsOrCaches() {
++    var graph = new FakeOperations(); var target = predicate("AuthorityTarget"); var candidate = predicate("AuthorityCandidate");
++    graph.parents.put(candidate,List.of(target));
++    graph.delegated.put(Pair.of(target,candidate), new org.integratedmodelling.klab.api.services.Authority.SemanticDistance(
++        org.integratedmodelling.klab.api.services.Authority.DistanceStatus.COMPATIBLE,2,List.of()));
++    var matcher = new SemanticMatcher(graph);
++    assertEquals(100,matcher.semanticDistance(target,candidate));
++    graph.delegated.put(Pair.of(target,candidate),org.integratedmodelling.klab.api.services.Authority.SemanticDistance.unknown("Policy changed"));
++    assertTrue(matcher.semanticDistance(target,candidate)<0);
++    graph.delegated.put(Pair.of(candidate,target),org.integratedmodelling.klab.api.services.Authority.SemanticDistance.unknown("Not a refinement"));
++    assertTrue(matcher.semanticDistance(candidate,target)<0);
++    graph.delegated.clear(); assertTrue(matcher.semanticDistance(target,candidate)>0);
++  }
++
++  @Test void authorityTraitsMediateWithoutSkippingOrdinaryHeadAndContextChecks() {
++    var graph = new FakeOperations(); var a=predicate("PatternA"); var b=predicate("PatternB");
++    var target=concept("TreeA"); var candidate=concept("TreeB"); var head=concept("Tree");
++    graph.heads.put(target,head); graph.heads.put(candidate,head);
++    graph.traits.put(target,List.of(a)); graph.traits.put(candidate,List.of(b));
++    graph.delegated.put(Pair.of(a,b),new org.integratedmodelling.klab.api.services.Authority.SemanticDistance(
++        org.integratedmodelling.klab.api.services.Authority.DistanceStatus.COMPATIBLE,1,List.of()));
++    var matcher=new SemanticMatcher(graph); assertEquals(1,matcher.semanticDistance(target,candidate));
++    graph.heads.put(candidate,concept("WrongHead")); assertTrue(matcher.semanticDistance(target,candidate)<0);
++    graph.heads.put(candidate,head); graph.inherent.put(candidate,concept("WrongContext"));
++    assertTrue(matcher.semanticDistance(target,candidate,concept("Context"))<0);
++  }
++
+   private static Concept concept(String name) {
+     var ret = new ConceptImpl();
+     ret.setUrn("test:" + name);
+@@ -186,10 +213,16 @@ class SemanticMatcherTest {
+     private final Map<Concept, Concept> directInherent = new HashMap<>();
+     private final Map<Concept, Concept> heads = new HashMap<>();
+     private long revision;
++    private final Map<Concept,Collection<Concept>> traits = new HashMap<>();
++    private final Map<Pair<Concept,Concept>,org.integratedmodelling.klab.api.services.Authority.SemanticDistance> delegated = new HashMap<>();
++    @Override public boolean hasConfiguredAuthorities() { return !delegated.isEmpty(); }
++    @Override public org.integratedmodelling.klab.api.services.Authority.SemanticDistance authorityDistance(Concept target,Concept candidate) {
++      return delegated.getOrDefault(Pair.of(target,candidate),org.integratedmodelling.klab.api.services.Authority.SemanticDistance.unsupported());
++    }
+ 
+     @Override
+     public Collection<Concept> traits(Semantics concept) {
+-      return List.of();
++      return traits.getOrDefault(concept.asConcept(),List.of());
+     }
+ 
+     @Override
+diff --git a/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/internal/CachedAuthorityTest.java b/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/internal/CachedAuthorityTest.java
+index 41a96ea64..3a2e9e9bd 100644
+--- a/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/internal/CachedAuthorityTest.java
++++ b/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/internal/CachedAuthorityTest.java
+@@ -18,6 +18,24 @@ class CachedAuthorityTest {
+     catch (java.net.MalformedURLException e) { throw new AssertionError(e); }
+   }
+ 
++  @Test void distanceForwardsTheTransientBridgeAndIsNeverPersistentlyCached() {
++    var source=org.mockito.Mockito.mock(Authority.class);
++    var request=request();
++    org.mockito.Mockito.when(source.getUrn()).thenReturn("test.authority");
++    org.mockito.Mockito.when(source.getCachePolicy()).thenReturn(new Authority.CachePolicy("v1",100,100,100));
++    org.mockito.Mockito.when(source.configure(request)).thenReturn("transient");
++    org.mockito.Mockito.when(source.semanticDistance("transient","target","candidate"))
++        .thenReturn(new Authority.SemanticDistance(Authority.DistanceStatus.COMPATIBLE,1,List.of()))
++        .thenReturn(Authority.SemanticDistance.unknown("changed"));
++    var wrapper=new CachedAuthority(source,directory,Clock.systemUTC(),"implementation");
++    String id=wrapper.configure(request);
++    assertEquals(1,wrapper.semanticDistance(id,"target","candidate").distance());
++    assertEquals(Authority.DistanceStatus.UNKNOWN,wrapper.semanticDistance(id,"target","candidate").status());
++    org.mockito.Mockito.verify(source,org.mockito.Mockito.times(2)).semanticDistance("transient","target","candidate");
++    wrapper.releaseConfiguration(id);
++    assertThrows(IllegalArgumentException.class,()->wrapper.semanticDistance(id,"target","candidate"));
++  }
++
+   private Authority.ConfigurationRequest request(String worldview, String name, String root, int release) {
+     return new Authority.ConfigurationRequest(worldview, name, root,
+         Map.of("urn", "test.authority", "release", release));
+diff --git a/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/internal/CapturedAuthorityCatalogTest.java b/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/internal/CapturedAuthorityCatalogTest.java
+index 0317a47da..7b3da5efe 100644
+--- a/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/internal/CapturedAuthorityCatalogTest.java
++++ b/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/internal/CapturedAuthorityCatalogTest.java
+@@ -17,10 +17,13 @@ class CapturedAuthorityCatalogTest {
+     var provider = catalog.provider(fixture.binding(), request(), directory.resolve("interactive"), enabled::get);
+     var id = provider.configure(AuthorityBindings.providerRequest(request()));
+     assertTrue(provider.getCapabilities().isSearchable());
++    assertTrue(provider.getCapabilities().isSemanticDistanceSupported());
++    assertEquals(Authority.DistanceStatus.UNKNOWN,provider.semanticDistance(id,"target","candidate").status());
+     assertThrows(UnsupportedOperationException.class, () -> provider.search("new-query", null, id));
+     // The original installation can disappear after capture: accepted requests use owned bytes.
+     Files.delete(fixture.data().resolve("components/plugins/klab.authority.taxa-1.0.0-SNAPSHOT-component.jar"));
+     enabled.set(true);
++    assertEquals(2,provider.semanticDistance(id,"target","candidate").distance());
+     assertEquals("new-query", provider.search("new-query", "SPECIES", id).getFirst().getId());
+     assertEquals("selected-code", provider.resolveIdentity(id, "selected-code").getId());
+     var view = provider.subAuthority("SPECIES");
+diff --git a/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/owl/AuthorityIdentityResolverTest.java b/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/owl/AuthorityIdentityResolverTest.java
+index f29ed4fe6..c6de334ae 100644
+--- a/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/owl/AuthorityIdentityResolverTest.java
++++ b/klab.services.reasoner/src/test/java/org/integratedmodelling/klab/services/reasoner/owl/AuthorityIdentityResolverTest.java
+@@ -66,6 +66,27 @@ class AuthorityIdentityResolverTest {
+     verify(provider, never()).resolveIdentity("bridge", "Parent");
+   }
+ 
++  @Test void distanceDispatchUsesCanonicalCodesAndExactLiveBindingsAndFailsClosed() {
++    var owl=new TestOWL(); owl.requireOntology("bio").define(List.of(Axiom.ClassAssertion("Root",EnumSet.of(SemanticType.IDENTITY))));
++    var provider=mock(Authority.class); var bindings=new AuthorityBindings();
++    for(String name:List.of("AA","BB")) {
++      var request=new Authority.ConfigurationRequest("wv",name,"bio:Root",Map.of("urn","test"));
++      when(provider.configure(request)).thenReturn("bridge-"+name); bindings.configure(request,provider);
++      var canonicalIdentity=identity("Canonical",null); var otherIdentity=identity("Other",null);
++      when(provider.resolveIdentity("bridge-"+name,"alias")).thenReturn(canonicalIdentity);
++      when(provider.resolveIdentity("bridge-"+name,"Other")).thenReturn(otherIdentity);
++    }
++    var resolver=new AuthorityIdentityResolver(owl,bindings);
++    var a=resolver.resolve("AA","alias"); var other=resolver.resolve("AA","Other"); var b=resolver.resolve("BB","alias");
++    when(provider.semanticDistance("bridge-AA","Canonical","Other")).thenReturn(new Authority.SemanticDistance(Authority.DistanceStatus.COMPATIBLE,3,List.of()));
++    assertEquals(3,resolver.semanticDistance(a,other).distance());
++    assertEquals(Authority.DistanceStatus.UNKNOWN,resolver.semanticDistance(a,b).status());
++    verify(provider,never()).semanticDistance(eq("bridge-BB"),anyString(),anyString());
++    when(provider.semanticDistance("bridge-AA","Canonical","Other")).thenThrow(new IllegalStateException("unavailable"));
++    assertEquals(Authority.DistanceStatus.UNKNOWN,resolver.semanticDistance(a,other).status());
++    bindings.clear(); assertEquals(Authority.DistanceStatus.UNSUPPORTED,resolver.semanticDistance(a,other).status());
++  }
++
+   private static class TestOWL extends OWL {
+     TestOWL() {
+       super(mock(Scope.class));
+diff --git a/docs/AUTHORITY_DISTANCE.md b/docs/AUTHORITY_DISTANCE.md
+new file mode 100644
+index 000000000..3f10aa622
+--- /dev/null
++++ b/docs/AUTHORITY_DISTANCE.md
+@@ -0,0 +1,62 @@
++# Configured authority semantic distance
++
++The shared `Authority.semanticDistance(configurationId, targetId, candidateId)` hook participates in
++the existing Reasoner semantic-distance routes. No LAND-specific HTTP route is needed. It answers
++the directional question: **can the candidate supply the target?** A positive overlap or symmetric
++similarity score is insufficient for this purpose.
++
++## Provider contract
++
++`SemanticDistance` carries `DistanceStatus`, a bounded integer distance and explanations:
++
++| Status | Meaning | Matching behavior |
++| --- | --- | --- |
++| COMPATIBLE | Candidate is admitted for target; 0 means equivalence, 1..100 ranks specializations. | Use the provider distance. |
++| INCOMPATIBLE | Provider has established incompatibility. | Reject this match. |
++| UNKNOWN | Evidence, policy or supported semantics cannot establish resolution. | Reject this match without claiming disjointness. |
++| UNSUPPORTED | Provider does not implement this comparison. | Retain ordinary asserted-hierarchy matching. |
++
++All statuses except COMPATIBLE use distance -1. The default hook is UNSUPPORTED, preserving legacy
++providers. Providers supporting this operation advertise `Capabilities.isSemanticDistanceSupported()`.
++The normal integer Reasoner result cannot distinguish UNKNOWN from INCOMPATIBLE; its negative value
++means the candidate cannot currently resolve the target. The typed provider result retains the reason.
++
++## Dispatch and composition
++
++The authority identity resolver dispatches only identities it materialized in the current live
++binding. It uses canonical provider codes and the exact provider-held configuration handle; caller
++metadata or a namespace spelling cannot select a provider. Different bindings return UNKNOWN even
++when their provider URNs match. Cross-binding mediation needs a separately specified, explicit bridge.
++Provider exceptions or null responses become UNKNOWN, not hierarchy fallback.
++
++`SemanticMatcher` delegates stripped predicate heads, authority identity traits and inherent/modifier
++identity comparisons. Ordinary observable-head, contextualization and inherency restrictions still
++apply. A compatible authority identity cannot turn one measurable observable into another. The
++provider's 0..100 head distance is scaled by the existing head factor (50); trait distances are added
++at the existing predicate level. Reflexive identity comparisons remain zero.
++
++`CachedAuthority` translates its stable bridge handle back to the transient provider handle and
++forwards every comparison. Distance is deliberately neither persisted nor cached. Aggregate semantic
++distance caching is bypassed while authorities are configured because a comparison policy can change
++without changing OWL knowledge revision. A future policy-revision contract can narrow that cost.
++
++Accepted captured environments can call the owned live provider when interactive authority access
++is enabled. Candidate compilation remains replay-only: a provider advertising distance returns
++UNKNOWN there until distance capture/replay is specified. Legacy providers retain UNSUPPORTED.
++This boundary prevents candidate compilation from consulting mutable live providers.
++
++## Provider policy and remaining work
++
++Tolerances and thresholds belong to each provider configuration, not global Reasoner settings.
++Providers must retain definition thresholds separately from decision/uncertainty policies and explain
++their decisions. LAND currently supplies exact structural/interval entailment only. Unknown fuzzy
++quantity relationships are not assigned an invented score.
++
++Still to specify: cross-binding mediation, policy-revision cache fingerprints, captured distance
++replay, remote standalone provider transport, cancellation/timeouts and richer explanation transport
++through the normal integer matching API. No fuzzy arithmetic or general disjointness solver is
++introduced by this shared hook.
++
++Complex authority terminals retain a bounded maximum of 131072 code characters (raised from 2048
++for typed rule envelopes). Bracket/backslash escaping remains unchanged; no truncation or lossy
++hash-only reference is used. The LAND rule codec additionally enforces its own 128 KiB bound.

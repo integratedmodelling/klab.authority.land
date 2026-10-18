@@ -1,0 +1,36 @@
+{
+  "retrieved": "2026-10-18",
+  "getRepositoryCommit": "cadcd1c0e323e23751b660ce37431a133ce33bf5",
+  "sources": [
+    {
+      "file": "get.xlsx",
+      "url": "https://raw.githubusercontent.com/Ecosystem-Indicators-Workflows/IUCN-GET-vocabulary/cadcd1c0e323e23751b660ce37431a133ce33bf5/Files/IUCN-GET-profiles-exported-2026-04-01.xlsx",
+      "sha256": "593faddaa16582afd39f0164d91bcfaf5d01fb8afb375decf3b1f90f669f4f45",
+      "bytes": 533669
+    },
+    {
+      "file": "eunis_terrestrial.zip",
+      "url": "https://sdi.eea.europa.eu/datashare/s/mqtf8t3acx9RECQ/download",
+      "sha256": "ad240a78c9b3facb99e676f3d310a7e031b65bd950e3d9b444773d845ee81511",
+      "bytes": 1704204
+    },
+    {
+      "file": "eunis_marine.zip",
+      "url": "https://sdi.eea.europa.eu/datashare/s/Aaj3DLQoiFHZCW5/download",
+      "sha256": "4dd8f4b16a9daed636236afdc4e5604c7baa495e521b3bc22a9c3b3d7282d6f0",
+      "bytes": 4855668
+    },
+    {
+      "file": "get-license.txt",
+      "url": "https://raw.githubusercontent.com/Ecosystem-Indicators-Workflows/IUCN-GET-vocabulary/cadcd1c0e323e23751b660ce37431a133ce33bf5/output/LICENSE",
+      "sha256": "95df2e9564862e51d69683a899b6dcc8218d577057bdf67322880769ff85f29e",
+      "bytes": 18649
+    },
+    {
+      "file": "eunis2012.zip",
+      "url": "https://sdi.eea.europa.eu/datashare/s/Sg4S5qnek2XbiBR/download",
+      "sha256": "f779159a958b62957c2cdf9fff433a614fc6891ede025c3adc89ff161b0c2f4f",
+      "bytes": 4726701
+    }
+  ]
+}

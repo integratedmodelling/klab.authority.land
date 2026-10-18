@@ -1,0 +1,226 @@
+{
+  "status": "review hypotheses only",
+  "cases": [
+    {
+      "id": "EC01",
+      "getCode": "T2.2",
+      "eunisCatalog": "eunis2021_terrestrial_pilot",
+      "eunisCodes": [
+        "T17",
+        "T18"
+      ],
+      "reviewStatus": "CONDITIONAL_REFINEMENT_HYPOTHESIS",
+      "rationale": "Regional beech forests may fit deciduous temperate forests, but soil and assemblage distinctions must remain.",
+      "requiredEvidence": "Canopy composition, seasonal climate, source diagnostic flora and extent.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    },
+    {
+      "id": "EC02",
+      "getCode": "TF1.6",
+      "eunisCatalog": "eunis2021_terrestrial_pilot",
+      "eunisCodes": [
+        "Q11",
+        "Q12"
+      ],
+      "reviewStatus": "CONDITIONAL_REFINEMENT_HYPOTHESIS",
+      "rationale": "Raised and blanket bog morphology should not replace the broader functional bog description.",
+      "requiredEvidence": "Hydrological source, peat processes, climatic applicability and local interpretations.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    },
+    {
+      "id": "EC03",
+      "getCode": "TF1.7",
+      "eunisCatalog": "eunis2021_terrestrial_pilot",
+      "eunisCodes": [
+        "Q22",
+        "Q41"
+      ],
+      "reviewStatus": "OVERLAP_HYPOTHESIS",
+      "rationale": "Fen groupings share mineral-water context but differ in chemistry, flora and geographical support.",
+      "requiredEvidence": "Water source, base status, carbonate chemistry, peat extent and diagnostic assemblages.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    },
+    {
+      "id": "EC04",
+      "getCode": "TF1.3",
+      "eunisCatalog": "eunis2021_terrestrial_pilot",
+      "eunisCodes": [
+        "Q51"
+      ],
+      "reviewStatus": "OVERLAP_HYPOTHESIS",
+      "rationale": "A tall-helophyte bed is not automatically a permanently inundated functional marsh.",
+      "requiredEvidence": "Hydroperiod, productivity, substrate, geomorphic support and stand extent.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    },
+    {
+      "id": "EC05",
+      "getCode": "T4.5",
+      "eunisCatalog": "eunis2021_terrestrial_pilot",
+      "eunisCodes": [
+        "R1A",
+        "R1M",
+        "R21"
+      ],
+      "reviewStatus": "OVERLAP_HYPOTHESIS",
+      "rationale": "Similar grass cover can retain different flora, substrate and management meanings.",
+      "requiredEvidence": "Climate, seasonal water balance, soils, management history and vegetation diagnostics.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    },
+    {
+      "id": "EC06",
+      "getCode": "T7.1",
+      "eunisCatalog": "eunis2021_terrestrial_pilot",
+      "eunisCodes": [
+        "V11"
+      ],
+      "reviewStatus": "CONDITIONAL_REFINEMENT_HYPOTHESIS",
+      "rationale": "An intensive unmixed crop class might fit annual cropland when its crop cycle and management agree.",
+      "requiredEvidence": "Annual versus perennial cycle, crop identity, management intensity and land-use extent.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    },
+    {
+      "id": "EC07",
+      "getCode": "F1.1",
+      "eunisCatalog": "eunis2012_inland_pilot",
+      "eunisCodes": [
+        "C2.2"
+      ],
+      "reviewStatus": "OVERLAP_HYPOTHESIS",
+      "rationale": "Fast perennial water is not sufficient to infer upland stream context.",
+      "requiredEvidence": "Stream order, slope, flow variability, catchment support and watercourse boundaries.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    },
+    {
+      "id": "EC08",
+      "getCode": "F1.4",
+      "eunisCatalog": "eunis2012_inland_pilot",
+      "eunisCodes": [
+        "C2.2",
+        "C2.5"
+      ],
+      "reviewStatus": "OVERLAP_HYPOTHESIS",
+      "rationale": "Seasonal variation can occur in perennial as well as temporary upland streams.",
+      "requiredEvidence": "Observed cycle, flow cessation, residual pools, seasonal amplitude and reference window.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    },
+    {
+      "id": "EC09",
+      "getCode": "F2.1",
+      "eunisCatalog": "eunis2012_inland_pilot",
+      "eunisCodes": [
+        "C1.1",
+        "C1.2",
+        "C1.3"
+      ],
+      "reviewStatus": "OVERLAP_HYPOTHESIS",
+      "rationale": "GET lake size/permanence and EUNIS trophic status partition different dimensions.",
+      "requiredEvidence": "Area, freshwater chemistry, permanence, trophic measurements and mixing regime.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    },
+    {
+      "id": "EC10",
+      "getCode": "F2.6",
+      "eunisCatalog": "eunis2012_inland_pilot",
+      "eunisCodes": [
+        "C1.5"
+      ],
+      "reviewStatus": "OVERLAP_HYPOTHESIS",
+      "rationale": "Saline, brackish and soda lake categories need different chemistry and connectivity tests.",
+      "requiredEvidence": "Salinity definition, ionic composition, alkalinity, ocean connection and water persistence.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    },
+    {
+      "id": "EC11",
+      "getCode": "MT1.1",
+      "eunisCatalog": "eunis2022_marine_pilot",
+      "eunisCodes": [
+        "MA12",
+        "MA15"
+      ],
+      "reviewStatus": "CONDITIONAL_REFINEMENT_HYPOTHESIS",
+      "rationale": "Regional littoral rock may refine a global rocky-shoreline context without changing the underlying function.",
+      "requiredEvidence": "Tidal limits, wave exposure, community evidence and source-region applicability.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    },
+    {
+      "id": "EC12",
+      "getCode": "M1.1",
+      "eunisCatalog": "eunis2022_marine_pilot",
+      "eunisCodes": [
+        "MA522",
+        "MA623",
+        "MB522",
+        "MB252"
+      ],
+      "reviewStatus": "CONDITIONAL_REFINEMENT_HYPOTHESIS",
+      "rationale": "Regional seagrass community classes are candidates, not automatic synonyms for the global functional group.",
+      "requiredEvidence": "Species assemblage, meadow structure, substrate, tidal setting, light and spatial support.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    },
+    {
+      "id": "EC13",
+      "getCode": "M1.2",
+      "eunisCatalog": "eunis2022_marine_pilot",
+      "eunisCodes": [
+        "MB12",
+        "MB15"
+      ],
+      "reviewStatus": "OVERLAP_HYPOTHESIS",
+      "rationale": "A rock class can contain kelp ecosystems but need not be a kelp forest.",
+      "requiredEvidence": "Canopy-forming kelps, functional community, temperature/light and spatial extent.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    },
+    {
+      "id": "EC14",
+      "getCode": "M1.8",
+      "eunisCatalog": "eunis2022_marine_pilot",
+      "eunisCodes": [
+        "MA62"
+      ],
+      "reviewStatus": "NOT_EQUIVALENT_SCOPE_MISMATCH",
+      "rationale": "The selected EUNIS example is littoral mud whereas GET M1.8 is subtidal; mud identity alone cannot establish equivalence.",
+      "requiredEvidence": "A compatible subtidal EUNIS target and explicit tidal/bathymetric support. No logical disjointness is asserted.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    },
+    {
+      "id": "EC15",
+      "getCode": "M2.1",
+      "eunisCatalog": "eunis2022_marine_pilot",
+      "eunisCodes": [
+        "MH12"
+      ],
+      "reviewStatus": "NOT_EQUIVALENT_SCOPE_MISMATCH",
+      "rationale": "Neuston is an air-sea-interface community, not the complete epipelagic water-column system.",
+      "requiredEvidence": "Part/whole or interface relationship, depth/light structure and co-occurrence rather than equivalence.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    },
+    {
+      "id": "EC16",
+      "getCode": "M2.5",
+      "eunisCatalog": "eunis2022_marine_pilot",
+      "eunisCodes": [
+        "MJ11"
+      ],
+      "reviewStatus": "CONDITIONAL_REFINEMENT_HYPOTHESIS",
+      "rationale": "Arctic sea-ice communities may be a regional instance of global sea-ice functioning.",
+      "requiredEvidence": "Sea-ice rather than terrestrial ice, sympagic biota, seasonality and regional applicability.",
+      "officialCrosswalk": false,
+      "runtimeAssertion": false
+    }
+  ]
+}

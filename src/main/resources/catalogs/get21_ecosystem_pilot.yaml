@@ -1,0 +1,248 @@
+# Prototype ecosystem definitions for review, not an operational crosswalk.
+schemaVersion: 1
+id: get21_ecosystem_pilot
+title: "GET 2.1 level-3 ecosystem pilot"
+domain: ECOSYSTEM
+version: draft-1
+sourceVersion: "GET 2.1; maintained export 2026-04-01 (minor updates to September 2025)"
+source: "https://global-ecosystems.org/"
+tentative: true
+acceptsProposals: false
+notes:
+  - "Selected pilot only; complete level-3 source inventories are separate reference resources."
+  - "Invented ecosystem.seed functors retain categorical dimensions; they are not validated worldview semantics."
+  - "Source profile characteristics may be typical rather than necessary. Numeric, causal, temporal and taxonomic criteria still need specification."
+  - "No official GET-EUNIS equivalence or national-class override is asserted."
+entries:
+  - code: "T1.1"
+    alias: LowlandRainforest
+    label: "Tropical/Subtropical lowland rainforests"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:EvergreenBroadleafOrPalmTree),ecosystem.seed:Climate(ecosystem.seed:TropicalOrSubtropical,ecosystem.seed:Humid),ecosystem.seed:Landform(ecosystem.seed:Lowland))"
+    source: "https://global-ecosystems.org/explore/groups/T1.1"
+    notes:
+      - "Water balance, layered canopy, productivity and resource cycling need quantified and causal rules; tropical is not a latitude-only test."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "T2.2"
+    alias: DeciduousTemperateForest
+    label: "Deciduous temperate forests"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:DeciduousBroadleafTree),ecosystem.seed:Climate(ecosystem.seed:Temperate),ecosystem.seed:Phenology(ecosystem.seed:WinterDeciduous))"
+    source: "https://global-ecosystems.org/explore/groups/T2.2"
+    notes:
+      - "Canopy share, temperature seasonality, growing season and soil fertility remain unquantified; no tree species is universally required."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "T2.5"
+    alias: TemperatePyricHumidForest
+    label: "Temperate pyric humid forests"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:Tree),ecosystem.seed:Climate(ecosystem.seed:Temperate,ecosystem.seed:Humid),ecosystem.seed:Disturbance(ecosystem.seed:FireMaintained))"
+    source: "https://global-ecosystems.org/explore/groups/T2.5"
+    notes:
+      - "Fire regime, tall multilayer structure and summer drought episodes need explicit recurrence, severity and succession semantics."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "T2.6"
+    alias: TemperatePyricSclerophyllForest
+    label: "Temperate pyric sclerophyll forests and woodlands"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SclerophyllousVegetation),ecosystem.seed:Climate(ecosystem.seed:Temperate,ecosystem.seed:SummerWaterDeficit),ecosystem.seed:Disturbance(ecosystem.seed:FireMaintained))"
+    source: "https://global-ecosystems.org/explore/groups/T2.6"
+    notes:
+      - "Quantified water deficit, nutrients and fire intervals are not encoded; a recent burn is not evidence of a pyric ecosystem by itself."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "T4.5"
+    alias: TemperateSubhumidGrassland
+    label: "Temperate subhumid grasslands"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:NaturalHerbaceousVegetation),ecosystem.seed:Climate(ecosystem.seed:Temperate,ecosystem.seed:Subhumid))"
+    source: "https://global-ecosystems.org/explore/groups/T4.5"
+    notes:
+      - "Seasonal water balance, C3/C4 traits, soil properties, disturbance and tree-exclusion mechanisms need review."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "T7.1"
+    alias: AnnualCroplandEcosystem
+    label: "Annual croplands"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:AnnualCrop),ecosystem.seed:Management(ecosystem.seed:CultivationAndHarvest))"
+    source: "https://global-ecosystems.org/explore/groups/T7.1"
+    notes:
+      - "Annual management cycle and resource subsidies need temporal rules; high-input practice is not a universal numeric threshold here."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "TF1.3"
+    alias: PermanentMarsh
+    label: "Permanent marshes"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:WetlandVegetation),ecosystem.seed:Hydrology(ecosystem.seed:PermanentInundation))"
+    source: "https://global-ecosystems.org/explore/groups/TF1.3"
+    notes:
+      - "Water depth, anoxia, nutrients and marsh physiognomy remain qualitative; permanent inundation is not exhaustive water cover."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "TF1.4"
+    alias: SeasonalFloodplainMarsh
+    label: "Seasonal floodplain marshes"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:WetlandVegetation),ecosystem.seed:Landform(ecosystem.seed:Floodplain),ecosystem.seed:HydroperiodCycle(ecosystem.seed:InundatedPhase,ecosystem.seed:ExposedPhase))"
+    source: "https://global-ecosystems.org/explore/groups/TF1.4"
+    notes:
+      - "Flooding then exposure is a schematic recurring cycle; durations, gaps, spatial extent and interannual variation are unspecified. No equal phase length is assumed."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "TF1.6"
+    alias: BorealTemperateMontanePeatBog
+    label: "Boreal, temperate and montane peat bogs"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:PeatFormingVegetation),ecosystem.seed:Climate(ecosystem.seed:CoolHumid),ecosystem.seed:Hydrology(ecosystem.seed:Waterlogging),ecosystem.seed:Substrate(ecosystem.seed:Peat))"
+    source: "https://global-ecosystems.org/explore/groups/TF1.6"
+    notes:
+      - "GET bogs must not all be narrowed to strictly ombrotrophic raised bogs; peat chemistry and formation feedbacks need separate constraints."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "TF1.7"
+    alias: BorealTemperateFen
+    label: "Boreal and temperate fens"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:WetlandVegetation),ecosystem.seed:Climate(ecosystem.seed:BorealOrTemperate),ecosystem.seed:Hydrology(ecosystem.seed:MinerotrophicWaterSupply),ecosystem.seed:Substrate(ecosystem.seed:Peat))"
+    source: "https://global-ecosystems.org/explore/groups/TF1.7"
+    notes:
+      - "Mineral-water input, productivity, anoxia and water-table regime matter; rich and poor fens must remain possible regional refinements."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "F1.1"
+    alias: PermanentUplandStream
+    label: "Permanent upland streams"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:FlowingWater),ecosystem.seed:Hydrology(ecosystem.seed:PerennialFlow),ecosystem.seed:Landform(ecosystem.seed:Upland))"
+    source: "https://global-ecosystems.org/explore/groups/F1.1"
+    notes:
+      - "Stream order, slope, velocity, oxygen and catchment subsidies are not executable; perennial is not constant discharge."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "F1.4"
+    alias: SeasonalUplandStream
+    label: "Seasonal upland streams"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:FlowingWater),ecosystem.seed:Hydrology(ecosystem.seed:SeasonallyVariableFlow),ecosystem.seed:Landform(ecosystem.seed:Upland))"
+    source: "https://global-ecosystems.org/explore/groups/F1.4"
+    notes:
+      - "This GET group may include perennial flows as well as intermittent streams. Seasonal must not be interpreted as obligatory dry-channel absence."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "F2.1"
+    alias: LargePermanentFreshwaterLake
+    label: "Large permanent freshwater lakes"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Hydrology(ecosystem.seed:PermanentWater),ecosystem.seed:WaterChemistry(ecosystem.seed:Freshwater),ecosystem.seed:Morphology(ecosystem.seed:LargeLake))"
+    source: "https://global-ecosystems.org/explore/groups/F2.1"
+    notes:
+      - "Area, depth, stratification and mixing need explicit units and observation scales; large is an uncalibrated prototype identity."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "F2.6"
+    alias: PermanentSaltAndSodaLake
+    label: "Permanent salt and soda lakes"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Hydrology(ecosystem.seed:PermanentWater),ecosystem.seed:WaterChemistry(ecosystem.seed:SalineOrSodaWater))"
+    source: "https://global-ecosystems.org/explore/groups/F2.6"
+    notes:
+      - "Salinity, ionic composition and alkalinity need independent measurements; not all saline lakes are soda lakes."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "F3.1"
+    alias: LargeReservoir
+    label: "Large reservoirs"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Management(ecosystem.seed:ImpoundedWaterManagement),ecosystem.seed:Morphology(ecosystem.seed:LargeLake))"
+    source: "https://global-ecosystems.org/explore/groups/F3.1"
+    notes:
+      - "Water-level operation, residence time, impoundment history and size require context and temporal rules."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "F3.3"
+    alias: RicePaddyEcosystem
+    label: "Rice paddies"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:RiceCrop),ecosystem.seed:Management(ecosystem.seed:RiceCultivation),ecosystem.seed:Hydrology(ecosystem.seed:ManagedFlooding))"
+    source: "https://global-ecosystems.org/explore/groups/F3.3"
+    notes:
+      - "Management and inundation cycles vary; the prototype does not impose year-round flooding or a universal wet/dry duration ratio."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "FM1.2"
+    alias: PermanentlyOpenEstuary
+    label: "Permanently open riverine estuaries and bays"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:EstuarineWater),ecosystem.seed:Connectivity(ecosystem.seed:PermanentOceanConnection))"
+    source: "https://global-ecosystems.org/explore/groups/FM1.2"
+    notes:
+      - "Salinity gradients, exchange, freshwater inflow, tides and residence time are more informative than a single brackish identity."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "FM1.3"
+    alias: IntermittentlyOpenCoastalLagoon
+    label: "Intermittently closed and open lakes and lagoons"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:LagoonWater),ecosystem.seed:Connectivity(ecosystem.seed:IntermittentOceanConnection))"
+    source: "https://global-ecosystems.org/explore/groups/FM1.3"
+    notes:
+      - "Mouth closure cycles can be infrequent or frequent; phase durations and triggers cannot be inferred from the name."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "MFT1.2"
+    alias: IntertidalForestShrubland
+    label: "Intertidal forests and shrublands"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:MangrovePlant),ecosystem.seed:Hydrology(ecosystem.seed:TidalInundation),ecosystem.seed:BioticTraits(ecosystem.seed:MangroveEngineering))"
+    source: "https://global-ecosystems.org/explore/groups/MFT1.2"
+    notes:
+      - "The aggregate mangrove identity includes tree and shrub forms; salinity, thermal limits and sediment dynamics need constraints."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "MFT1.3"
+    alias: CoastalSaltmarshReedbed
+    label: "Coastal saltmarshes and reedbeds"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SaltMarshVegetation),ecosystem.seed:Hydrology(ecosystem.seed:TidalInundation),ecosystem.seed:WaterChemistry(ecosystem.seed:VariableSalinity))"
+    source: "https://global-ecosystems.org/explore/groups/MFT1.3"
+    notes:
+      - "Freshwater inputs, halophyte traits, tidal exposure and microtopography need explicit scales; a universal salinity value is inappropriate."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "MT1.1"
+    alias: RockyShorelineEcosystem
+    label: "Rocky Shorelines"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:RockSurface),ecosystem.seed:Hydrology(ecosystem.seed:IntertidalExposure),ecosystem.seed:Disturbance(ecosystem.seed:WaveAndTidalForcing))"
+    source: "https://global-ecosystems.org/explore/groups/MT1.1"
+    notes:
+      - "Zonation, exposure duration and sessile/mobile biota are omitted; substrate presence does not define the full community."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "M1.1"
+    alias: SeagrassMeadow
+    label: "Seagrass meadows"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Seagrass),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:BioticTraits(ecosystem.seed:SeagrassEngineering))"
+    source: "https://global-ecosystems.org/explore/groups/M1.1"
+    notes:
+      - "Meadow structure, light, salinity and sediment stabilization need rules; GET includes intertidal examples and occasional rocky substrates."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "M1.2"
+    alias: KelpForest
+    label: "Kelp forests"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Kelp),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:BioticTraits(ecosystem.seed:KelpCanopyEngineering))"
+    source: "https://global-ecosystems.org/explore/groups/M1.2"
+    notes:
+      - "Light, nutrients, temperature, substrate attachment and herbivory/trophic cascades require more than canopy identity."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "M1.3"
+    alias: PhoticCoralReef
+    label: "Photic coral reefs"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:ReefBuildingCoral),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:EnergyRegime(ecosystem.seed:Photic),ecosystem.seed:BioticTraits(ecosystem.seed:CarbonateReefAccretion))"
+    source: "https://global-ecosystems.org/explore/groups/M1.3"
+    notes:
+      - "Symbiosis, light-depth-temperature envelope, salinity and accretion must be modeled; all corals do not define a photic reef."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "M1.8"
+    alias: SubtidalMudPlain
+    label: "Subtidal mud plains"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:MudSubstrate),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:Hydrology(ecosystem.seed:Subtidal),ecosystem.seed:EnergyRegime(ecosystem.seed:LowKineticEnergy))"
+    source: "https://global-ecosystems.org/explore/groups/M1.8"
+    notes:
+      - "Deposition, benthic food-web subsidies, oxygen and organic matter need measurable constraints."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "M2.1"
+    alias: EpipelagicOcean
+    label: "Epipelagic ocean waters"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:MarineWater),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:EnergyRegime(ecosystem.seed:Photic),ecosystem.seed:WaterColumn(ecosystem.seed:Pelagic))"
+    source: "https://global-ecosystems.org/explore/groups/M2.1"
+    notes:
+      - "Photic depth depends on turbidity and season, not a universally fixed depth; pelagic and benthic contexts must remain distinct."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "M2.5"
+    alias: SeaIceEcosystem
+    label: "Sea ice"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SnowOrIce),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:BioticTraits(ecosystem.seed:SympagicCommunity))"
+    source: "https://global-ecosystems.org/explore/groups/M2.5"
+    notes:
+      - "Sea ice is not terrestrial snow; freezing, brine channels, seasonal retreat and connected water communities need temporal structure."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "M3.7"
+    alias: ChemosyntheticEcosystem
+    label: "Chemosynthetic-based-ecosystems (CBE)"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:ChemosyntheticMicrobes),ecosystem.seed:Environment(ecosystem.seed:DeepMarine),ecosystem.seed:EnergyRegime(ecosystem.seed:ChemicalEnergy))"
+    source: "https://global-ecosystems.org/explore/groups/M3.7"
+    notes:
+      - "Vents, cold seeps and organic falls are alternatives, not mandatory co-occurring components. Pressure and donor chemistry require constraints."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+  - code: "SF1.2"
+    alias: GroundwaterEcosystem
+    label: "Groundwater ecosystems"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Groundwater),ecosystem.seed:Environment(ecosystem.seed:Subterranean),ecosystem.seed:EnergyRegime(ecosystem.seed:LightAbsent))"
+    source: "https://global-ecosystems.org/explore/groups/SF1.2"
+    notes:
+      - "Aquifer and hyporheic connectivity, residence time, pore space and oxygen need rules; microbial and animal communities vary."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."

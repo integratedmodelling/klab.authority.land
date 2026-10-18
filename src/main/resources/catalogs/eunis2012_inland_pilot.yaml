@@ -1,0 +1,88 @@
+# Prototype ecosystem definitions for review, not an operational crosswalk.
+schemaVersion: 1
+id: eunis2012_inland_pilot
+title: "EUNIS legacy inland-water ecosystem pilot"
+domain: ECOSYSTEM
+version: draft-1
+sourceVersion: "EUNIS 2007 classification; revised descriptions 2012, amended 2019"
+source: "https://doi.org/10.2909/566bf5a0-e41a-48e3-912a-3ec0767da310"
+tentative: true
+acceptsProposals: false
+notes:
+  - "Selected pilot only; complete level-3 source inventories are separate reference resources."
+  - "Invented ecosystem.seed functors retain categorical dimensions; they are not validated worldview semantics."
+  - "Source profile characteristics may be typical rather than necessary. Numeric, causal, temporal and taxonomic criteria still need specification."
+  - "No official GET-EUNIS equivalence or national-class override is asserted."
+entries:
+  - code: "C1.1"
+    alias: PermanentOligotrophicLake
+    label: "Permanent oligotrophic lakes, ponds and pools"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Hydrology(ecosystem.seed:PermanentWater),ecosystem.seed:TrophicRegime(ecosystem.seed:Oligotrophic))"
+    source: "https://doi.org/10.2909/566bf5a0-e41a-48e3-912a-3ec0767da310"
+    notes:
+      - "Trophic status, light, chemistry and water-body extent require measurements; not equivalent to GET large freshwater lakes."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: descriptions sheet, row 1281; level 3; edition EUNIS 2007 classification; revised descriptions 2012, amended 2019."
+  - code: "C1.2"
+    alias: PermanentMesotrophicLake
+    label: "Permanent mesotrophic lakes, ponds and pools"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Hydrology(ecosystem.seed:PermanentWater),ecosystem.seed:TrophicRegime(ecosystem.seed:Mesotrophic))"
+    source: "https://doi.org/10.2909/566bf5a0-e41a-48e3-912a-3ec0767da310"
+    notes:
+      - "No universal nutrient cutoff is invented; the category needs a calibrated observation and temporal support."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: descriptions sheet, row 1292; level 3; edition EUNIS 2007 classification; revised descriptions 2012, amended 2019."
+  - code: "C1.3"
+    alias: PermanentEutrophicLake
+    label: "Permanent eutrophic lakes, ponds and pools"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Hydrology(ecosystem.seed:PermanentWater),ecosystem.seed:TrophicRegime(ecosystem.seed:Eutrophic))"
+    source: "https://doi.org/10.2909/566bf5a0-e41a-48e3-912a-3ec0767da310"
+    notes:
+      - "Trophic status is not automatically ecological condition or a pressure score; origin and management must be separated."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: descriptions sheet, row 1318; level 3; edition EUNIS 2007 classification; revised descriptions 2012, amended 2019."
+  - code: "C1.5"
+    alias: PermanentSalineBrackishLake
+    label: "Permanent inland saline and brackish lakes, ponds and pools"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Hydrology(ecosystem.seed:PermanentWater),ecosystem.seed:WaterChemistry(ecosystem.seed:SalineOrBrackish))"
+    source: "https://doi.org/10.2909/566bf5a0-e41a-48e3-912a-3ec0767da310"
+    notes:
+      - "Inland saline and brackish waters need not be soda lakes; ionic composition and ocean connectivity differ from estuaries."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: descriptions sheet, row 1338; level 3; edition EUNIS 2007 classification; revised descriptions 2012, amended 2019."
+  - code: "C1.6"
+    alias: TemporaryStandingWater
+    label: "Temporary lakes, ponds and pools"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Hydrology(ecosystem.seed:TemporaryWater))"
+    source: "https://doi.org/10.2909/566bf5a0-e41a-48e3-912a-3ec0767da310"
+    notes:
+      - "Temporary water includes multiple regimes; no fixed hydroperiod duration or generic GET equivalent is assumed."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: descriptions sheet, row 1353; level 3; edition EUNIS 2007 classification; revised descriptions 2012, amended 2019."
+  - code: "C2.2"
+    alias: PermanentFastWatercourse
+    label: "Permanent non-tidal, fast, turbulent watercourses"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:FlowingWater),ecosystem.seed:Hydrology(ecosystem.seed:PerennialFlow),ecosystem.seed:Hydrodynamics(ecosystem.seed:FastTurbulentNonTidal))"
+    source: "https://doi.org/10.2909/566bf5a0-e41a-48e3-912a-3ec0767da310"
+    notes:
+      - "Not equivalent to upland by itself: stream order, gradient and catchment context are separate properties."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: descriptions sheet, row 1384; level 3; edition EUNIS 2007 classification; revised descriptions 2012, amended 2019."
+  - code: "C2.3"
+    alias: PermanentSmoothWatercourse
+    label: "Permanent non-tidal, smooth-flowing watercourses"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:FlowingWater),ecosystem.seed:Hydrology(ecosystem.seed:PerennialFlow),ecosystem.seed:Hydrodynamics(ecosystem.seed:SmoothFlowingNonTidal))"
+    source: "https://doi.org/10.2909/566bf5a0-e41a-48e3-912a-3ec0767da310"
+    notes:
+      - "Smooth flow does not by itself determine lowland location, river size or ecosystem functional group."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: descriptions sheet, row 1393; level 3; edition EUNIS 2007 classification; revised descriptions 2012, amended 2019."
+  - code: "C2.5"
+    alias: TemporaryRunningWater
+    label: "Temporary running waters"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:FlowingWater),ecosystem.seed:Hydrology(ecosystem.seed:TemporaryFlow))"
+    source: "https://doi.org/10.2909/566bf5a0-e41a-48e3-912a-3ec0767da310"
+    notes:
+      - "GET seasonal upland streams may remain perennial, so this is neither a simple synonym nor an exhaustive mapping."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: descriptions sheet, row 1403; level 3; edition EUNIS 2007 classification; revised descriptions 2012, amended 2019."

@@ -1,0 +1,162 @@
+{
+  "classification": "EUNIS",
+  "edition": "2007 classification; revised descriptions 2012 amended 2019",
+  "scope": "C Inland surface waters, level 3 only",
+  "source": {
+    "file": "eunis2012.zip",
+    "url": "https://sdi.eea.europa.eu/datashare/s/Sg4S5qnek2XbiBR/download",
+    "sha256": "f779159a958b62957c2cdf9fff433a614fc6891ede025c3adc89ff161b0c2f4f",
+    "bytes": 4726701
+  },
+  "entries": [
+    {
+      "code": "C1.1",
+      "label": "Permanent oligotrophic lakes, ponds and pools",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1281
+    },
+    {
+      "code": "C1.2",
+      "label": "Permanent mesotrophic lakes, ponds and pools",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1292
+    },
+    {
+      "code": "C1.3",
+      "label": "Permanent eutrophic lakes, ponds and pools",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1318
+    },
+    {
+      "code": "C1.4",
+      "label": "Permanent dystrophic lakes, ponds and pools",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1328
+    },
+    {
+      "code": "C1.5",
+      "label": "Permanent inland saline and brackish lakes, ponds and pools",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1338
+    },
+    {
+      "code": "C1.6",
+      "label": "Temporary lakes, ponds and pools",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1353
+    },
+    {
+      "code": "C1.7",
+      "label": "Permanent lake ice",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1363
+    },
+    {
+      "code": "C2.1",
+      "label": "Springs, spring brooks and geysers",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1365
+    },
+    {
+      "code": "C2.2",
+      "label": "Permanent non-tidal, fast, turbulent watercourses",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1384
+    },
+    {
+      "code": "C2.3",
+      "label": "Permanent non-tidal, smooth-flowing watercourses",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1393
+    },
+    {
+      "code": "C2.4",
+      "label": "Tidal rivers, upstream from the estuary",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1398
+    },
+    {
+      "code": "C2.5",
+      "label": "Temporary running waters",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1403
+    },
+    {
+      "code": "C2.6",
+      "label": "Films of water flowing over rocky watercourse margins",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1404
+    },
+    {
+      "code": "C3.1",
+      "label": "Species-rich helophyte beds",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1406
+    },
+    {
+      "code": "C3.2",
+      "label": "Water-fringing reedbeds and tall helophytes other than canes",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1408
+    },
+    {
+      "code": "C3.3",
+      "label": "Water-fringing beds of tall canes",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1439
+    },
+    {
+      "code": "C3.4",
+      "label": "Species-poor beds of low-growing water-fringing or amphibious vegetation",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1442
+    },
+    {
+      "code": "C3.5",
+      "label": "Periodically inundated shores with pioneer and ephemeral vegetation",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1481
+    },
+    {
+      "code": "C3.6",
+      "label": "Unvegetated or sparsely vegetated shores with soft or mobile sediments",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1503
+    },
+    {
+      "code": "C3.7",
+      "label": "Unvegetated or sparsely vegetated shores with non-mobile substrates",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1510
+    },
+    {
+      "code": "C3.8",
+      "label": "Inland spray- and steam-dependent habitats",
+      "level": 3,
+      "sheet": "descriptions",
+      "row": 1514
+    }
+  ],
+  "workbook": "EUNIS habitat classification 2007 - Revised descriptions 2012 amended 2019.xls",
+  "archiveMember": "eea_t_eunis-hab_p_2004-on-going_v01_r00/EUNIS habitat classification 2007 - Revised descriptions 2012 amended 2019.xls"
+}

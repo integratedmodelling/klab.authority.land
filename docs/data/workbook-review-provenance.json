@@ -1,0 +1,43 @@
+{
+  "sourceTitle": "Primitive characteristic annotation.xlsx",
+  "sha256": "69b1186dacf0f62d2e3c7e7bf4ac6bb56a072109e00fb8e4195d66888cd4ffaa",
+  "status": "exploratory user-supplied evidence, not authoritative definitions",
+  "processing": {
+    "readOnly": true,
+    "cachedValuesInspected": true,
+    "formulasExecuted": false,
+    "externalImportsResolved": false
+  },
+  "evidence": [
+    {
+      "sheet": "Template to organize centralisa",
+      "range": "B3:E3,AL3",
+      "observation": "Subglacial-lake row and snow-or-ice characteristic coexist with a shrubland annotation; check lookup alignment rather than adopting that annotation."
+    },
+    {
+      "sheet": "Semantic_mapping(hardcoded)",
+      "range": "A2:I8",
+      "observation": "Separates observation kinds, management categories and legacy concept strings; those strings were not resolved against the current worldview."
+    },
+    {
+      "sheet": "Semantic_mapping(hardcoded)",
+      "range": "A171:I171",
+      "observation": "A wildfire-periodicity characteristic is reduced to a presence boolean; recurrence, duration and observation period must be separate."
+    },
+    {
+      "sheet": "classifications",
+      "range": "B8:D8",
+      "observation": "Annual-total productivity source name accompanies a per-day annotation; temporal aggregation and units need review."
+    },
+    {
+      "sheet": "1. Thresholds annotation",
+      "range": "A3",
+      "observation": "Lookup example has adjacent ranges sharing 4; inclusivity and the target language interval semantics need explicit review."
+    },
+    {
+      "sheet": "status of biomes",
+      "range": "F4",
+      "observation": "Records concern about no fire observations versus absent information; missingness must remain separate from false."
+    }
+  ]
+}

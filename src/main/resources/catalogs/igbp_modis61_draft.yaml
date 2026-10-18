@@ -1,0 +1,119 @@
+# Tentative testing material. Expressions are proposals, not official definitions.
+schemaVersion: 1
+id: igbp_modis61_draft
+title: "IGBP MODIS LC_Type1: tentative testing legend"
+domain: LULC
+version: draft-1
+sourceVersion: "MCD12Q1 Collection 6.1 user guide, 2022-04-20, table 3"
+source: "https://lpdaac.usgs.gov/documents/1409/MCD12_User_Guide_V61.pdf#page=9"
+tentative: true
+acceptsProposals: false
+notes:
+  - "All 17 MCD12Q1 LC_Type1 classes are represented. Code 255 is missing input, not a cover identity, and is excluded."
+  - "This is the MCD12Q1 numbering with water 17, not the MCD12C1 or UMD water-0 conventions."
+  - "Absolute cover, height, persistence and spatial grain remain notes, not executable constraints or plus-count ratios."
+  - "Known lossy collisions are intentional: closed/open shrubland and woody savanna/savanna. They test ambiguity caused by omitted thresholds."
+  - "No inference should treat draft equivalence as evidence that the official source classification is inconsistent."
+entries:
+  - code: "1"
+    alias: EvergreenNeedleleafForest
+    label: "Evergreen needleleaf forests"
+    expression: "physical:HorizontalArrangement(landcover.seed:EvergreenNeedleleafTree)"
+    notes:
+      - "Height above 2 m and tree cover above 60 percent are omitted."
+  - code: "2"
+    alias: EvergreenBroadleafForest
+    label: "Evergreen broadleaf forests"
+    expression: "physical:HorizontalArrangement(landcover.seed:EvergreenBroadleafOrPalmTree)"
+    notes:
+      - "Includes palms in a union-like identity; height above 2 m and cover above 60 percent are omitted."
+  - code: "3"
+    alias: DeciduousNeedleleafForest
+    label: "Deciduous needleleaf forests"
+    expression: "physical:HorizontalArrangement(landcover.seed:DeciduousNeedleleafTree)"
+    notes:
+      - "Height above 2 m and tree cover above 60 percent are omitted."
+  - code: "4"
+    alias: DeciduousBroadleafForest
+    label: "Deciduous broadleaf forests"
+    expression: "physical:HorizontalArrangement(landcover.seed:DeciduousBroadleafTree)"
+    notes:
+      - "Height above 2 m and tree cover above 60 percent are omitted."
+  - code: "5"
+    alias: MixedForest
+    label: "Mixed forests"
+    expression: "physical:HorizontalArrangement(landcover.seed:EvergreenTree,landcover.seed:DeciduousTree)"
+    notes:
+      - "Leaf habit mixture, not the CORINE broadleaf-conifer mixture; 40-60 percent shares and forest thresholds are omitted."
+  - code: "6"
+    alias: ClosedShrubland
+    label: "Closed shrublands"
+    expression: "physical:HorizontalArrangement(landcover.seed:Shrub)"
+    notes:
+      - "Height 1-2 m and cover above 60 percent are omitted; intentionally collapses with OpenShrubland in this draft."
+  - code: "7"
+    alias: OpenShrubland
+    label: "Open shrublands"
+    expression: "physical:HorizontalArrangement(landcover.seed:Shrub)"
+    notes:
+      - "Height 1-2 m and cover 10-60 percent are omitted; same draft pattern as ClosedShrubland."
+  - code: "8"
+    alias: WoodySavanna
+    label: "Woody savannas"
+    expression: "physical:HorizontalArrangement(landcover.seed:Tree)"
+    notes:
+      - "Height above 2 m and tree cover 30-60 percent are omitted; non-tree understory is unspecified."
+  - code: "9"
+    alias: Savanna
+    label: "Savannas"
+    expression: "physical:HorizontalArrangement(landcover.seed:Tree)"
+    notes:
+      - "Height above 2 m and tree cover 10-30 percent are omitted; same draft pattern as WoodySavanna."
+  - code: "10"
+    alias: Grassland
+    label: "Grasslands"
+    expression: "physical:HorizontalArrangement(landcover.seed:AnnualHerbaceousVegetation)"
+    notes:
+      - "Height below 2 m is omitted; this source legend emphasizes herbaceous annuals."
+  - code: "11"
+    alias: PermanentWetland
+    label: "Permanent wetlands"
+    expression: "physical:HorizontalArrangement(landcover.seed:WetlandVegetation,landcover.seed:SurfaceWater)"
+    notes:
+      - "Permanent inundation, 30-60 percent water and vegetation above 10 percent are omitted."
+  - code: "12"
+    alias: Cropland
+    label: "Croplands"
+    expression: "physical:HorizontalArrangement(landcover.seed:Crop)"
+    notes:
+      - "Cultivated fraction of at least 60 percent is omitted."
+  - code: "13"
+    alias: UrbanAndBuiltUp
+    label: "Urban and built-up lands"
+    expression: "physical:HorizontalArrangement(landcover.seed:BuiltSurface)"
+    notes:
+      - "Impervious fraction of at least 30 percent is omitted."
+  - code: "14"
+    alias: CroplandNaturalVegetationMosaic
+    label: "Cropland/natural vegetation mosaics"
+    expression: "physical:HorizontalArrangement(landcover.seed:Crop,landcover.seed:NaturalVegetation)"
+    notes:
+      - "Cultivation share 40-60 percent and spatial grain are omitted; unmarked components are not assumed equal."
+  - code: "15"
+    alias: PermanentSnowAndIce
+    label: "Permanent snow and ice"
+    expression: "physical:HorizontalArrangement(landcover.seed:SnowOrIce)"
+    notes:
+      - "Cover of at least 60 percent for at least 10 months is omitted."
+  - code: "16"
+    alias: Barren
+    label: "Barren"
+    expression: "physical:HorizontalArrangement(landcover.seed:BarrenSurface)"
+    notes:
+      - "Barren fraction of at least 60 percent and vegetation below 10 percent are omitted."
+  - code: "17"
+    alias: WaterBodies
+    label: "Water bodies"
+    expression: "physical:HorizontalArrangement(landcover.seed:SurfaceWater)"
+    notes:
+      - "Permanent-water cover of at least 60 percent is omitted."

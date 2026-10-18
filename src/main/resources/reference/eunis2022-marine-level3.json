@@ -1,0 +1,2040 @@
+{
+  "classification": "EUNIS",
+  "edition": "2022",
+  "source": {
+    "file": "eunis_marine.zip",
+    "url": "https://sdi.eea.europa.eu/datashare/s/Aaj3DLQoiFHZCW5/download",
+    "sha256": "4dd8f4b16a9daed636236afdc4e5604c7baa495e521b3bc22a9c3b3d7282d6f0",
+    "bytes": 4855668
+  },
+  "workbook": "EUNIS marine habitat classification 2022 including crosswalks.xlsx",
+  "entries": [
+    {
+      "code": "MA11",
+      "label": "Arctic littoral rock",
+      "sheet": "Benthic habitats",
+      "row": 4,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MA12",
+      "label": "Atlantic littoral rock",
+      "sheet": "Benthic habitats",
+      "row": 5,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MA13",
+      "label": "Baltic hydrolittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 94,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MA14",
+      "label": "Black sea littoral rock",
+      "sheet": "Benthic habitats",
+      "row": 112,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MA15",
+      "label": "Mediterranean littoral rock",
+      "sheet": "Benthic habitats",
+      "row": 124,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MA21",
+      "label": "Arctic Littoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 148,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MA22",
+      "label": "Atlantic littoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 153,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MA23",
+      "label": "Baltic hydrolittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 235,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MA24",
+      "label": "Black sea littoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 238,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MA25",
+      "label": "Mediterranean littoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 240,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MA31",
+      "label": "Arctic littoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 266,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MA32",
+      "label": "Atlantic littoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 267,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MA33",
+      "label": "Baltic hydrolittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 272,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MA34",
+      "label": "Black sea littoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 285,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MA35",
+      "label": "Mediterranean littoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 287,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MA41",
+      "label": "Arctic littoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 292,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MA42",
+      "label": "Atlantic littoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 293,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MA43",
+      "label": "Baltic hydrolittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 307,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MA44",
+      "label": "Black Sea littoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 317,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MA45",
+      "label": "Mediterranean littoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 319,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MA51",
+      "label": "Arctic littoral sand",
+      "sheet": "Benthic habitats",
+      "row": 323,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MA52",
+      "label": "Atlantic littoral sand",
+      "sheet": "Benthic habitats",
+      "row": 324,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MA53",
+      "label": "Baltic hydrolittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 352,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MA54",
+      "label": "Black sea littoral sand",
+      "sheet": "Benthic habitats",
+      "row": 366,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MA55",
+      "label": "Mediterranean littoral sand",
+      "sheet": "Benthic habitats",
+      "row": 368,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MA61",
+      "label": "Arctic littoral mud",
+      "sheet": "Benthic habitats",
+      "row": 381,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MA62",
+      "label": "Atlantic littoral mud",
+      "sheet": "Benthic habitats",
+      "row": 382,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MA63",
+      "label": "Baltic hydrolittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 402,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MA64",
+      "label": "Black Sea littoral mud",
+      "sheet": "Benthic habitats",
+      "row": 416,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MA65",
+      "label": "Mediterranean littoral mud",
+      "sheet": "Benthic habitats",
+      "row": 418,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MB11",
+      "label": "Arctic infralittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 423,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MB12",
+      "label": "Atlantic infralittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 424,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MB13",
+      "label": "Baltic infralittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 519,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MB14",
+      "label": "Black Sea infralittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 550,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MB15",
+      "label": "Mediterranean infralittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 566,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MB21",
+      "label": "Arctic infralittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 611,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MB22",
+      "label": "Atlantic infralittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 612,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MB23",
+      "label": "Baltic infralittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 620,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MB24",
+      "label": "Black Sea infralittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 635,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MB25",
+      "label": "Mediterranean infralittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 639,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MB31",
+      "label": "Arctic infralittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 652,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MB32",
+      "label": "Atlantic infralittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 655,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MB33",
+      "label": "Baltic infralittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 677,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MB34",
+      "label": "Black Sea infralittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 714,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MB35",
+      "label": "Mediterranean infralittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 716,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MB41",
+      "label": "Arctic infralittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 725,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MB42",
+      "label": "Atlantic infralittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 726,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MB43",
+      "label": "Baltic infralittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 740,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MB44",
+      "label": "Black Sea infralittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 780,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MB45",
+      "label": "Mediterranean infralittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 782,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MB51",
+      "label": "Arctic infralittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 784,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MB52",
+      "label": "Atlantic infralittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 785,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MB53",
+      "label": "Baltic infralittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 810,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MB54",
+      "label": "Black Sea infralittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 847,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MB55",
+      "label": "Mediterranean infralittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 856,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MB61",
+      "label": "Arctic infralittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 878,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MB62",
+      "label": "Atlantic infralittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 881,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MB63",
+      "label": "Baltic infralittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 916,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MB64",
+      "label": "Black Sea infralittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 959,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MB65",
+      "label": "Mediterranean infralittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 964,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MC11",
+      "label": "Arctic circalittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 973,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MC12",
+      "label": "Atlantic circalittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 974,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MC13",
+      "label": "Baltic ciralittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 1046,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MC14",
+      "label": "Black Sea circalittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 1072,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MC15",
+      "label": "Mediterranean circalittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 1079,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MC21",
+      "label": "Arctic circalittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1102,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MC22",
+      "label": "Atlantic circalittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1103,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MC23",
+      "label": "Baltic circalittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1116,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MC24",
+      "label": "Black Sea circalittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1129,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MC25",
+      "label": "Mediterranean circalittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1134,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MC31",
+      "label": "Arctic circalittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1137,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MC32",
+      "label": "Atlantic circalittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1138,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MC33",
+      "label": "Baltic circalittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1146,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MC34",
+      "label": "Black Sea circalittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1156,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MC35",
+      "label": "Mediterranean circalittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1157,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MC41",
+      "label": "Arctic circalittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1171,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MC42",
+      "label": "Atlantic circalittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1172,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MC43",
+      "label": "Baltic circalittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1181,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MC44",
+      "label": "Black Sea circalittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1198,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MC45",
+      "label": "Mediterranean circalittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1199,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MC51",
+      "label": "Arctic circalittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 1203,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MC52",
+      "label": "Atlantic circalittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 1204,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MC53",
+      "label": "Baltic circalittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 1211,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MC54",
+      "label": "Black Sea circalittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 1229,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MC55",
+      "label": "Mediterranean circalittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 1231,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MC61",
+      "label": "Arctic circalittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 1234,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MC62",
+      "label": "Atlantic circalittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 1237,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MC63",
+      "label": "Baltic circalittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 1253,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MC64",
+      "label": "Black Sea circalittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 1282,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MC65",
+      "label": "Mediterranean circalittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 1288,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MD11",
+      "label": "Arctic offshore circalittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 1295,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MD12",
+      "label": "Atlantic offshore circalittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 1296,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MD13",
+      "label": "Baltic offshore circalittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 1301,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MD14",
+      "label": "Black Sea offshore circalittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 1310,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MD15",
+      "label": "Mediterranean offshore circalittoral rock",
+      "sheet": "Benthic habitats",
+      "row": 1311,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MD21",
+      "label": "Arctic offshore circalittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1314,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MD22",
+      "label": "Atlantic offshore circalittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1315,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MD23",
+      "label": "Baltic offshore circalittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1318,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MD24",
+      "label": "Black Sea offshore circalittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1332,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MD25",
+      "label": "Mediterranean offshore circalittoral biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1333,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MD31",
+      "label": "Arctic offshore circalittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1335,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MD32",
+      "label": "Atlantic offshore circalittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1336,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MD33",
+      "label": "Baltic offshore circalittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1340,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MD34",
+      "label": "Black Sea offshore circalittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1346,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MD35",
+      "label": "Mediterranean offshore circalittoral coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1347,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MD41",
+      "label": "Arctic offshore circalittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1349,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MD42",
+      "label": "Atlantic offshore circalittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1350,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MD43",
+      "label": "Baltic offshore circalittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1353,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MD44",
+      "label": "Black Sea offshore circalittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1358,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MD45",
+      "label": "Mediterranean offshore circalittoral mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1359,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MD51",
+      "label": "Arctic offshore circalittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 1364,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MD52",
+      "label": "Atlantic offshore circalittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 1365,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MD53",
+      "label": "Baltic offshore circalittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 1369,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MD54",
+      "label": "Black Sea offshore circalittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 1382,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MD55",
+      "label": "Mediterranean offshore circalittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 1383,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MD61",
+      "label": "Arctic offshore circalittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 1385,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MD62",
+      "label": "Atlantic offshore circalittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 1386,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MD63",
+      "label": "Baltic offshore circalittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 1402,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MD64",
+      "label": "Black Sea offshore circalittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 1423,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MD65",
+      "label": "Mediterranean offshore circalittoral mud",
+      "sheet": "Benthic habitats",
+      "row": 1424,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "ME11",
+      "label": "Arctic upper bathyal rock",
+      "sheet": "Benthic habitats",
+      "row": 1429,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "ME12",
+      "label": "Atlantic upper bathyal rock",
+      "sheet": "Benthic habitats",
+      "row": 1434,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "ME14",
+      "label": "Black Sea upper bathyal rock",
+      "sheet": "Benthic habitats",
+      "row": 1445,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "ME15",
+      "label": "Mediterranean upper bathyal rock",
+      "sheet": "Benthic habitats",
+      "row": 1446,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "ME21",
+      "label": "Arctic upper bathyal biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1453,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "ME22",
+      "label": "Atlantic upper bathyal biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1454,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "ME24",
+      "label": "Black Sea upper bathyal biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1458,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "ME25",
+      "label": "Mediterranean Upper bathyal biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1459,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "ME31",
+      "label": "Arctic upper bathyal coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1461,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "ME32",
+      "label": "Atlantic upper bathyal coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1463,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "ME34",
+      "label": "Black Sea upper bathyal coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1476,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "ME35",
+      "label": "Mediterranean upper bathyal coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1477,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "ME41",
+      "label": "Arctic upper bathyal mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1480,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "ME42",
+      "label": "Atlantic upper bathyal mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1481,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "ME44",
+      "label": "Black Sea upper bathyal mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1486,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "ME45",
+      "label": "Mediterranean upper bathyal mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1487,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "ME51",
+      "label": "Arctic upper bathyal sand",
+      "sheet": "Benthic habitats",
+      "row": 1491,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "ME52",
+      "label": "Atlantic upper bathyal sand",
+      "sheet": "Benthic habitats",
+      "row": 1493,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "ME54",
+      "label": "Black Sea upper bathyal sand",
+      "sheet": "Benthic habitats",
+      "row": 1499,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "ME55",
+      "label": "Mediterranean upper bathyal sand",
+      "sheet": "Benthic habitats",
+      "row": 1500,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "ME61",
+      "label": "Arctic upper bathyal mud",
+      "sheet": "Benthic habitats",
+      "row": 1503,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "ME62",
+      "label": "Atlantic upper bathyal mud",
+      "sheet": "Benthic habitats",
+      "row": 1505,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "ME64",
+      "label": "Black Sea upper bathyal mud",
+      "sheet": "Benthic habitats",
+      "row": 1518,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "ME65",
+      "label": "Mediterranean upper bathyal mud",
+      "sheet": "Benthic habitats",
+      "row": 1519,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MF11",
+      "label": "Arctic lower bathyal rock",
+      "sheet": "Benthic habitats",
+      "row": 1527,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MF12",
+      "label": "Atlantic lower bathyal rock",
+      "sheet": "Benthic habitats",
+      "row": 1530,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MF14",
+      "label": "Black Sea lower bathyal rock",
+      "sheet": "Benthic habitats",
+      "row": 1533,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MF15",
+      "label": "Mediterranean lower bathyal rock",
+      "sheet": "Benthic habitats",
+      "row": 1534,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MF21",
+      "label": "Arctic lower bathyal biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1540,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MF22",
+      "label": "Atlantic lower bathyal biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1541,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MF24",
+      "label": "Black Sea lower bathyal biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1545,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MF25",
+      "label": "Mediterranean lower bathyal biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1546,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MF31",
+      "label": "Arctic lower bathyal coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1548,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MF32",
+      "label": "Atlantic lower bathyal coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1550,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MF34",
+      "label": "Black Sea lower bathyal coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1556,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MF35",
+      "label": "Mediterranean lower bathyal coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1557,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MF41",
+      "label": "Arctic lower bathyal mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1560,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MF42",
+      "label": "Atlantic lower bathyal mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1561,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MF44",
+      "label": "Black Sea lower bathyal mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1566,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MF45",
+      "label": "Mediterranean lower bathyal mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1567,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MF51",
+      "label": "Arctic lower bathyal sand",
+      "sheet": "Benthic habitats",
+      "row": 1570,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MF52",
+      "label": "Atlantic lower bathyal sand",
+      "sheet": "Benthic habitats",
+      "row": 1571,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MF54",
+      "label": "Black Sea lower bathyal sand",
+      "sheet": "Benthic habitats",
+      "row": 1574,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MF55",
+      "label": "Mediterranean lower bathyal sand",
+      "sheet": "Benthic habitats",
+      "row": 1575,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MF61",
+      "label": "Arctic lower bathyal mud",
+      "sheet": "Benthic habitats",
+      "row": 1578,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MF62",
+      "label": "Atlantic lower bathyal mud",
+      "sheet": "Benthic habitats",
+      "row": 1580,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MF64",
+      "label": "Black Sea lower bathyal mud",
+      "sheet": "Benthic habitats",
+      "row": 1591,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MF65",
+      "label": "Mediterranean lower bathyal mud",
+      "sheet": "Benthic habitats",
+      "row": 1592,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MG11",
+      "label": "Arctic abyssal rock",
+      "sheet": "Benthic habitats",
+      "row": 1598,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MG12",
+      "label": "Atlantic abyssal rock",
+      "sheet": "Benthic habitats",
+      "row": 1599,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MG14",
+      "label": "Black Sea abyssal rock",
+      "sheet": "Benthic habitats",
+      "row": 1600,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MG15",
+      "label": "Mediterranean abyssal rock",
+      "sheet": "Benthic habitats",
+      "row": 1601,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MG21",
+      "label": "Arctic abyssal biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1603,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MG22",
+      "label": "Atlantic abyssal biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1604,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MG24",
+      "label": "Black Sea abyssal biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1605,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MG25",
+      "label": "Mediterranean abyssal biogenic habitat",
+      "sheet": "Benthic habitats",
+      "row": 1606,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MG31",
+      "label": "Arctic abyssal coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1608,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MG32",
+      "label": "Atlantic abyssal coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1609,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MG34",
+      "label": "Black Sea abyssal coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1610,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MG35",
+      "label": "Mediterranean abyssal coarse sediment",
+      "sheet": "Benthic habitats",
+      "row": 1611,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MG41",
+      "label": "Arctic abyssal mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1613,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MG42",
+      "label": "Atlantic abyssal mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1614,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MG44",
+      "label": "Black Sea abyssal mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1615,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MG45",
+      "label": "Mediterranean abyssal mixed sediment",
+      "sheet": "Benthic habitats",
+      "row": 1616,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MG51",
+      "label": "Arctic abyssal sand",
+      "sheet": "Benthic habitats",
+      "row": 1618,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MG52",
+      "label": "Atlantic abyssal sand",
+      "sheet": "Benthic habitats",
+      "row": 1619,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MG54",
+      "label": "Black Sea abyssal sand",
+      "sheet": "Benthic habitats",
+      "row": 1620,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MG55",
+      "label": "Mediterranean abyssal sand",
+      "sheet": "Benthic habitats",
+      "row": 1621,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MG61",
+      "label": "Arctic abyssal mud",
+      "sheet": "Benthic habitats",
+      "row": 1623,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MG62",
+      "label": "Atlantic abyssal mud",
+      "sheet": "Benthic habitats",
+      "row": 1625,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MG64",
+      "label": "Black Sea abyssal mud",
+      "sheet": "Benthic habitats",
+      "row": 1632,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MG65",
+      "label": "Mediterranean abyssal mud",
+      "sheet": "Benthic habitats",
+      "row": 1633,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MH11",
+      "label": "Arctic neuston",
+      "sheet": "Pelagic habitats",
+      "row": 4,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MH12",
+      "label": "Atlantic neuston",
+      "sheet": "Pelagic habitats",
+      "row": 7,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MH13",
+      "label": "Baltic neuston",
+      "sheet": "Pelagic habitats",
+      "row": 10,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MH14",
+      "label": "Black Sea neuston",
+      "sheet": "Pelagic habitats",
+      "row": 13,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MH15",
+      "label": "Mediterranean neuston",
+      "sheet": "Pelagic habitats",
+      "row": 16,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MH21",
+      "label": "Arctic completely mixed water column with reduced salinity",
+      "sheet": "Pelagic habitats",
+      "row": 20,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MH22",
+      "label": "Atlantic completely mixed water column with reduced salinity",
+      "sheet": "Pelagic habitats",
+      "row": 24,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MH23",
+      "label": "Baltic completely mixed water column with reduced salinity",
+      "sheet": "Pelagic habitats",
+      "row": 28,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MH24",
+      "label": "Black Sea completely mixed water column with reduced salinity",
+      "sheet": "Pelagic habitats",
+      "row": 38,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MH25",
+      "label": "Mediterranean completely mixed water column with reduced salinity",
+      "sheet": "Pelagic habitats",
+      "row": 42,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MH31",
+      "label": "Arctic completely mixed water column with full salinity",
+      "sheet": "Pelagic habitats",
+      "row": 47,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MH32",
+      "label": "Atlantic completely mixed water column with full salinity",
+      "sheet": "Pelagic habitats",
+      "row": 51,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MH33",
+      "label": "Baltic completely mixed water column with full salinity",
+      "sheet": "Pelagic habitats",
+      "row": 55,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MH34",
+      "label": "Black Sea completely mixed water column with full salinity",
+      "sheet": "Pelagic habitats",
+      "row": 59,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MH35",
+      "label": "Mediterranean completely  mixed water column with full salinity",
+      "sheet": "Pelagic habitats",
+      "row": 63,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MH41",
+      "label": "Arctic partially mixed water column with reduced salinity and medium or long residence time",
+      "sheet": "Pelagic habitats",
+      "row": 68,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MH42",
+      "label": "Atlantic partially mixed water column with reduced salinity and medium or long residence time",
+      "sheet": "Pelagic habitats",
+      "row": 71,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MH43",
+      "label": "Baltic partially mixed water column with reduced salinity and medium or long residence time",
+      "sheet": "Pelagic habitats",
+      "row": 74,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MH44",
+      "label": "Black Sea partially mixed water column with reduced salinity and medium or long residence time",
+      "sheet": "Pelagic habitats",
+      "row": 77,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MH45",
+      "label": "Mediterranean partially mixed water column with reduced salinity and medium or long residence time",
+      "sheet": "Pelagic habitats",
+      "row": 80,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MH51",
+      "label": "Arctic unstratified water column with reduced salinity",
+      "sheet": "Pelagic habitats",
+      "row": 84,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MH52",
+      "label": "Atlantic unstratified water column with reduced salinity",
+      "sheet": "Pelagic habitats",
+      "row": 89,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MH53",
+      "label": "Baltic unstratified water column with reduced salinity",
+      "sheet": "Pelagic habitats",
+      "row": 94,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MH54",
+      "label": "Black Sea unstratified water column with reduced salinity",
+      "sheet": "Pelagic habitats",
+      "row": 99,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MH55",
+      "label": "Mediterranean unstratified water column with reduced salinity",
+      "sheet": "Pelagic habitats",
+      "row": 104,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MH61",
+      "label": "Arctic vertically stratified water column with reduced salinity",
+      "sheet": "Pelagic habitats",
+      "row": 110,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MH62",
+      "label": "Atlantic vertically stratified water column with reduced salinity",
+      "sheet": "Pelagic habitats",
+      "row": 120,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MH63",
+      "label": "Baltic vertically stratified water column with reduced salinity",
+      "sheet": "Pelagic habitats",
+      "row": 130,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MH64",
+      "label": "Black Sea vertically stratified water column with reduced salinity",
+      "sheet": "Pelagic habitats",
+      "row": 142,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MH65",
+      "label": "Mediterranean vertically stratified water column with reduced salinity",
+      "sheet": "Pelagic habitats",
+      "row": 152,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MH71",
+      "label": "Arctic fronts in reduced salinity water column",
+      "sheet": "Pelagic habitats",
+      "row": 163,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MH72",
+      "label": "Atlantic fronts in reduced salinity water column",
+      "sheet": "Pelagic habitats",
+      "row": 167,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MH73",
+      "label": "Baltic fronts in reduced salinity water column",
+      "sheet": "Pelagic habitats",
+      "row": 171,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MH74",
+      "label": "Black Sea fronts in reduced salinity water column",
+      "sheet": "Pelagic habitats",
+      "row": 175,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MH75",
+      "label": "Mediterranean fronts in reduced salinity water column",
+      "sheet": "Pelagic habitats",
+      "row": 179,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MH81",
+      "label": "Arctic unstratified water column with full salinity",
+      "sheet": "Pelagic habitats",
+      "row": 184,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MH82",
+      "label": "Atlantic unstratified water column with full salinity",
+      "sheet": "Pelagic habitats",
+      "row": 189,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MH83",
+      "label": "Baltic unstratified water column with full salinity",
+      "sheet": "Pelagic habitats",
+      "row": 194,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MH84",
+      "label": "Black Sea unstratified water column with full salinity",
+      "sheet": "Pelagic habitats",
+      "row": 198,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MH85",
+      "label": "Mediterranean unstratified water column with full salinity",
+      "sheet": "Pelagic habitats",
+      "row": 203,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MH91",
+      "label": "Arctic vertically stratified water column with full salinity",
+      "sheet": "Pelagic habitats",
+      "row": 209,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MH92",
+      "label": "Atlantic vertically stratified water column with full salinity",
+      "sheet": "Pelagic habitats",
+      "row": 220,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MH93",
+      "label": "Baltic vertically stratified water column with full salinity",
+      "sheet": "Pelagic habitats",
+      "row": 231,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MH94",
+      "label": "Black Sea vertically stratified water column with full salinity",
+      "sheet": "Pelagic habitats",
+      "row": 242,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MH95",
+      "label": "Mediterranean vertically stratified water column with full salinity",
+      "sheet": "Pelagic habitats",
+      "row": 253,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MHA1",
+      "label": "Arctic fronts in full salinity water column",
+      "sheet": "Pelagic habitats",
+      "row": 265,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MHA2",
+      "label": "Atlantic fronts in full salinity water column",
+      "sheet": "Pelagic habitats",
+      "row": 269,
+      "sea": "ATL",
+      "level": 3
+    },
+    {
+      "code": "MHA3",
+      "label": "Baltic fronts in full salinity water column",
+      "sheet": "Pelagic habitats",
+      "row": 273,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MHA4",
+      "label": "Black Sea fronts in full salinity water column",
+      "sheet": "Pelagic habitats",
+      "row": 277,
+      "sea": "BLS",
+      "level": 3
+    },
+    {
+      "code": "MHA5",
+      "label": "Mediterranean fronts in full salinity water column",
+      "sheet": "Pelagic habitats",
+      "row": 281,
+      "sea": "MED",
+      "level": 3
+    },
+    {
+      "code": "MJ11",
+      "label": "Arctic sea ice",
+      "sheet": "Ice associated",
+      "row": 4,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MJ12",
+      "label": "Baltic sea ice",
+      "sheet": "Ice associated",
+      "row": 5,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MJ21",
+      "label": "Arctic freshwater ice",
+      "sheet": "Ice associated",
+      "row": 12,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MJ31",
+      "label": "Arctic brine channels",
+      "sheet": "Ice associated",
+      "row": 19,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MJ32",
+      "label": "Baltic brine channels",
+      "sheet": "Ice associated",
+      "row": 20,
+      "sea": "BAL",
+      "level": 3
+    },
+    {
+      "code": "MJ41",
+      "label": "Arctic under-ice habitat",
+      "sheet": "Ice associated",
+      "row": 24,
+      "sea": "ARC",
+      "level": 3
+    },
+    {
+      "code": "MJ42",
+      "label": "Baltic under-ice habitat",
+      "sheet": "Ice associated",
+      "row": 25,
+      "sea": "ARC",
+      "level": 3
+    }
+  ],
+  "selectedDeeperRecords": [
+    {
+      "code": "MA522",
+      "label": "Seagrass beds on Atlantic littoral sand",
+      "sheet": "Benthic habitats",
+      "row": 327,
+      "sea": "ATL",
+      "level": 4
+    },
+    {
+      "code": "MA623",
+      "label": "Seagrass beds on Atlantic littoral mud",
+      "sheet": "Benthic habitats",
+      "row": 397,
+      "sea": "ATL",
+      "level": 4
+    },
+    {
+      "code": "MB252",
+      "label": "Biocenosis of Posidonia oceanica",
+      "sheet": "Benthic habitats",
+      "row": 642,
+      "sea": "MED",
+      "level": 4
+    },
+    {
+      "code": "MB522",
+      "label": "Seagrass beds on Atlantic infralittoral sand",
+      "sheet": "Benthic habitats",
+      "row": 788,
+      "sea": "ATL",
+      "level": 4
+    }
+  ],
+  "archiveMember": "eea_t_eunis-hab-m_p_2004-on-going_v01_r00/EUNIS marine habitat classification 2022 including crosswalks.xlsx"
+}

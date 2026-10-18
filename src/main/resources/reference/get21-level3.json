@@ -1,0 +1,1004 @@
+{
+  "classification": "GET",
+  "edition": "2.1 (June 2022; minor updates to September 2025)",
+  "exportDate": "2026-04-01",
+  "language": "en",
+  "source": {
+    "file": "get.xlsx",
+    "url": "https://raw.githubusercontent.com/Ecosystem-Indicators-Workflows/IUCN-GET-vocabulary/cadcd1c0e323e23751b660ce37431a133ce33bf5/Files/IUCN-GET-profiles-exported-2026-04-01.xlsx",
+    "sha256": "593faddaa16582afd39f0164d91bcfaf5d01fb8afb375decf3b1f90f669f4f45",
+    "bytes": 533669
+  },
+  "entries": [
+    {
+      "code": "F1.1",
+      "label": "Permanent upland streams",
+      "level": 3,
+      "biome": "F1",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 3
+    },
+    {
+      "code": "F1.2",
+      "label": "Permanent lowland rivers",
+      "level": 3,
+      "biome": "F1",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 5
+    },
+    {
+      "code": "F1.3",
+      "label": "Freeze-thaw rivers and streams",
+      "level": 3,
+      "biome": "F1",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 10
+    },
+    {
+      "code": "F1.4",
+      "label": "Seasonal upland streams",
+      "level": 3,
+      "biome": "F1",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 11
+    },
+    {
+      "code": "F1.5",
+      "label": "Seasonal lowland rivers",
+      "level": 3,
+      "biome": "F1",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 14
+    },
+    {
+      "code": "F1.6",
+      "label": "Episodic arid rivers",
+      "level": 3,
+      "biome": "F1",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 18
+    },
+    {
+      "code": "F1.7",
+      "label": "Large lowland rivers",
+      "level": 3,
+      "biome": "F1",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 21
+    },
+    {
+      "code": "F2.1",
+      "label": "Large permanent freshwater lakes",
+      "level": 3,
+      "biome": "F2",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 23
+    },
+    {
+      "code": "F2.10",
+      "label": "Subglacial lakes",
+      "level": 3,
+      "biome": "F2",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 26
+    },
+    {
+      "code": "F2.2",
+      "label": "Small permanent freshwater lakes",
+      "level": 3,
+      "biome": "F2",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 31
+    },
+    {
+      "code": "F2.3",
+      "label": "Seasonal freshwater lakes",
+      "level": 3,
+      "biome": "F2",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 33
+    },
+    {
+      "code": "F2.4",
+      "label": "Freeze-thaw freshwater lakes",
+      "level": 3,
+      "biome": "F2",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 36
+    },
+    {
+      "code": "F2.5",
+      "label": "Ephemeral freshwater lakes",
+      "level": 3,
+      "biome": "F2",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 39
+    },
+    {
+      "code": "F2.6",
+      "label": "Permanent salt and soda lakes",
+      "level": 3,
+      "biome": "F2",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 42
+    },
+    {
+      "code": "F2.7",
+      "label": "Ephemeral salt lakes",
+      "level": 3,
+      "biome": "F2",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 46
+    },
+    {
+      "code": "F2.8",
+      "label": "Artesian springs and oases",
+      "level": 3,
+      "biome": "F2",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 48
+    },
+    {
+      "code": "F2.9",
+      "label": "Geothermal pools and wetlands",
+      "level": 3,
+      "biome": "F2",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 51
+    },
+    {
+      "code": "F3.1",
+      "label": "Large reservoirs",
+      "level": 3,
+      "biome": "F3",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 54
+    },
+    {
+      "code": "F3.2",
+      "label": "Constructed lacustrine wetlands",
+      "level": 3,
+      "biome": "F3",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 58
+    },
+    {
+      "code": "F3.3",
+      "label": "Rice paddies",
+      "level": 3,
+      "biome": "F3",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 61
+    },
+    {
+      "code": "F3.4",
+      "label": "Freshwater aquafarms",
+      "level": 3,
+      "biome": "F3",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 62
+    },
+    {
+      "code": "F3.5",
+      "label": "Canals, ditches and drains",
+      "level": 3,
+      "biome": "F3",
+      "realm": "F",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 65
+    },
+    {
+      "code": "FM1.1",
+      "label": "Deepwater coastal inlets",
+      "level": 3,
+      "biome": "FM1",
+      "realm": "FM",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 70
+    },
+    {
+      "code": "FM1.2",
+      "label": "Permanently open riverine estuaries and bays",
+      "level": 3,
+      "biome": "FM1",
+      "realm": "FM",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 72
+    },
+    {
+      "code": "FM1.3",
+      "label": "Intermittently closed and open lakes and lagoons",
+      "level": 3,
+      "biome": "FM1",
+      "realm": "FM",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 76
+    },
+    {
+      "code": "M1.1",
+      "label": "Seagrass meadows",
+      "level": 3,
+      "biome": "M1",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 78
+    },
+    {
+      "code": "M1.10",
+      "label": "Rhodolith/Maërl beds",
+      "level": 3,
+      "biome": "M1",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 81
+    },
+    {
+      "code": "M1.2",
+      "label": "Kelp forests",
+      "level": 3,
+      "biome": "M1",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 83
+    },
+    {
+      "code": "M1.3",
+      "label": "Photic coral reefs",
+      "level": 3,
+      "biome": "M1",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 88
+    },
+    {
+      "code": "M1.4",
+      "label": "Shellfish beds and reefs",
+      "level": 3,
+      "biome": "M1",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 89
+    },
+    {
+      "code": "M1.5",
+      "label": "Photo-limited marine animal forests",
+      "level": 3,
+      "biome": "M1",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 94
+    },
+    {
+      "code": "M1.6",
+      "label": "Subtidal rocky reefs",
+      "level": 3,
+      "biome": "M1",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 96
+    },
+    {
+      "code": "M1.7",
+      "label": "Subtidal sand beds",
+      "level": 3,
+      "biome": "M1",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 98
+    },
+    {
+      "code": "M1.8",
+      "label": "Subtidal mud plains",
+      "level": 3,
+      "biome": "M1",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 103
+    },
+    {
+      "code": "M1.9",
+      "label": "Upwelling zones",
+      "level": 3,
+      "biome": "M1",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 105
+    },
+    {
+      "code": "M2.1",
+      "label": "Epipelagic ocean waters",
+      "level": 3,
+      "biome": "M2",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 108
+    },
+    {
+      "code": "M2.2",
+      "label": "Mesopelagic ocean water",
+      "level": 3,
+      "biome": "M2",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 110
+    },
+    {
+      "code": "M2.3",
+      "label": "Bathypelagic ocean waters",
+      "level": 3,
+      "biome": "M2",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 114
+    },
+    {
+      "code": "M2.4",
+      "label": "Abyssopelagic ocean waters",
+      "level": 3,
+      "biome": "M2",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 116
+    },
+    {
+      "code": "M2.5",
+      "label": "Sea ice",
+      "level": 3,
+      "biome": "M2",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 119
+    },
+    {
+      "code": "M3.1",
+      "label": "Continental and island slopes",
+      "level": 3,
+      "biome": "M3",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 122
+    },
+    {
+      "code": "M3.2",
+      "label": "Submarine canyons",
+      "level": 3,
+      "biome": "M3",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 127
+    },
+    {
+      "code": "M3.3",
+      "label": "Abyssal plains",
+      "level": 3,
+      "biome": "M3",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 130
+    },
+    {
+      "code": "M3.4",
+      "label": "Seamounts, ridges and plateaus",
+      "level": 3,
+      "biome": "M3",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 131
+    },
+    {
+      "code": "M3.5",
+      "label": "Deepwater biogenic beds",
+      "level": 3,
+      "biome": "M3",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 134
+    },
+    {
+      "code": "M3.6",
+      "label": "Hadal trenches and troughs",
+      "level": 3,
+      "biome": "M3",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 137
+    },
+    {
+      "code": "M3.7",
+      "label": "Chemosynthetic-based-ecosystems (CBE)",
+      "level": 3,
+      "biome": "M3",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 140
+    },
+    {
+      "code": "M4.1",
+      "label": "Submerged artificial structures",
+      "level": 3,
+      "biome": "M4",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 143
+    },
+    {
+      "code": "M4.2",
+      "label": "Marine aquafarms",
+      "level": 3,
+      "biome": "M4",
+      "realm": "M",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 148
+    },
+    {
+      "code": "MFT1.1",
+      "label": "Coastal river deltas",
+      "level": 3,
+      "biome": "MFT1",
+      "realm": "MFT",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 151
+    },
+    {
+      "code": "MFT1.2",
+      "label": "Intertidal forests and shrublands",
+      "level": 3,
+      "biome": "MFT1",
+      "realm": "MFT",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 154
+    },
+    {
+      "code": "MFT1.3",
+      "label": "Coastal saltmarshes and reedbeds",
+      "level": 3,
+      "biome": "MFT1",
+      "realm": "MFT",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 155
+    },
+    {
+      "code": "MT1.1",
+      "label": "Rocky Shorelines",
+      "level": 3,
+      "biome": "MT1",
+      "realm": "MT",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 158
+    },
+    {
+      "code": "MT1.2",
+      "label": "Muddy Shorelines",
+      "level": 3,
+      "biome": "MT1",
+      "realm": "MT",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 163
+    },
+    {
+      "code": "MT1.3",
+      "label": "Sandy Shorelines",
+      "level": 3,
+      "biome": "MT1",
+      "realm": "MT",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 165
+    },
+    {
+      "code": "MT1.4",
+      "label": "Boulder and cobble shores",
+      "level": 3,
+      "biome": "MT1",
+      "realm": "MT",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 168
+    },
+    {
+      "code": "MT2.1",
+      "label": "Coastal shrublands and grasslands",
+      "level": 3,
+      "biome": "MT2",
+      "realm": "MT",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 172
+    },
+    {
+      "code": "MT2.2",
+      "label": "Large seabird and pinniped colonies",
+      "level": 3,
+      "biome": "MT2",
+      "realm": "MT",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 174
+    },
+    {
+      "code": "MT3.1",
+      "label": "Artificial shorelines",
+      "level": 3,
+      "biome": "MT3",
+      "realm": "MT",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 178
+    },
+    {
+      "code": "S1.1",
+      "label": "Aerobic caves",
+      "level": 3,
+      "biome": "S1",
+      "realm": "S",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 180
+    },
+    {
+      "code": "S1.2",
+      "label": "Endolithic systems",
+      "level": 3,
+      "biome": "S1",
+      "realm": "S",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 184
+    },
+    {
+      "code": "S2.1",
+      "label": "Anthropogenic subterranean voids",
+      "level": 3,
+      "biome": "S2",
+      "realm": "S",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 187
+    },
+    {
+      "code": "SF1.1",
+      "label": "Underground streams and pools",
+      "level": 3,
+      "biome": "SF1",
+      "realm": "SF",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 188
+    },
+    {
+      "code": "SF1.2",
+      "label": "Groundwater ecosystems",
+      "level": 3,
+      "biome": "SF1",
+      "realm": "SF",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 192
+    },
+    {
+      "code": "SF2.1",
+      "label": "Water pipes and subterranean canals",
+      "level": 3,
+      "biome": "SF2",
+      "realm": "SF",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 196
+    },
+    {
+      "code": "SF2.2",
+      "label": "Flooded mines and other voids",
+      "level": 3,
+      "biome": "SF2",
+      "realm": "SF",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 199
+    },
+    {
+      "code": "SM1.1",
+      "label": "Anchialine caves",
+      "level": 3,
+      "biome": "SM1",
+      "realm": "SM",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 202
+    },
+    {
+      "code": "SM1.2",
+      "label": "Anchialine pools",
+      "level": 3,
+      "biome": "SM1",
+      "realm": "SM",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 205
+    },
+    {
+      "code": "SM1.3",
+      "label": "Sea caves",
+      "level": 3,
+      "biome": "SM1",
+      "realm": "SM",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 207
+    },
+    {
+      "code": "T1.1",
+      "label": "Tropical/Subtropical lowland rainforests",
+      "level": 3,
+      "biome": "T1",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 210
+    },
+    {
+      "code": "T1.2",
+      "label": "Tropical/Subtropical dry forests and thickets",
+      "level": 3,
+      "biome": "T1",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 214
+    },
+    {
+      "code": "T1.3",
+      "label": "Tropical/Subtropical montane rainforests",
+      "level": 3,
+      "biome": "T1",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 215
+    },
+    {
+      "code": "T1.4",
+      "label": "Tropical heath forests",
+      "level": 3,
+      "biome": "T1",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 218
+    },
+    {
+      "code": "T2.1",
+      "label": "Boreal and temperate high montane forests and woodlands",
+      "level": 3,
+      "biome": "T2",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 221
+    },
+    {
+      "code": "T2.2",
+      "label": "Deciduous temperate forests",
+      "level": 3,
+      "biome": "T2",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 225
+    },
+    {
+      "code": "T2.3",
+      "label": "Oceanic cool temperate rainforests",
+      "level": 3,
+      "biome": "T2",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 227
+    },
+    {
+      "code": "T2.4",
+      "label": "Warm temperate laurophyll forests",
+      "level": 3,
+      "biome": "T2",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 231
+    },
+    {
+      "code": "T2.5",
+      "label": "Temperate pyric humid forests",
+      "level": 3,
+      "biome": "T2",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 233
+    },
+    {
+      "code": "T2.6",
+      "label": "Temperate pyric sclerophyll forests and woodlands",
+      "level": 3,
+      "biome": "T2",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 238
+    },
+    {
+      "code": "T3.1",
+      "label": "Seasonally dry tropical shrublands",
+      "level": 3,
+      "biome": "T3",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 241
+    },
+    {
+      "code": "T3.2",
+      "label": "Seasonally dry temperate heath and shrublands",
+      "level": 3,
+      "biome": "T3",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 244
+    },
+    {
+      "code": "T3.3",
+      "label": "Cool temperate heathlands",
+      "level": 3,
+      "biome": "T3",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 246
+    },
+    {
+      "code": "T3.4",
+      "label": "Young rocky pavements, lava flows and screes",
+      "level": 3,
+      "biome": "T3",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 248
+    },
+    {
+      "code": "T4.1",
+      "label": "Trophic savannas",
+      "level": 3,
+      "biome": "T4",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 253
+    },
+    {
+      "code": "T4.2",
+      "label": "Pyric tussock savannas",
+      "level": 3,
+      "biome": "T4",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 254
+    },
+    {
+      "code": "T4.3",
+      "label": "Hummock savannas",
+      "level": 3,
+      "biome": "T4",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 257
+    },
+    {
+      "code": "T4.4",
+      "label": "Temperate woodlands",
+      "level": 3,
+      "biome": "T4",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 260
+    },
+    {
+      "code": "T4.5",
+      "label": "Temperate subhumid grasslands",
+      "level": 3,
+      "biome": "T4",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 264
+    },
+    {
+      "code": "T5.1",
+      "label": "Semi-desert steppe",
+      "level": 3,
+      "biome": "T5",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 267
+    },
+    {
+      "code": "T5.2",
+      "label": "Succulent or Thorny deserts and semi-deserts",
+      "level": 3,
+      "biome": "T5",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 269
+    },
+    {
+      "code": "T5.3",
+      "label": "Sclerophyll hot deserts and semi-deserts",
+      "level": 3,
+      "biome": "T5",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 274
+    },
+    {
+      "code": "T5.4",
+      "label": "Cool deserts and semi-deserts",
+      "level": 3,
+      "biome": "T5",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 275
+    },
+    {
+      "code": "T5.5",
+      "label": "Hyper-arid deserts",
+      "level": 3,
+      "biome": "T5",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 280
+    },
+    {
+      "code": "T6.1",
+      "label": "Ice sheets, glaciers and perennial snowfields",
+      "level": 3,
+      "biome": "T6",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 281
+    },
+    {
+      "code": "T6.2",
+      "label": "Polar/alpine cliffs, screes, outcrops and lava flows",
+      "level": 3,
+      "biome": "T6",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 286
+    },
+    {
+      "code": "T6.3",
+      "label": "Polar tundra and deserts",
+      "level": 3,
+      "biome": "T6",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 289
+    },
+    {
+      "code": "T6.4",
+      "label": "Temperate alpine grasslands and shrublands",
+      "level": 3,
+      "biome": "T6",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 291
+    },
+    {
+      "code": "T6.5",
+      "label": "Tropical alpine grasslands and herbfields",
+      "level": 3,
+      "biome": "T6",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 294
+    },
+    {
+      "code": "T7.1",
+      "label": "Annual croplands",
+      "level": 3,
+      "biome": "T7",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 298
+    },
+    {
+      "code": "T7.2",
+      "label": "Sown pastures and fields",
+      "level": 3,
+      "biome": "T7",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 299
+    },
+    {
+      "code": "T7.3",
+      "label": "Plantations",
+      "level": 3,
+      "biome": "T7",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 303
+    },
+    {
+      "code": "T7.4",
+      "label": "Urban and industrial ecosystems",
+      "level": 3,
+      "biome": "T7",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 306
+    },
+    {
+      "code": "T7.5",
+      "label": "Derived semi-natural pastures and old fields",
+      "level": 3,
+      "biome": "T7",
+      "realm": "T",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 309
+    },
+    {
+      "code": "TF1.1",
+      "label": "Tropical flooded forests and peat forests",
+      "level": 3,
+      "biome": "TF1",
+      "realm": "TF",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 312
+    },
+    {
+      "code": "TF1.2",
+      "label": "Subtropical/temperate forested wetlands",
+      "level": 3,
+      "biome": "TF1",
+      "realm": "TF",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 314
+    },
+    {
+      "code": "TF1.3",
+      "label": "Permanent marshes",
+      "level": 3,
+      "biome": "TF1",
+      "realm": "TF",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 318
+    },
+    {
+      "code": "TF1.4",
+      "label": "Seasonal floodplain marshes",
+      "level": 3,
+      "biome": "TF1",
+      "realm": "TF",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 322
+    },
+    {
+      "code": "TF1.5",
+      "label": "Episodic arid floodplains",
+      "level": 3,
+      "biome": "TF1",
+      "realm": "TF",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 325
+    },
+    {
+      "code": "TF1.6",
+      "label": "Boreal, temperate and montane peat bogs",
+      "level": 3,
+      "biome": "TF1",
+      "realm": "TF",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 328
+    },
+    {
+      "code": "TF1.7",
+      "label": "Boreal and temperate fens",
+      "level": 3,
+      "biome": "TF1",
+      "realm": "TF",
+      "sheet": "Level 3 Ecosystem Functional Groups",
+      "row": 330
+    }
+  ]
+}

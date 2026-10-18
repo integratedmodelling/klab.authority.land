@@ -1,0 +1,627 @@
+{
+  "status": "tentative",
+  "runtimeConstraintEngine": false,
+  "entries": [
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "T1.1",
+      "label": "Tropical/Subtropical lowland rainforests",
+      "sourceLevel": 3,
+      "alias": "LowlandRainforest",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:EvergreenBroadleafOrPalmTree),ecosystem.seed:Climate(ecosystem.seed:TropicalOrSubtropical,ecosystem.seed:Humid),ecosystem.seed:Landform(ecosystem.seed:Lowland))",
+      "reviewNote": "Water balance, layered canopy, productivity and resource cycling need quantified and causal rules; tropical is not a latitude-only test."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "T2.2",
+      "label": "Deciduous temperate forests",
+      "sourceLevel": 3,
+      "alias": "DeciduousTemperateForest",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:DeciduousBroadleafTree),ecosystem.seed:Climate(ecosystem.seed:Temperate),ecosystem.seed:Phenology(ecosystem.seed:WinterDeciduous))",
+      "reviewNote": "Canopy share, temperature seasonality, growing season and soil fertility remain unquantified; no tree species is universally required."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "T2.5",
+      "label": "Temperate pyric humid forests",
+      "sourceLevel": 3,
+      "alias": "TemperatePyricHumidForest",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:Tree),ecosystem.seed:Climate(ecosystem.seed:Temperate,ecosystem.seed:Humid),ecosystem.seed:Disturbance(ecosystem.seed:FireMaintained))",
+      "reviewNote": "Fire regime, tall multilayer structure and summer drought episodes need explicit recurrence, severity and succession semantics."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "T2.6",
+      "label": "Temperate pyric sclerophyll forests and woodlands",
+      "sourceLevel": 3,
+      "alias": "TemperatePyricSclerophyllForest",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SclerophyllousVegetation),ecosystem.seed:Climate(ecosystem.seed:Temperate,ecosystem.seed:SummerWaterDeficit),ecosystem.seed:Disturbance(ecosystem.seed:FireMaintained))",
+      "reviewNote": "Quantified water deficit, nutrients and fire intervals are not encoded; a recent burn is not evidence of a pyric ecosystem by itself."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "T4.5",
+      "label": "Temperate subhumid grasslands",
+      "sourceLevel": 3,
+      "alias": "TemperateSubhumidGrassland",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:NaturalHerbaceousVegetation),ecosystem.seed:Climate(ecosystem.seed:Temperate,ecosystem.seed:Subhumid))",
+      "reviewNote": "Seasonal water balance, C3/C4 traits, soil properties, disturbance and tree-exclusion mechanisms need review."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "T7.1",
+      "label": "Annual croplands",
+      "sourceLevel": 3,
+      "alias": "AnnualCroplandEcosystem",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:AnnualCrop),ecosystem.seed:Management(ecosystem.seed:CultivationAndHarvest))",
+      "reviewNote": "Annual management cycle and resource subsidies need temporal rules; high-input practice is not a universal numeric threshold here."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "TF1.3",
+      "label": "Permanent marshes",
+      "sourceLevel": 3,
+      "alias": "PermanentMarsh",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:WetlandVegetation),ecosystem.seed:Hydrology(ecosystem.seed:PermanentInundation))",
+      "reviewNote": "Water depth, anoxia, nutrients and marsh physiognomy remain qualitative; permanent inundation is not exhaustive water cover."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "TF1.4",
+      "label": "Seasonal floodplain marshes",
+      "sourceLevel": 3,
+      "alias": "SeasonalFloodplainMarsh",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:WetlandVegetation),ecosystem.seed:Landform(ecosystem.seed:Floodplain),ecosystem.seed:HydroperiodCycle(ecosystem.seed:InundatedPhase,ecosystem.seed:ExposedPhase))",
+      "reviewNote": "Flooding then exposure is a schematic recurring cycle; durations, gaps, spatial extent and interannual variation are unspecified. No equal phase length is assumed."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "TF1.6",
+      "label": "Boreal, temperate and montane peat bogs",
+      "sourceLevel": 3,
+      "alias": "BorealTemperateMontanePeatBog",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:PeatFormingVegetation),ecosystem.seed:Climate(ecosystem.seed:CoolHumid),ecosystem.seed:Hydrology(ecosystem.seed:Waterlogging),ecosystem.seed:Substrate(ecosystem.seed:Peat))",
+      "reviewNote": "GET bogs must not all be narrowed to strictly ombrotrophic raised bogs; peat chemistry and formation feedbacks need separate constraints."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "TF1.7",
+      "label": "Boreal and temperate fens",
+      "sourceLevel": 3,
+      "alias": "BorealTemperateFen",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:WetlandVegetation),ecosystem.seed:Climate(ecosystem.seed:BorealOrTemperate),ecosystem.seed:Hydrology(ecosystem.seed:MinerotrophicWaterSupply),ecosystem.seed:Substrate(ecosystem.seed:Peat))",
+      "reviewNote": "Mineral-water input, productivity, anoxia and water-table regime matter; rich and poor fens must remain possible regional refinements."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "F1.1",
+      "label": "Permanent upland streams",
+      "sourceLevel": 3,
+      "alias": "PermanentUplandStream",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:FlowingWater),ecosystem.seed:Hydrology(ecosystem.seed:PerennialFlow),ecosystem.seed:Landform(ecosystem.seed:Upland))",
+      "reviewNote": "Stream order, slope, velocity, oxygen and catchment subsidies are not executable; perennial is not constant discharge."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "F1.4",
+      "label": "Seasonal upland streams",
+      "sourceLevel": 3,
+      "alias": "SeasonalUplandStream",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:FlowingWater),ecosystem.seed:Hydrology(ecosystem.seed:SeasonallyVariableFlow),ecosystem.seed:Landform(ecosystem.seed:Upland))",
+      "reviewNote": "This GET group may include perennial flows as well as intermittent streams. Seasonal must not be interpreted as obligatory dry-channel absence."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "F2.1",
+      "label": "Large permanent freshwater lakes",
+      "sourceLevel": 3,
+      "alias": "LargePermanentFreshwaterLake",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Hydrology(ecosystem.seed:PermanentWater),ecosystem.seed:WaterChemistry(ecosystem.seed:Freshwater),ecosystem.seed:Morphology(ecosystem.seed:LargeLake))",
+      "reviewNote": "Area, depth, stratification and mixing need explicit units and observation scales; large is an uncalibrated prototype identity."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "F2.6",
+      "label": "Permanent salt and soda lakes",
+      "sourceLevel": 3,
+      "alias": "PermanentSaltAndSodaLake",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Hydrology(ecosystem.seed:PermanentWater),ecosystem.seed:WaterChemistry(ecosystem.seed:SalineOrSodaWater))",
+      "reviewNote": "Salinity, ionic composition and alkalinity need independent measurements; not all saline lakes are soda lakes."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "F3.1",
+      "label": "Large reservoirs",
+      "sourceLevel": 3,
+      "alias": "LargeReservoir",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Management(ecosystem.seed:ImpoundedWaterManagement),ecosystem.seed:Morphology(ecosystem.seed:LargeLake))",
+      "reviewNote": "Water-level operation, residence time, impoundment history and size require context and temporal rules."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "F3.3",
+      "label": "Rice paddies",
+      "sourceLevel": 3,
+      "alias": "RicePaddyEcosystem",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:RiceCrop),ecosystem.seed:Management(ecosystem.seed:RiceCultivation),ecosystem.seed:Hydrology(ecosystem.seed:ManagedFlooding))",
+      "reviewNote": "Management and inundation cycles vary; the prototype does not impose year-round flooding or a universal wet/dry duration ratio."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "FM1.2",
+      "label": "Permanently open riverine estuaries and bays",
+      "sourceLevel": 3,
+      "alias": "PermanentlyOpenEstuary",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:EstuarineWater),ecosystem.seed:Connectivity(ecosystem.seed:PermanentOceanConnection))",
+      "reviewNote": "Salinity gradients, exchange, freshwater inflow, tides and residence time are more informative than a single brackish identity."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "FM1.3",
+      "label": "Intermittently closed and open lakes and lagoons",
+      "sourceLevel": 3,
+      "alias": "IntermittentlyOpenCoastalLagoon",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:LagoonWater),ecosystem.seed:Connectivity(ecosystem.seed:IntermittentOceanConnection))",
+      "reviewNote": "Mouth closure cycles can be infrequent or frequent; phase durations and triggers cannot be inferred from the name."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "MFT1.2",
+      "label": "Intertidal forests and shrublands",
+      "sourceLevel": 3,
+      "alias": "IntertidalForestShrubland",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:MangrovePlant),ecosystem.seed:Hydrology(ecosystem.seed:TidalInundation),ecosystem.seed:BioticTraits(ecosystem.seed:MangroveEngineering))",
+      "reviewNote": "The aggregate mangrove identity includes tree and shrub forms; salinity, thermal limits and sediment dynamics need constraints."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "MFT1.3",
+      "label": "Coastal saltmarshes and reedbeds",
+      "sourceLevel": 3,
+      "alias": "CoastalSaltmarshReedbed",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SaltMarshVegetation),ecosystem.seed:Hydrology(ecosystem.seed:TidalInundation),ecosystem.seed:WaterChemistry(ecosystem.seed:VariableSalinity))",
+      "reviewNote": "Freshwater inputs, halophyte traits, tidal exposure and microtopography need explicit scales; a universal salinity value is inappropriate."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "MT1.1",
+      "label": "Rocky Shorelines",
+      "sourceLevel": 3,
+      "alias": "RockyShorelineEcosystem",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:RockSurface),ecosystem.seed:Hydrology(ecosystem.seed:IntertidalExposure),ecosystem.seed:Disturbance(ecosystem.seed:WaveAndTidalForcing))",
+      "reviewNote": "Zonation, exposure duration and sessile/mobile biota are omitted; substrate presence does not define the full community."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "M1.1",
+      "label": "Seagrass meadows",
+      "sourceLevel": 3,
+      "alias": "SeagrassMeadow",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Seagrass),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:BioticTraits(ecosystem.seed:SeagrassEngineering))",
+      "reviewNote": "Meadow structure, light, salinity and sediment stabilization need rules; GET includes intertidal examples and occasional rocky substrates."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "M1.2",
+      "label": "Kelp forests",
+      "sourceLevel": 3,
+      "alias": "KelpForest",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Kelp),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:BioticTraits(ecosystem.seed:KelpCanopyEngineering))",
+      "reviewNote": "Light, nutrients, temperature, substrate attachment and herbivory/trophic cascades require more than canopy identity."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "M1.3",
+      "label": "Photic coral reefs",
+      "sourceLevel": 3,
+      "alias": "PhoticCoralReef",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:ReefBuildingCoral),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:EnergyRegime(ecosystem.seed:Photic),ecosystem.seed:BioticTraits(ecosystem.seed:CarbonateReefAccretion))",
+      "reviewNote": "Symbiosis, light-depth-temperature envelope, salinity and accretion must be modeled; all corals do not define a photic reef."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "M1.8",
+      "label": "Subtidal mud plains",
+      "sourceLevel": 3,
+      "alias": "SubtidalMudPlain",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:MudSubstrate),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:Hydrology(ecosystem.seed:Subtidal),ecosystem.seed:EnergyRegime(ecosystem.seed:LowKineticEnergy))",
+      "reviewNote": "Deposition, benthic food-web subsidies, oxygen and organic matter need measurable constraints."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "M2.1",
+      "label": "Epipelagic ocean waters",
+      "sourceLevel": 3,
+      "alias": "EpipelagicOcean",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:MarineWater),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:EnergyRegime(ecosystem.seed:Photic),ecosystem.seed:WaterColumn(ecosystem.seed:Pelagic))",
+      "reviewNote": "Photic depth depends on turbidity and season, not a universally fixed depth; pelagic and benthic contexts must remain distinct."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "M2.5",
+      "label": "Sea ice",
+      "sourceLevel": 3,
+      "alias": "SeaIceEcosystem",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SnowOrIce),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:BioticTraits(ecosystem.seed:SympagicCommunity))",
+      "reviewNote": "Sea ice is not terrestrial snow; freezing, brine channels, seasonal retreat and connected water communities need temporal structure."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "M3.7",
+      "label": "Chemosynthetic-based-ecosystems (CBE)",
+      "sourceLevel": 3,
+      "alias": "ChemosyntheticEcosystem",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:ChemosyntheticMicrobes),ecosystem.seed:Environment(ecosystem.seed:DeepMarine),ecosystem.seed:EnergyRegime(ecosystem.seed:ChemicalEnergy))",
+      "reviewNote": "Vents, cold seeps and organic falls are alternatives, not mandatory co-occurring components. Pressure and donor chemistry require constraints."
+    },
+    {
+      "catalog": "get21_ecosystem_pilot",
+      "code": "SF1.2",
+      "label": "Groundwater ecosystems",
+      "sourceLevel": 3,
+      "alias": "GroundwaterEcosystem",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Groundwater),ecosystem.seed:Environment(ecosystem.seed:Subterranean),ecosystem.seed:EnergyRegime(ecosystem.seed:LightAbsent))",
+      "reviewNote": "Aquifer and hyporheic connectivity, residence time, pore space and oxygen need rules; microbial and animal communities vary."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "N11",
+      "label": "Atlantic, Baltic and Arctic sand beach",
+      "sourceLevel": 3,
+      "alias": "NorthernSandBeach",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SandSurface),ecosystem.seed:Biogeography(ecosystem.seed:AtlanticBalticOrArctic))",
+      "reviewNote": "Regional disjunction is a prototype category; shore processes, tidal setting and community context require review."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "N12",
+      "label": "Mediterranean and Black Sea sand beach",
+      "sourceLevel": 3,
+      "alias": "SouthernSandBeach",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SandSurface),ecosystem.seed:Biogeography(ecosystem.seed:MediterraneanOrBlackSea))",
+      "reviewNote": "Same material as N11 with a different regional constraint; geography is not evidence of global ecosystem incompatibility."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "R1A",
+      "label": "Semi-dry perennial calcareous grassland (meadow steppe)",
+      "sourceLevel": 3,
+      "alias": "CalcareousMeadowSteppe",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:NaturalHerbaceousVegetation),ecosystem.seed:Substrate(ecosystem.seed:Calcareous),ecosystem.seed:Hydrology(ecosystem.seed:SemiDry),ecosystem.seed:Phenology(ecosystem.seed:PerennialVegetation))",
+      "reviewNote": "Diagnostic floristic combinations, substrate chemistry, moisture envelope and management are not replaced by this profile."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "R1M",
+      "label": "Lowland to montane, dry to mesic grassland usually dominated by Nardus stricta",
+      "sourceLevel": 3,
+      "alias": "NardusGrassland",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:NardusVegetation),ecosystem.seed:Hydrology(ecosystem.seed:DryToMesic),ecosystem.seed:Landform(ecosystem.seed:LowlandToMontane))",
+      "reviewNote": "Usually dominant is not universally required; dominant taxa, regional assemblages and environmental range need explicit modality."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "R21",
+      "label": "Mesic permanent pasture of lowlands and mountains",
+      "sourceLevel": 3,
+      "alias": "MesicPermanentPasture",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:PastureVegetation),ecosystem.seed:Hydrology(ecosystem.seed:Mesic),ecosystem.seed:Management(ecosystem.seed:Grazing))",
+      "reviewNote": "Management history and regional vegetation composition are not encoded; generic pasture cover is insufficient."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "S41",
+      "label": "Wet heath",
+      "sourceLevel": 3,
+      "alias": "WetHeath",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:HeathVegetation),ecosystem.seed:Hydrology(ecosystem.seed:WetSoil))",
+      "reviewNote": "Wetness, peat and characteristic assemblages need diagnostic rules; a single wet observation is not a wet-heath definition."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "S42",
+      "label": "Dry heath",
+      "sourceLevel": 3,
+      "alias": "DryHeath",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:HeathVegetation),ecosystem.seed:Hydrology(ecosystem.seed:DrySoil))",
+      "reviewNote": "Need a comparable moisture measure and temporal support before treating wet/dry identities as mutually exclusive."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "T11",
+      "label": "Temperate Salix and Populus riparian forest",
+      "sourceLevel": 3,
+      "alias": "WillowPoplarRiparianForest",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:WillowOrPoplar),ecosystem.seed:Climate(ecosystem.seed:Temperate),ecosystem.seed:Landform(ecosystem.seed:Riparian))",
+      "reviewNote": "Willow or poplar is a disjunctive aggregate identity, not a requirement for both; flooding and diagnostics remain unresolved."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "T17",
+      "label": "Fagus forest on non-acid soils",
+      "sourceLevel": 3,
+      "alias": "BeechForestNonAcidSoil",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Beech),ecosystem.seed:Substrate(ecosystem.seed:NonAcidSoil))",
+      "reviewNote": "No invented pH cutoff; assemblages and soil/base-status measurements must establish applicability."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "T18",
+      "label": "Fagus forest on acid soils",
+      "sourceLevel": 3,
+      "alias": "BeechForestAcidSoil",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Beech),ecosystem.seed:Substrate(ecosystem.seed:AcidSoil))",
+      "reviewNote": "Shares beech composition with T17; soil acidity and associated diagnostic flora retain the distinction."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "T21",
+      "label": "Mediterranean evergreen Quercus forest",
+      "sourceLevel": 3,
+      "alias": "MediterraneanEvergreenOakForest",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:EvergreenOak),ecosystem.seed:Biogeography(ecosystem.seed:Mediterranean))",
+      "reviewNote": "Regional species assemblages and thermomediterranean setting require review; not every evergreen oak stand belongs here."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "Q11",
+      "label": "Raised bog",
+      "sourceLevel": 3,
+      "alias": "RaisedBog",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:PeatFormingVegetation),ecosystem.seed:Hydrology(ecosystem.seed:Ombrotrophic),ecosystem.seed:Substrate(ecosystem.seed:Peat),ecosystem.seed:Landform(ecosystem.seed:RaisedBogSurface))",
+      "reviewNote": "Raised ombrotrophy is narrower than generic GET bog properties, subject to climate and interpretation; no equivalence is asserted."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "Q12",
+      "label": "Blanket bog",
+      "sourceLevel": 3,
+      "alias": "BlanketBog",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:PeatFormingVegetation),ecosystem.seed:Hydrology(ecosystem.seed:Ombrotrophic),ecosystem.seed:Substrate(ecosystem.seed:Peat),ecosystem.seed:Landform(ecosystem.seed:BlanketPeatSurface))",
+      "reviewNote": "Blanket versus raised morphology must remain distinct, even if both may fit a broader GET bog group."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "Q22",
+      "label": "Poor fen",
+      "sourceLevel": 3,
+      "alias": "PoorFen",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:WetlandVegetation),ecosystem.seed:Hydrology(ecosystem.seed:MinerotrophicWaterSupply),ecosystem.seed:Substrate(ecosystem.seed:Peat,ecosystem.seed:NutrientPoor))",
+      "reviewNote": "Poor denotes a context-dependent nutrient/base-status category; it is not an ecosystem condition score."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "Q41",
+      "label": "Alkaline, calcareous, carbonate-rich small-sedge spring fen",
+      "sourceLevel": 3,
+      "alias": "CalcareousSpringFen",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:WetlandVegetation),ecosystem.seed:Hydrology(ecosystem.seed:SpringWaterSupply),ecosystem.seed:Substrate(ecosystem.seed:Calcareous))",
+      "reviewNote": "Alkalinity, carbonate chemistry, peat extent and diagnostic small-sedge assemblages require review; not every spring is this type."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "Q51",
+      "label": "Tall-helophyte bed",
+      "sourceLevel": 3,
+      "alias": "TallHelophyteBed",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:TallHelophyte),ecosystem.seed:Hydrology(ecosystem.seed:WetlandWaterRegime))",
+      "reviewNote": "This class need not have the exact permanence or geomorphic setting of GET permanent marshes."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "V11",
+      "label": "Intensive unmixed crops",
+      "sourceLevel": 3,
+      "alias": "IntensiveUnmixedCrops",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:Crop),ecosystem.seed:Management(ecosystem.seed:IntensiveSingleCrop))",
+      "reviewNote": "Diversity, management intensity and rotation need explicit rules; nominal crop identity is not a GET crosswalk."
+    },
+    {
+      "catalog": "eunis2021_terrestrial_pilot",
+      "code": "V31",
+      "label": "Agriculturally-improved, re-seeded and heavily fertilised grassland, including sports fields and grass lawns",
+      "sourceLevel": 3,
+      "alias": "ImprovedGrasslandAndLawns",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:ManagedHerbaceousVegetation),ecosystem.seed:Management(ecosystem.seed:ReseedingAndFertilization))",
+      "reviewNote": "Includes pasture, sports fields and lawns; the generic managed-herbaceous identity does not impose grazing, and management intensity still needs specification."
+    },
+    {
+      "catalog": "eunis2022_marine_pilot",
+      "code": "MA12",
+      "label": "Atlantic littoral rock",
+      "sourceLevel": 3,
+      "alias": "AtlanticLittoralRock",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:RockSurface),ecosystem.seed:Hydrology(ecosystem.seed:IntertidalExposure),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))",
+      "reviewNote": "Regional community, exposure and biological zonation require review; source level 3."
+    },
+    {
+      "catalog": "eunis2022_marine_pilot",
+      "code": "MA15",
+      "label": "Mediterranean littoral rock",
+      "sourceLevel": 3,
+      "alias": "MediterraneanLittoralRock",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:RockSurface),ecosystem.seed:Hydrology(ecosystem.seed:IntertidalExposure),ecosystem.seed:Biogeography(ecosystem.seed:Mediterranean))",
+      "reviewNote": "Comparable to MA12 only after separating biogeography and assemblages; source level 3."
+    },
+    {
+      "catalog": "eunis2022_marine_pilot",
+      "code": "MA52",
+      "label": "Atlantic littoral sand",
+      "sourceLevel": 3,
+      "alias": "AtlanticLittoralSand",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SandSurface),ecosystem.seed:Hydrology(ecosystem.seed:IntertidalExposure),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))",
+      "reviewNote": "Grain size, mobile sediments, exposure duration and assemblages need constraints; source level 3."
+    },
+    {
+      "catalog": "eunis2022_marine_pilot",
+      "code": "MA62",
+      "label": "Atlantic littoral mud",
+      "sourceLevel": 3,
+      "alias": "AtlanticLittoralMud",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:MudSubstrate),ecosystem.seed:Hydrology(ecosystem.seed:IntertidalExposure),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))",
+      "reviewNote": "Sediment definition, oxygen and estuarine influences are unresolved; source level 3."
+    },
+    {
+      "catalog": "eunis2022_marine_pilot",
+      "code": "MB12",
+      "label": "Atlantic infralittoral rock",
+      "sourceLevel": 3,
+      "alias": "AtlanticInfralittoralRock",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:RockSurface),ecosystem.seed:Hydrology(ecosystem.seed:Infralittoral),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))",
+      "reviewNote": "Cannot assume every unit is a kelp forest or photic coral reef; source level 3."
+    },
+    {
+      "catalog": "eunis2022_marine_pilot",
+      "code": "MB15",
+      "label": "Mediterranean infralittoral rock",
+      "sourceLevel": 3,
+      "alias": "MediterraneanInfralittoralRock",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:RockSurface),ecosystem.seed:Hydrology(ecosystem.seed:Infralittoral),ecosystem.seed:Biogeography(ecosystem.seed:Mediterranean))",
+      "reviewNote": "Algal, animal and mixed communities may differ from GET functional groups; source level 3."
+    },
+    {
+      "catalog": "eunis2022_marine_pilot",
+      "code": "MA522",
+      "label": "Seagrass beds on Atlantic littoral sand",
+      "sourceLevel": 4,
+      "alias": "AtlanticLittoralSandSeagrass",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Seagrass,landcover.seed:SandSurface),ecosystem.seed:Hydrology(ecosystem.seed:IntertidalExposure),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))",
+      "reviewNote": "Deliberately selected deeper level-4 community to compare with GET M1.1; source level is not inferred from code length."
+    },
+    {
+      "catalog": "eunis2022_marine_pilot",
+      "code": "MA623",
+      "label": "Seagrass beds on Atlantic littoral mud",
+      "sourceLevel": 4,
+      "alias": "AtlanticLittoralMudSeagrass",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Seagrass,ecosystem.seed:MudSubstrate),ecosystem.seed:Hydrology(ecosystem.seed:IntertidalExposure),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))",
+      "reviewNote": "Level 4; substrate and tidal context refine the seagrass case, subject to consistent meadow/bed interpretation."
+    },
+    {
+      "catalog": "eunis2022_marine_pilot",
+      "code": "MB522",
+      "label": "Seagrass beds on Atlantic infralittoral sand",
+      "sourceLevel": 4,
+      "alias": "AtlanticInfralittoralSandSeagrass",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Seagrass,landcover.seed:SandSurface),ecosystem.seed:Hydrology(ecosystem.seed:Infralittoral),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))",
+      "reviewNote": "Level 4; not synonymous with the global seagrass functional group; extent and species assemblages need review."
+    },
+    {
+      "catalog": "eunis2022_marine_pilot",
+      "code": "MB252",
+      "label": "Biocenosis of Posidonia oceanica",
+      "sourceLevel": 4,
+      "alias": "PosidoniaOceanicaBiocenosis",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:PosidoniaOceanica),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:Biogeography(ecosystem.seed:Mediterranean))",
+      "reviewNote": "Level 4; species identity is an invented stand-in, not an authority-resolved taxon. No numeric taxonomy code is guessed."
+    },
+    {
+      "catalog": "eunis2022_marine_pilot",
+      "code": "MH12",
+      "label": "Atlantic neuston",
+      "sourceLevel": 3,
+      "alias": "AtlanticNeuston",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:NeustonBiota),ecosystem.seed:WaterColumn(ecosystem.seed:SeaAirInterface),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))",
+      "reviewNote": "Level 3; an interface community must not be equated to an entire GET epipelagic water column."
+    },
+    {
+      "catalog": "eunis2022_marine_pilot",
+      "code": "MH22",
+      "label": "Atlantic completely mixed water column with reduced salinity",
+      "sourceLevel": 3,
+      "alias": "AtlanticMixedReducedSalinity",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:MarineWater),ecosystem.seed:WaterColumn(ecosystem.seed:CompletelyMixed),ecosystem.seed:WaterChemistry(ecosystem.seed:ReducedSalinity),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))",
+      "reviewNote": "Level 3; mixing, salinity and seasonality require explicit observation support and thresholds."
+    },
+    {
+      "catalog": "eunis2022_marine_pilot",
+      "code": "MH32",
+      "label": "Atlantic completely mixed water column with full salinity",
+      "sourceLevel": 3,
+      "alias": "AtlanticMixedFullSalinity",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:MarineWater),ecosystem.seed:WaterColumn(ecosystem.seed:CompletelyMixed),ecosystem.seed:WaterChemistry(ecosystem.seed:FullSalinity),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))",
+      "reviewNote": "Level 3; full salinity is a source-relative qualitative category, not an invented universal number."
+    },
+    {
+      "catalog": "eunis2022_marine_pilot",
+      "code": "MJ11",
+      "label": "Arctic sea ice",
+      "sourceLevel": 3,
+      "alias": "ArcticSeaIce",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SnowOrIce),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:Biogeography(ecosystem.seed:Arctic),ecosystem.seed:BioticTraits(ecosystem.seed:SympagicCommunity))",
+      "reviewNote": "Level 3; freezing, brine, seasonal coverage and sea-ice community require more than frozen cover presence."
+    },
+    {
+      "catalog": "eunis2012_inland_pilot",
+      "code": "C1.1",
+      "label": "Permanent oligotrophic lakes, ponds and pools",
+      "sourceLevel": 3,
+      "alias": "PermanentOligotrophicLake",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Hydrology(ecosystem.seed:PermanentWater),ecosystem.seed:TrophicRegime(ecosystem.seed:Oligotrophic))",
+      "reviewNote": "Trophic status, light, chemistry and water-body extent require measurements; not equivalent to GET large freshwater lakes."
+    },
+    {
+      "catalog": "eunis2012_inland_pilot",
+      "code": "C1.2",
+      "label": "Permanent mesotrophic lakes, ponds and pools",
+      "sourceLevel": 3,
+      "alias": "PermanentMesotrophicLake",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Hydrology(ecosystem.seed:PermanentWater),ecosystem.seed:TrophicRegime(ecosystem.seed:Mesotrophic))",
+      "reviewNote": "No universal nutrient cutoff is invented; the category needs a calibrated observation and temporal support."
+    },
+    {
+      "catalog": "eunis2012_inland_pilot",
+      "code": "C1.3",
+      "label": "Permanent eutrophic lakes, ponds and pools",
+      "sourceLevel": 3,
+      "alias": "PermanentEutrophicLake",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Hydrology(ecosystem.seed:PermanentWater),ecosystem.seed:TrophicRegime(ecosystem.seed:Eutrophic))",
+      "reviewNote": "Trophic status is not automatically ecological condition or a pressure score; origin and management must be separated."
+    },
+    {
+      "catalog": "eunis2012_inland_pilot",
+      "code": "C1.5",
+      "label": "Permanent inland saline and brackish lakes, ponds and pools",
+      "sourceLevel": 3,
+      "alias": "PermanentSalineBrackishLake",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Hydrology(ecosystem.seed:PermanentWater),ecosystem.seed:WaterChemistry(ecosystem.seed:SalineOrBrackish))",
+      "reviewNote": "Inland saline and brackish waters need not be soda lakes; ionic composition and ocean connectivity differ from estuaries."
+    },
+    {
+      "catalog": "eunis2012_inland_pilot",
+      "code": "C1.6",
+      "label": "Temporary lakes, ponds and pools",
+      "sourceLevel": 3,
+      "alias": "TemporaryStandingWater",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:StandingInlandWater),ecosystem.seed:Hydrology(ecosystem.seed:TemporaryWater))",
+      "reviewNote": "Temporary water includes multiple regimes; no fixed hydroperiod duration or generic GET equivalent is assumed."
+    },
+    {
+      "catalog": "eunis2012_inland_pilot",
+      "code": "C2.2",
+      "label": "Permanent non-tidal, fast, turbulent watercourses",
+      "sourceLevel": 3,
+      "alias": "PermanentFastWatercourse",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:FlowingWater),ecosystem.seed:Hydrology(ecosystem.seed:PerennialFlow),ecosystem.seed:Hydrodynamics(ecosystem.seed:FastTurbulentNonTidal))",
+      "reviewNote": "Not equivalent to upland by itself: stream order, gradient and catchment context are separate properties."
+    },
+    {
+      "catalog": "eunis2012_inland_pilot",
+      "code": "C2.3",
+      "label": "Permanent non-tidal, smooth-flowing watercourses",
+      "sourceLevel": 3,
+      "alias": "PermanentSmoothWatercourse",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:FlowingWater),ecosystem.seed:Hydrology(ecosystem.seed:PerennialFlow),ecosystem.seed:Hydrodynamics(ecosystem.seed:SmoothFlowingNonTidal))",
+      "reviewNote": "Smooth flow does not by itself determine lowland location, river size or ecosystem functional group."
+    },
+    {
+      "catalog": "eunis2012_inland_pilot",
+      "code": "C2.5",
+      "label": "Temporary running waters",
+      "sourceLevel": 3,
+      "alias": "TemporaryRunningWater",
+      "expression": "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:FlowingWater),ecosystem.seed:Hydrology(ecosystem.seed:TemporaryFlow))",
+      "reviewNote": "GET seasonal upland streams may remain perennial, so this is neither a simple synonym nor an exhaustive mapping."
+    }
+  ]
+}

@@ -1,0 +1,2174 @@
+{
+  "classification": "EUNIS",
+  "edition": "2021_1",
+  "source": {
+    "file": "eunis_terrestrial.zip",
+    "url": "https://sdi.eea.europa.eu/datashare/s/mqtf8t3acx9RECQ/download",
+    "sha256": "ad240a78c9b3facb99e676f3d310a7e031b65bd950e3d9b444773d845ee81511",
+    "bytes": 1704204
+  },
+  "workbook": "EUNIS terrestrial habitat classification 2021_1 including crosswalks.xlsx",
+  "entries": [
+    {
+      "code": "N11",
+      "label": "Atlantic, Baltic and Arctic sand beach",
+      "sheet": "Coastal",
+      "row": 4,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N12",
+      "label": "Mediterranean and Black Sea sand beach",
+      "sheet": "Coastal",
+      "row": 23,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N13",
+      "label": "Atlantic and Baltic shifting coastal dune",
+      "sheet": "Coastal",
+      "row": 36,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N14",
+      "label": "Mediterranean, Macaronesian and Black Sea shifting coastal dune",
+      "sheet": "Coastal",
+      "row": 45,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N15",
+      "label": "Atlantic and Baltic coastal dune grassland (grey dune)",
+      "sheet": "Coastal",
+      "row": 52,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N16",
+      "label": "Mediterranean and Macaronesian coastal dune grassland (grey dune)",
+      "sheet": "Coastal",
+      "row": 62,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N17",
+      "label": "Black Sea coastal dune grassland (grey dune)",
+      "sheet": "Coastal",
+      "row": 69,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N18",
+      "label": "Atlantic and Baltic coastal Empetrum heath",
+      "sheet": "Coastal",
+      "row": 76,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N19",
+      "label": "Atlantic coastal Calluna and Ulex heath",
+      "sheet": "Coastal",
+      "row": 77,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N1A",
+      "label": "Atlantic and Baltic coastal dune scrub",
+      "sheet": "Coastal",
+      "row": 87,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N1B",
+      "label": "Mediterranean and Black Sea coastal dune scrub",
+      "sheet": "Coastal",
+      "row": 95,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N1C",
+      "label": "Macaronesian coastal dune scrub",
+      "sheet": "Coastal",
+      "row": 102,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N1D",
+      "label": "Atlantic and Baltic broad-leaved coastal dune forest",
+      "sheet": "Coastal",
+      "row": 103,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N1E",
+      "label": "Black Sea broad-leaved coastal dune forest",
+      "sheet": "Coastal",
+      "row": 104,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N1F",
+      "label": "Baltic coniferous coastal dune forest",
+      "sheet": "Coastal",
+      "row": 105,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N1G",
+      "label": "Mediterranean coniferous coastal dune forest",
+      "sheet": "Coastal",
+      "row": 107,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N1H",
+      "label": "Atlantic and Baltic moist and wet dune slack",
+      "sheet": "Coastal",
+      "row": 108,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N1J",
+      "label": "Mediterranean and Black Sea moist and wet dune slack",
+      "sheet": "Coastal",
+      "row": 115,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N21",
+      "label": "Atlantic, Baltic and Arctic coastal shingle beach",
+      "sheet": "Coastal",
+      "row": 123,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N22",
+      "label": "Mediterranean and Black Sea coastal shingle beach",
+      "sheet": "Coastal",
+      "row": 132,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N31",
+      "label": "Atlantic and Baltic rocky sea cliff and shore",
+      "sheet": "Coastal",
+      "row": 136,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N32",
+      "label": "Mediterranean and Black Sea rocky sea cliff and shore",
+      "sheet": "Coastal",
+      "row": 163,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N33",
+      "label": "Macaronesian rocky sea cliff and shore",
+      "sheet": "Coastal",
+      "row": 178,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N34",
+      "label": "Atlantic and Baltic soft sea cliff",
+      "sheet": "Coastal",
+      "row": 181,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "N35",
+      "label": "Mediterranean and Black Sea soft sea cliff",
+      "sheet": "Coastal",
+      "row": 189,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R11",
+      "label": "Pannonian and Pontic sandy steppe",
+      "sheet": "Grassland",
+      "row": 4,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R12",
+      "label": "Cryptogam- and annual-dominated vegetation on siliceous rock outcrops",
+      "sheet": "Grassland",
+      "row": 5,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R13",
+      "label": "Cryptogam- and annual-dominated vegetation on calcareous and ultramafic rock outcrops",
+      "sheet": "Grassland",
+      "row": 8,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R14",
+      "label": "Perennial rocky grassland of the Italian Peninsula",
+      "sheet": "Grassland",
+      "row": 14,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R15",
+      "label": "Continental dry rocky steppic grassland and dwarf scrub on chalk outcrops",
+      "sheet": "Grassland",
+      "row": 15,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R16",
+      "label": "Perennial rocky grassland of Central and South-Eastern Europe",
+      "sheet": "Grassland",
+      "row": 16,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R17",
+      "label": "Heavy-metal dry grassland of the Balkans",
+      "sheet": "Grassland",
+      "row": 17,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R18",
+      "label": "Perennial rocky calcareous grassland of subatlantic-submediterranean Europe",
+      "sheet": "Grassland",
+      "row": 18,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R19",
+      "label": "Dry steppic submediterranean pasture of the Amphi-Adriatic region",
+      "sheet": "Grassland",
+      "row": 19,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1A",
+      "label": "Semi-dry perennial calcareous grassland (meadow steppe)",
+      "sheet": "Grassland",
+      "row": 20,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1B",
+      "label": "Continental dry grassland (true steppe)",
+      "sheet": "Grassland",
+      "row": 90,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1C",
+      "label": "Desert steppe",
+      "sheet": "Grassland",
+      "row": 173,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1D",
+      "label": "Mediterranean closely grazed dry grassland",
+      "sheet": "Grassland",
+      "row": 174,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1E",
+      "label": "Mediterranean tall perennial dry grassland",
+      "sheet": "Grassland",
+      "row": 181,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1F",
+      "label": "Mediterranean annual-rich dry grassland",
+      "sheet": "Grassland",
+      "row": 206,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1G",
+      "label": "Iberian oromediterranean siliceous dry grassland",
+      "sheet": "Grassland",
+      "row": 216,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1H",
+      "label": "Iberian oromediterranean basiphilous dry grassland",
+      "sheet": "Grassland",
+      "row": 218,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1J",
+      "label": "Cyrno-Sardean oromediterranean siliceous dry grassland",
+      "sheet": "Grassland",
+      "row": 226,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1K",
+      "label": "Balkan and Anatolian oromediterranean dry grassland",
+      "sheet": "Grassland",
+      "row": 227,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1L",
+      "label": "Madeiran oromediterranean siliceous dry grassland",
+      "sheet": "Grassland",
+      "row": 252,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1M",
+      "label": "Lowland to montane, dry to mesic grassland usually dominated by Nardus stricta",
+      "sheet": "Grassland",
+      "row": 253,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1N",
+      "label": "Open Iberian supramediterranean dry acid and neutral grassland",
+      "sheet": "Grassland",
+      "row": 273,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1P",
+      "label": "Oceanic to subcontinental inland sand grassland on dry acid and neutral soils",
+      "sheet": "Grassland",
+      "row": 277,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1Q",
+      "label": "Inland sanddrift and dune with siliceous grassland",
+      "sheet": "Grassland",
+      "row": 280,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1R",
+      "label": "Mediterranean to Atlantic open, dry, acid and neutral grassland",
+      "sheet": "Grassland",
+      "row": 302,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1S",
+      "label": "Heavy-metal grassland in Western and Central Europe",
+      "sheet": "Grassland",
+      "row": 310,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R1T",
+      "label": "Azorean open, dry, acid to neutral grassland",
+      "sheet": "Grassland",
+      "row": 322,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R21",
+      "label": "Mesic permanent pasture of lowlands and mountains",
+      "sheet": "Grassland",
+      "row": 324,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R22",
+      "label": "Low and medium altitude hay meadow",
+      "sheet": "Grassland",
+      "row": 340,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R23",
+      "label": "Mountain hay meadow",
+      "sheet": "Grassland",
+      "row": 353,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R24",
+      "label": "Iberian summer pasture (vallicar)",
+      "sheet": "Grassland",
+      "row": 372,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R31",
+      "label": "Mediterranean tall humid inland grassland",
+      "sheet": "Grassland",
+      "row": 377,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R32",
+      "label": "Mediterranean short moist grassland of lowlands",
+      "sheet": "Grassland",
+      "row": 382,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R33",
+      "label": "Mediterranean short moist grassland of mountains",
+      "sheet": "Grassland",
+      "row": 383,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R34",
+      "label": "Submediterranean moist meadow",
+      "sheet": "Grassland",
+      "row": 384,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R35",
+      "label": "Moist or wet mesotrophic to eutrophic hay meadow",
+      "sheet": "Grassland",
+      "row": 390,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R36",
+      "label": "Moist or wet mesotrophic to eutrophic pasture",
+      "sheet": "Grassland",
+      "row": 397,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R37",
+      "label": "Temperate and boreal moist or wet oligotrophic grassland",
+      "sheet": "Grassland",
+      "row": 400,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R41",
+      "label": "Snow-bed vegetation",
+      "sheet": "Grassland",
+      "row": 409,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R42",
+      "label": "Boreal and arctic acidophilous alpine grassland",
+      "sheet": "Grassland",
+      "row": 432,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R43",
+      "label": "Temperate acidophilous alpine grassland",
+      "sheet": "Grassland",
+      "row": 433,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R44",
+      "label": "Arctic-alpine calcareous grassland",
+      "sheet": "Grassland",
+      "row": 515,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R45",
+      "label": "Alpine and subalpine calcareous grassland of the Balkans and Apennines",
+      "sheet": "Grassland",
+      "row": 557,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R51",
+      "label": "Thermophilous forest fringe of base-rich soils",
+      "sheet": "Grassland",
+      "row": 598,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R52",
+      "label": "Forest fringe of acidic nutrient-poor soils",
+      "sheet": "Grassland",
+      "row": 599,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R53",
+      "label": "Macaronesian thermophilous forest fringe",
+      "sheet": "Grassland",
+      "row": 600,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R54",
+      "label": "Pteridium aquilinum vegetation",
+      "sheet": "Grassland",
+      "row": 601,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R55",
+      "label": "Lowland moist or wet tall-herb and fern fringe",
+      "sheet": "Grassland",
+      "row": 605,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R56",
+      "label": "Montane to subalpine moist or wet tall-herb and fern fringe",
+      "sheet": "Grassland",
+      "row": 622,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R57",
+      "label": "Herbaceous forest clearing vegetation",
+      "sheet": "Grassland",
+      "row": 661,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R61",
+      "label": "Mediterranean inland salt steppe",
+      "sheet": "Grassland",
+      "row": 665,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R62",
+      "label": "Continental inland salt steppe",
+      "sheet": "Grassland",
+      "row": 672,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R63",
+      "label": "Temperate inland salt marsh",
+      "sheet": "Grassland",
+      "row": 746,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R64",
+      "label": "Semi-desert salt pan",
+      "sheet": "Grassland",
+      "row": 763,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R65",
+      "label": "Continental subsaline alluvial pasture and meadow",
+      "sheet": "Grassland",
+      "row": 764,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R71",
+      "label": "Temperate wooded pasture and meadow",
+      "sheet": "Grassland",
+      "row": 766,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R72",
+      "label": "Hemiboreal and boreal wooded pasture and meadow",
+      "sheet": "Grassland",
+      "row": 767,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "R73",
+      "label": "Mediterranean wooded pasture and meadow",
+      "sheet": "Grassland",
+      "row": 768,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S11",
+      "label": "Shrub tundra",
+      "sheet": "Heathland",
+      "row": 4,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S12",
+      "label": "Moss and lichen tundra",
+      "sheet": "Heathland",
+      "row": 6,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S21",
+      "label": "Subarctic and alpine dwarf Salix scrub",
+      "sheet": "Heathland",
+      "row": 10,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S22",
+      "label": "Alpine and subalpine ericoid heath",
+      "sheet": "Heathland",
+      "row": 24,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S23",
+      "label": "Alpine and subalpine Juniperus scrub",
+      "sheet": "Heathland",
+      "row": 80,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S24",
+      "label": "Subalpine genistoid scrub of the Amphi-Adriatic region",
+      "sheet": "Heathland",
+      "row": 92,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S25",
+      "label": "Subalpine and subarctic deciduous scrub",
+      "sheet": "Heathland",
+      "row": 96,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S26",
+      "label": "Subalpine Pinus mugo scrub",
+      "sheet": "Heathland",
+      "row": 127,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S27",
+      "label": "Krummholz with conifers other than Pinus mugo",
+      "sheet": "Heathland",
+      "row": 138,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S31",
+      "label": "Lowland to montane temperate and submediterranean Juniperus scrub",
+      "sheet": "Heathland",
+      "row": 140,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S32",
+      "label": "Temperate Rubus scrub",
+      "sheet": "Heathland",
+      "row": 146,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S33",
+      "label": "Lowland to montane temperate and submediterranean genistoid scrub",
+      "sheet": "Heathland",
+      "row": 147,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S34",
+      "label": "Balkan-Anatolian submontane genistoid scrub",
+      "sheet": "Heathland",
+      "row": 174,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S35",
+      "label": "Temperate and submediterranean thorn scrub",
+      "sheet": "Heathland",
+      "row": 175,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S36",
+      "label": "Low steppic scrub",
+      "sheet": "Heathland",
+      "row": 238,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S37",
+      "label": "Corylus avellana scrub",
+      "sheet": "Heathland",
+      "row": 248,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S38",
+      "label": "Temperate forest clearing scrub",
+      "sheet": "Heathland",
+      "row": 254,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S41",
+      "label": "Wet heath",
+      "sheet": "Heathland",
+      "row": 256,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S42",
+      "label": "Dry heath",
+      "sheet": "Heathland",
+      "row": 260,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S43",
+      "label": "Macaronesian heath",
+      "sheet": "Heathland",
+      "row": 324,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S51",
+      "label": "Mediterranean maquis and arborescent matorral",
+      "sheet": "Heathland",
+      "row": 334,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S52",
+      "label": "Submediterranean pseudomaquis",
+      "sheet": "Heathland",
+      "row": 488,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S53",
+      "label": "Spartium junceum scrub",
+      "sheet": "Heathland",
+      "row": 493,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S54",
+      "label": "Thermomediterranean arid scrub",
+      "sheet": "Heathland",
+      "row": 494,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S61",
+      "label": "Western basiphilous garrigue",
+      "sheet": "Heathland",
+      "row": 519,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S62",
+      "label": "Western acidophilous garrigue",
+      "sheet": "Heathland",
+      "row": 545,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S63",
+      "label": "Eastern garrigue",
+      "sheet": "Heathland",
+      "row": 548,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S64",
+      "label": "Macaronesian garrigue",
+      "sheet": "Heathland",
+      "row": 590,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S65",
+      "label": "Mediterranean gypsum scrub",
+      "sheet": "Heathland",
+      "row": 591,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S66",
+      "label": "Mediterranean halo-nitrophilous scrub",
+      "sheet": "Heathland",
+      "row": 601,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S67",
+      "label": "Aralo-Caspian semi-desert",
+      "sheet": "Heathland",
+      "row": 617,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S68",
+      "label": "Semi-desert sand dune with sparse scrub",
+      "sheet": "Heathland",
+      "row": 618,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S71",
+      "label": "Western Mediterranean spiny heath",
+      "sheet": "Heathland",
+      "row": 620,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S72",
+      "label": "Eastern Mediterranean spiny heath (phrygana)",
+      "sheet": "Heathland",
+      "row": 635,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S73",
+      "label": "Western Mediterranean mountain hedgehog-heath",
+      "sheet": "Heathland",
+      "row": 658,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S74",
+      "label": "Central Mediterranean mountain hedgehog-heath",
+      "sheet": "Heathland",
+      "row": 703,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S75",
+      "label": "Eastern Mediterranean mountain hedgehog-heath",
+      "sheet": "Heathland",
+      "row": 707,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S76",
+      "label": "Canarian mountain hedgehog-heath",
+      "sheet": "Heathland",
+      "row": 728,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S81",
+      "label": "Canarian xerophytic scrub",
+      "sheet": "Heathland",
+      "row": 733,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S82",
+      "label": "Madeiran xerophytic scrub",
+      "sheet": "Heathland",
+      "row": 747,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S91",
+      "label": "Temperate riparian scrub",
+      "sheet": "Heathland",
+      "row": 752,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S92",
+      "label": "Salix fen scrub",
+      "sheet": "Heathland",
+      "row": 776,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S93",
+      "label": "Mediterranean riparian scrub",
+      "sheet": "Heathland",
+      "row": 786,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "S94",
+      "label": "Semi-desert riparian scrub",
+      "sheet": "Heathland",
+      "row": 809,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T11",
+      "label": "Temperate Salix and Populus riparian forest",
+      "sheet": "Forest",
+      "row": 4,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T12",
+      "label": "Alnus glutinosa-Alnus incana forest on riparian and mineral soils",
+      "sheet": "Forest",
+      "row": 32,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T13",
+      "label": "Temperate hardwood riparian forest",
+      "sheet": "Forest",
+      "row": 72,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T14",
+      "label": "Mediterranean and Macaronesian riparian forest",
+      "sheet": "Forest",
+      "row": 92,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T15",
+      "label": "Broadleaved swamp forest on non-acid peat",
+      "sheet": "Forest",
+      "row": 157,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T16",
+      "label": "Broadleaved mire forest on acid peat",
+      "sheet": "Forest",
+      "row": 176,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T17",
+      "label": "Fagus forest on non-acid soils",
+      "sheet": "Forest",
+      "row": 182,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T18",
+      "label": "Fagus forest on acid soils",
+      "sheet": "Forest",
+      "row": 307,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T19",
+      "label": "Temperate and submediterranean thermophilous deciduous forest",
+      "sheet": "Forest",
+      "row": 349,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T1A",
+      "label": "Mediterranean thermophilous deciduous forest",
+      "sheet": "Forest",
+      "row": 553,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T1B",
+      "label": "Acidophilous Quercus forest",
+      "sheet": "Forest",
+      "row": 556,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T1C",
+      "label": "Temperate and boreal mountain Betula and Populus tremula forest on mineral soils",
+      "sheet": "Forest",
+      "row": 600,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T1D",
+      "label": "Southern European mountain Betula and Populus tremula forest on mineral soils",
+      "sheet": "Forest",
+      "row": 647,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T1E",
+      "label": "Carpinus and Quercus mesic deciduous forest",
+      "sheet": "Forest",
+      "row": 659,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T1F",
+      "label": "Ravine forest",
+      "sheet": "Forest",
+      "row": 753,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T1G",
+      "label": "Alnus cordata forest",
+      "sheet": "Forest",
+      "row": 801,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T1H",
+      "label": "Broadleaved deciduous plantation of non site-native trees",
+      "sheet": "Forest",
+      "row": 802,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T1J",
+      "label": "Deciduous self sown forest of non site-native trees",
+      "sheet": "Forest",
+      "row": 809,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T1K",
+      "label": "Broadleaved deciduous plantation of site-native trees",
+      "sheet": "Forest",
+      "row": 810,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T21",
+      "label": "Mediterranean evergreen Quercus forest",
+      "sheet": "Forest",
+      "row": 812,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T22",
+      "label": "Mainland laurophyllous forest",
+      "sheet": "Forest",
+      "row": 874,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T23",
+      "label": "Macaronesian laurophyllous forest",
+      "sheet": "Forest",
+      "row": 877,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T24",
+      "label": "Olea europaea-Ceratonia siliqua forest",
+      "sheet": "Forest",
+      "row": 886,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T25",
+      "label": "Phoenix theophrasti vegetation",
+      "sheet": "Forest",
+      "row": 890,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T26",
+      "label": "Phoenix canariensis vegetation",
+      "sheet": "Forest",
+      "row": 891,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T27",
+      "label": "Ilex aquifolium forest",
+      "sheet": "Forest",
+      "row": 892,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T28",
+      "label": "Macaronesian heathy forest",
+      "sheet": "Forest",
+      "row": 893,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T29",
+      "label": "Broadleaved evergreen plantation of non site-native trees",
+      "sheet": "Forest",
+      "row": 897,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T2A",
+      "label": "Broadleaved evergreen plantation of site-native trees",
+      "sheet": "Forest",
+      "row": 901,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T31",
+      "label": "Temperate mountain Picea forest",
+      "sheet": "Forest",
+      "row": 903,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T32",
+      "label": "Temperate mountain Abies forest",
+      "sheet": "Forest",
+      "row": 957,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T33",
+      "label": "Mediterranean mountain Abies forest",
+      "sheet": "Forest",
+      "row": 1007,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T34",
+      "label": "Temperate subalpine Larix, Pinus cembra and Pinus uncinata forest",
+      "sheet": "Forest",
+      "row": 1020,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T35",
+      "label": "Temperate continental Pinus sylvestris forest",
+      "sheet": "Forest",
+      "row": 1048,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T36",
+      "label": "Temperate and submediterranean montane Pinus sylvestris-Pinus nigra forest",
+      "sheet": "Forest",
+      "row": 1088,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T37",
+      "label": "Mediterranean montane Pinus sylvestris-Pinus nigra forest",
+      "sheet": "Forest",
+      "row": 1138,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T38",
+      "label": "Mediterranean montane Cedrus forest",
+      "sheet": "Forest",
+      "row": 1162,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T39",
+      "label": "Mediterranean and Balkan subalpine Pinus heldreichii-Pinus peuce forest",
+      "sheet": "Forest",
+      "row": 1168,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T3A",
+      "label": "Mediterranean lowland to submontane Pinus forest",
+      "sheet": "Forest",
+      "row": 1182,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T3B",
+      "label": "Pinus canariensis forest",
+      "sheet": "Forest",
+      "row": 1253,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T3C",
+      "label": "Taxus baccata forest",
+      "sheet": "Forest",
+      "row": 1275,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T3D",
+      "label": "Mediterranean Cupressaceae forest",
+      "sheet": "Forest",
+      "row": 1287,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T3E",
+      "label": "Macaronesian Juniperus forest",
+      "sheet": "Forest",
+      "row": 1314,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T3F",
+      "label": "Dark taiga",
+      "sheet": "Forest",
+      "row": 1318,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T3G",
+      "label": "Pinus sylvestris light taiga",
+      "sheet": "Forest",
+      "row": 1341,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T3H",
+      "label": "Larix light taiga",
+      "sheet": "Forest",
+      "row": 1353,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T3J",
+      "label": "Pinus and Larix mire forest",
+      "sheet": "Forest",
+      "row": 1355,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T3K",
+      "label": "Picea mire forest",
+      "sheet": "Forest",
+      "row": 1381,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T3L",
+      "label": "Coniferous self sown forest of non site-native trees",
+      "sheet": "Forest",
+      "row": 1398,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T3M",
+      "label": "Coniferous plantation of non site-native trees",
+      "sheet": "Forest",
+      "row": 1399,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T3N",
+      "label": "Coniferous plantation of site-native trees",
+      "sheet": "Forest",
+      "row": 1403,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T41",
+      "label": "Early-stage natural and semi-natural forest and regrowth",
+      "sheet": "Forest",
+      "row": 1408,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T42",
+      "label": "Coppice and early stage plantations",
+      "sheet": "Forest",
+      "row": 1413,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "T43",
+      "label": "Recently felled areas",
+      "sheet": "Forest",
+      "row": 1420,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U11",
+      "label": "Cave",
+      "sheet": "Sparsely vegetated",
+      "row": 4,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U12",
+      "label": "Disused underground mines and tunnels",
+      "sheet": "Sparsely vegetated",
+      "row": 23,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U21",
+      "label": "Boreal and arctic siliceous scree and block field",
+      "sheet": "Sparsely vegetated",
+      "row": 25,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U22",
+      "label": "Temperate high-mountain siliceous scree",
+      "sheet": "Sparsely vegetated",
+      "row": 26,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U23",
+      "label": "Temperate, lowland to montane siliceous scree",
+      "sheet": "Sparsely vegetated",
+      "row": 47,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U24",
+      "label": "Mediterranean siliceous scree",
+      "sheet": "Sparsely vegetated",
+      "row": 55,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U25",
+      "label": "Boreal and arctic base-rich scree and block field",
+      "sheet": "Sparsely vegetated",
+      "row": 59,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U26",
+      "label": "Temperate high-mountain base-rich scree and moraine",
+      "sheet": "Sparsely vegetated",
+      "row": 60,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U27",
+      "label": "Temperate, lowland to montane base-rich scree",
+      "sheet": "Sparsely vegetated",
+      "row": 70,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U28",
+      "label": "Western Mediterranean base-rich scree",
+      "sheet": "Sparsely vegetated",
+      "row": 80,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U29",
+      "label": "Eastern Mediterranean base-rich scree",
+      "sheet": "Sparsely vegetated",
+      "row": 87,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U2A",
+      "label": "Crimean base-rich screes",
+      "sheet": "Sparsely vegetated",
+      "row": 104,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U31",
+      "label": "Boreal and arctic siliceous inland cliff",
+      "sheet": "Sparsely vegetated",
+      "row": 106,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U32",
+      "label": "Temperate high-mountain siliceous inland cliff",
+      "sheet": "Sparsely vegetated",
+      "row": 113,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U33",
+      "label": "Temperate, lowland to montane siliceous inland cliff",
+      "sheet": "Sparsely vegetated",
+      "row": 121,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U34",
+      "label": "Mediterranean siliceous inland cliff",
+      "sheet": "Sparsely vegetated",
+      "row": 132,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U35",
+      "label": "Boreal and arctic base-rich inland cliff",
+      "sheet": "Sparsely vegetated",
+      "row": 143,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U36",
+      "label": "Temperate high-mountain base-rich inland cliff",
+      "sheet": "Sparsely vegetated",
+      "row": 147,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U37",
+      "label": "Temperate, lowland to montane base-rich inland cliff",
+      "sheet": "Sparsely vegetated",
+      "row": 156,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U38",
+      "label": "Mediterranean base-rich inland cliff",
+      "sheet": "Sparsely vegetated",
+      "row": 174,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U39",
+      "label": "Boreal ultramafic inland cliff",
+      "sheet": "Sparsely vegetated",
+      "row": 222,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U3A",
+      "label": "Temperate ultramafic inland cliff",
+      "sheet": "Sparsely vegetated",
+      "row": 227,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U3B",
+      "label": "Mediterranean ultramafic inland cliff",
+      "sheet": "Sparsely vegetated",
+      "row": 233,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U3C",
+      "label": "Macaronesian inland cliff",
+      "sheet": "Sparsely vegetated",
+      "row": 239,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U3D",
+      "label": "Wet inland cliff",
+      "sheet": "Sparsely vegetated",
+      "row": 240,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U3E",
+      "label": "Limestone pavement",
+      "sheet": "Sparsely vegetated",
+      "row": 244,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U41",
+      "label": "Snow pack",
+      "sheet": "Sparsely vegetated",
+      "row": 246,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U42",
+      "label": "Ice cap and glacier",
+      "sheet": "Sparsely vegetated",
+      "row": 247,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U43",
+      "label": "Rock glacier and unvegetated ice-dominated moraine",
+      "sheet": "Sparsely vegetated",
+      "row": 251,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U51",
+      "label": "Wind exposed Arctic and Boreal summits",
+      "sheet": "Sparsely vegetated",
+      "row": 256,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U52",
+      "label": "Polar desert",
+      "sheet": "Sparsely vegetated",
+      "row": 257,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U53",
+      "label": "Glacial moraines with very sparse or no vegetation",
+      "sheet": "Sparsely vegetated",
+      "row": 258,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U61",
+      "label": "Subarctic volcanic field",
+      "sheet": "Sparsely vegetated",
+      "row": 262,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U62",
+      "label": "Mediterranean, Macaronesian and temperate volcanic field",
+      "sheet": "Sparsely vegetated",
+      "row": 267,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U71",
+      "label": "Unvegetated or sparsely vegetated gravel bars in montane and alpine regions",
+      "sheet": "Sparsely vegetated",
+      "row": 283,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "U72",
+      "label": "Unvegetated or sparsely vegetated gravel bars in the Mediterranean region",
+      "sheet": "Sparsely vegetated",
+      "row": 284,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V11",
+      "label": "Intensive unmixed crops",
+      "sheet": "Man-made",
+      "row": 4,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V12",
+      "label": "Mixed crops of market gardens and horticulture",
+      "sheet": "Man-made",
+      "row": 8,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V13",
+      "label": "Arable land with unmixed crops grown by low-intensity agricultural methods",
+      "sheet": "Man-made",
+      "row": 11,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V14",
+      "label": "Inundated or inundatable croplands, including rice fields",
+      "sheet": "Man-made",
+      "row": 12,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V15",
+      "label": "Bare tilled, fallow or recently abandoned arable land",
+      "sheet": "Man-made",
+      "row": 13,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V21",
+      "label": "Large-scale ornamental garden areas",
+      "sheet": "Man-made",
+      "row": 20,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V22",
+      "label": "Small-scale ornamental and domestic garden areas",
+      "sheet": "Man-made",
+      "row": 23,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V23",
+      "label": "Recently abandoned garden areas",
+      "sheet": "Man-made",
+      "row": 27,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V31",
+      "label": "Agriculturally-improved, re-seeded and heavily fertilised grassland, including sports fields and grass lawns",
+      "sheet": "Man-made",
+      "row": 29,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V32",
+      "label": "Mediterranean subnitrophilous annual grasslands",
+      "sheet": "Man-made",
+      "row": 35,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V33",
+      "label": "Dry mediterranean lands with unpalatable non-vernal herbaceous vegetation",
+      "sheet": "Man-made",
+      "row": 40,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V34",
+      "label": "Trampled xeric grasslands with annuals",
+      "sheet": "Man-made",
+      "row": 45,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V35",
+      "label": "Trampled mesophilous grasslands with annuals",
+      "sheet": "Man-made",
+      "row": 46,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V36",
+      "label": "Alpine and subalpine enriched grassland",
+      "sheet": "Man-made",
+      "row": 47,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V37",
+      "label": "Annual anthropogenic herbaceous vegetation",
+      "sheet": "Man-made",
+      "row": 51,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V38",
+      "label": "Dry perennial anthropogenic herbaceous vegetation",
+      "sheet": "Man-made",
+      "row": 56,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V39",
+      "label": "Mesic perennial anthropogenic herbaceous vegetation",
+      "sheet": "Man-made",
+      "row": 57,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V41",
+      "label": "Hedgerows of non-native species",
+      "sheet": "Man-made",
+      "row": 60,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V42",
+      "label": "Highly-managed hedgerows of native species",
+      "sheet": "Man-made",
+      "row": 61,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V43",
+      "label": "Species-rich hedgerows of native species",
+      "sheet": "Man-made",
+      "row": 62,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V44",
+      "label": "Species-poor hedgerows of native species",
+      "sheet": "Man-made",
+      "row": 63,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V51",
+      "label": "Shrub plantations for whole-plant harvesting",
+      "sheet": "Man-made",
+      "row": 65,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V52",
+      "label": "Shrub plantations for leaf or branch harvest",
+      "sheet": "Man-made",
+      "row": 66,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V53",
+      "label": "Shrub plantations for ornamental purposes or for fruit, other than vineyards",
+      "sheet": "Man-made",
+      "row": 69,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V54",
+      "label": "Vineyards",
+      "sheet": "Man-made",
+      "row": 72,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V61",
+      "label": "Broadleaved fruit and nut tree orchards",
+      "sheet": "Man-made",
+      "row": 76,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V62",
+      "label": "Evergreen orchards and groves",
+      "sheet": "Man-made",
+      "row": 82,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V63",
+      "label": "Lines of planted trees",
+      "sheet": "Man-made",
+      "row": 87,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V64",
+      "label": "Small deciduous broadleaved planted other wooded land",
+      "sheet": "Man-made",
+      "row": 88,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V65",
+      "label": "Small evergreen broadleaved planted other wooded land",
+      "sheet": "Man-made",
+      "row": 89,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "V66",
+      "label": "Small coniferous planted other wooded land",
+      "sheet": "Man-made",
+      "row": 90,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q11",
+      "label": "Raised bog",
+      "sheet": "Wetlands",
+      "row": 4,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q12",
+      "label": "Blanket bog",
+      "sheet": "Wetlands",
+      "row": 54,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q13",
+      "label": "Ombrotrophic percolation mire",
+      "sheet": "Wetlands",
+      "row": 77,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q21",
+      "label": "Oceanic valley mire",
+      "sheet": "Wetlands",
+      "row": 79,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q22",
+      "label": "Poor fen",
+      "sheet": "Wetlands",
+      "row": 82,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q23",
+      "label": "Relict mire of Mediterranean mountains",
+      "sheet": "Wetlands",
+      "row": 124,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q24",
+      "label": "Intermediate fen and soft-water spring mire",
+      "sheet": "Wetlands",
+      "row": 140,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q25",
+      "label": "Non-calcareous quaking mire",
+      "sheet": "Wetlands",
+      "row": 153,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q31",
+      "label": "Palsa mire",
+      "sheet": "Wetlands",
+      "row": 191,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q41",
+      "label": "Alkaline, calcareous, carbonate-rich small-sedge spring fen",
+      "sheet": "Wetlands",
+      "row": 198,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q42",
+      "label": "Extremely rich moss-sedge fen",
+      "sheet": "Wetlands",
+      "row": 225,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q43",
+      "label": "Tall-sedge base-rich fen",
+      "sheet": "Wetlands",
+      "row": 243,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q44",
+      "label": "Calcareous quaking mire",
+      "sheet": "Wetlands",
+      "row": 256,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q45",
+      "label": "Arctic-alpine rich fen",
+      "sheet": "Wetlands",
+      "row": 257,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q46",
+      "label": "Carpathian travertine fen with halophytes",
+      "sheet": "Wetlands",
+      "row": 272,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q51",
+      "label": "Tall-helophyte bed",
+      "sheet": "Wetlands",
+      "row": 274,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q52",
+      "label": "Small-helophyte bed",
+      "sheet": "Wetlands",
+      "row": 311,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q53",
+      "label": "Tall-sedge bed",
+      "sheet": "Wetlands",
+      "row": 351,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q54",
+      "label": "Inland saline or brackish helophyte bed",
+      "sheet": "Wetlands",
+      "row": 385,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q61",
+      "label": "Periodically exposed shore with stable, eutrophic sediments with pioneer or ephemeral vegetation",
+      "sheet": "Wetlands",
+      "row": 390,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q62",
+      "label": "Periodically exposed shore with stable, mesotrophic sediments with pioneer or ephemeral vegetation",
+      "sheet": "Wetlands",
+      "row": 391,
+      "sea": null,
+      "level": 3
+    },
+    {
+      "code": "Q63",
+      "label": "Periodically exposed saline shore with pioneer or ephemeral vegetation",
+      "sheet": "Wetlands",
+      "row": 392,
+      "sea": null,
+      "level": 3
+    }
+  ],
+  "archiveMember": "eea_t_eunis-hab-t_p_2004-on-going_v01_r00/EUNIS terrestrial habitat classification 2021_1 including crosswalks.xlsx"
+}

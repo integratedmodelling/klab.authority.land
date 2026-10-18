@@ -1,0 +1,178 @@
+# Prototype ecosystem definitions for review, not an operational crosswalk.
+schemaVersion: 1
+id: eunis2021_terrestrial_pilot
+title: "EUNIS terrestrial ecosystem pilot"
+domain: ECOSYSTEM
+version: draft-1
+sourceVersion: "EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA"
+source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+tentative: true
+acceptsProposals: false
+notes:
+  - "Selected pilot only; complete level-3 source inventories are separate reference resources."
+  - "Invented ecosystem.seed functors retain categorical dimensions; they are not validated worldview semantics."
+  - "Source profile characteristics may be typical rather than necessary. Numeric, causal, temporal and taxonomic criteria still need specification."
+  - "No official GET-EUNIS equivalence or national-class override is asserted."
+entries:
+  - code: "N11"
+    alias: NorthernSandBeach
+    label: "Atlantic, Baltic and Arctic sand beach"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SandSurface),ecosystem.seed:Biogeography(ecosystem.seed:AtlanticBalticOrArctic))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Regional disjunction is a prototype category; shore processes, tidal setting and community context require review."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Coastal sheet, row 4; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "N12"
+    alias: SouthernSandBeach
+    label: "Mediterranean and Black Sea sand beach"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SandSurface),ecosystem.seed:Biogeography(ecosystem.seed:MediterraneanOrBlackSea))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Same material as N11 with a different regional constraint; geography is not evidence of global ecosystem incompatibility."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Coastal sheet, row 23; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "R1A"
+    alias: CalcareousMeadowSteppe
+    label: "Semi-dry perennial calcareous grassland (meadow steppe)"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:NaturalHerbaceousVegetation),ecosystem.seed:Substrate(ecosystem.seed:Calcareous),ecosystem.seed:Hydrology(ecosystem.seed:SemiDry),ecosystem.seed:Phenology(ecosystem.seed:PerennialVegetation))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Diagnostic floristic combinations, substrate chemistry, moisture envelope and management are not replaced by this profile."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Grassland sheet, row 20; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "R1M"
+    alias: NardusGrassland
+    label: "Lowland to montane, dry to mesic grassland usually dominated by Nardus stricta"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:NardusVegetation),ecosystem.seed:Hydrology(ecosystem.seed:DryToMesic),ecosystem.seed:Landform(ecosystem.seed:LowlandToMontane))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Usually dominant is not universally required; dominant taxa, regional assemblages and environmental range need explicit modality."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Grassland sheet, row 253; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "R21"
+    alias: MesicPermanentPasture
+    label: "Mesic permanent pasture of lowlands and mountains"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:PastureVegetation),ecosystem.seed:Hydrology(ecosystem.seed:Mesic),ecosystem.seed:Management(ecosystem.seed:Grazing))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Management history and regional vegetation composition are not encoded; generic pasture cover is insufficient."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Grassland sheet, row 324; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "S41"
+    alias: WetHeath
+    label: "Wet heath"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:HeathVegetation),ecosystem.seed:Hydrology(ecosystem.seed:WetSoil))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Wetness, peat and characteristic assemblages need diagnostic rules; a single wet observation is not a wet-heath definition."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Heathland sheet, row 256; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "S42"
+    alias: DryHeath
+    label: "Dry heath"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:HeathVegetation),ecosystem.seed:Hydrology(ecosystem.seed:DrySoil))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Need a comparable moisture measure and temporal support before treating wet/dry identities as mutually exclusive."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Heathland sheet, row 260; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "T11"
+    alias: WillowPoplarRiparianForest
+    label: "Temperate Salix and Populus riparian forest"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:WillowOrPoplar),ecosystem.seed:Climate(ecosystem.seed:Temperate),ecosystem.seed:Landform(ecosystem.seed:Riparian))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Willow or poplar is a disjunctive aggregate identity, not a requirement for both; flooding and diagnostics remain unresolved."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Forest sheet, row 4; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "T17"
+    alias: BeechForestNonAcidSoil
+    label: "Fagus forest on non-acid soils"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Beech),ecosystem.seed:Substrate(ecosystem.seed:NonAcidSoil))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "No invented pH cutoff; assemblages and soil/base-status measurements must establish applicability."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Forest sheet, row 182; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "T18"
+    alias: BeechForestAcidSoil
+    label: "Fagus forest on acid soils"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Beech),ecosystem.seed:Substrate(ecosystem.seed:AcidSoil))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Shares beech composition with T17; soil acidity and associated diagnostic flora retain the distinction."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Forest sheet, row 307; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "T21"
+    alias: MediterraneanEvergreenOakForest
+    label: "Mediterranean evergreen Quercus forest"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:EvergreenOak),ecosystem.seed:Biogeography(ecosystem.seed:Mediterranean))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Regional species assemblages and thermomediterranean setting require review; not every evergreen oak stand belongs here."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Forest sheet, row 812; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "Q11"
+    alias: RaisedBog
+    label: "Raised bog"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:PeatFormingVegetation),ecosystem.seed:Hydrology(ecosystem.seed:Ombrotrophic),ecosystem.seed:Substrate(ecosystem.seed:Peat),ecosystem.seed:Landform(ecosystem.seed:RaisedBogSurface))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Raised ombrotrophy is narrower than generic GET bog properties, subject to climate and interpretation; no equivalence is asserted."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Wetlands sheet, row 4; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "Q12"
+    alias: BlanketBog
+    label: "Blanket bog"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:PeatFormingVegetation),ecosystem.seed:Hydrology(ecosystem.seed:Ombrotrophic),ecosystem.seed:Substrate(ecosystem.seed:Peat),ecosystem.seed:Landform(ecosystem.seed:BlanketPeatSurface))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Blanket versus raised morphology must remain distinct, even if both may fit a broader GET bog group."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Wetlands sheet, row 54; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "Q22"
+    alias: PoorFen
+    label: "Poor fen"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:WetlandVegetation),ecosystem.seed:Hydrology(ecosystem.seed:MinerotrophicWaterSupply),ecosystem.seed:Substrate(ecosystem.seed:Peat,ecosystem.seed:NutrientPoor))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Poor denotes a context-dependent nutrient/base-status category; it is not an ecosystem condition score."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Wetlands sheet, row 82; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "Q41"
+    alias: CalcareousSpringFen
+    label: "Alkaline, calcareous, carbonate-rich small-sedge spring fen"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:WetlandVegetation),ecosystem.seed:Hydrology(ecosystem.seed:SpringWaterSupply),ecosystem.seed:Substrate(ecosystem.seed:Calcareous))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Alkalinity, carbonate chemistry, peat extent and diagnostic small-sedge assemblages require review; not every spring is this type."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Wetlands sheet, row 198; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "Q51"
+    alias: TallHelophyteBed
+    label: "Tall-helophyte bed"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:TallHelophyte),ecosystem.seed:Hydrology(ecosystem.seed:WetlandWaterRegime))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "This class need not have the exact permanence or geomorphic setting of GET permanent marshes."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Wetlands sheet, row 274; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "V11"
+    alias: IntensiveUnmixedCrops
+    label: "Intensive unmixed crops"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:Crop),ecosystem.seed:Management(ecosystem.seed:IntensiveSingleCrop))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Diversity, management intensity and rotation need explicit rules; nominal crop identity is not a GET crosswalk."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Man-made sheet, row 4; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."
+  - code: "V31"
+    alias: ImprovedGrasslandAndLawns
+    label: "Agriculturally-improved, re-seeded and heavily fertilised grassland, including sports fields and grass lawns"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:ManagedHerbaceousVegetation),ecosystem.seed:Management(ecosystem.seed:ReseedingAndFertilization))"
+    source: "https://doi.org/10.2909/bfe4c237-e378-4a83-ab21-b3807f96c2e2"
+    notes:
+      - "Includes pasture, sports fields and lawns; the generic managed-herbaceous identity does not impose grazing, and management intensity still needs specification."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Man-made sheet, row 29; level 3; edition EUNIS terrestrial 2021_1; sheet-specific legacy sources retained by EEA."

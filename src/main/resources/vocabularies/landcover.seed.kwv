@@ -1,0 +1,65 @@
+/** Proposed test-only identities. Not part of the current imod worldview. */
+ontology landcover.seed
+    "Tentative cover components for classpath catalog testing; bearers intentionally unspecified."
+    version 0.1
+    using imod
+    in domain imod:Knowledge of (imod:Geosphere or imod:Biosphere);
+
+identity CoverClass;
+identity CoverComponent;
+identity AirportSurface is CoverComponent;
+identity AnnualCrop is CoverComponent;
+identity AnnualHerbaceousVegetation is CoverComponent;
+identity BarrenSurface is CoverComponent;
+identity BroadleavedTree is CoverComponent;
+identity BuiltSurface is CoverComponent;
+identity BurntVegetationSurface is CoverComponent;
+identity ConiferTree is CoverComponent;
+identity ConstructionSurface is CoverComponent;
+identity Crop is CoverComponent;
+identity CropMosaic is CoverComponent;
+identity DeciduousBroadleafTree is CoverComponent;
+identity DeciduousNeedleleafTree is CoverComponent;
+identity DeciduousTree is CoverComponent;
+identity EstuarineWater is CoverComponent;
+identity EvergreenBroadleafOrPalmTree is CoverComponent;
+identity EvergreenNeedleleafTree is CoverComponent;
+identity EvergreenTree is CoverComponent;
+identity ExtractionSurface is CoverComponent;
+identity FlowingWater is CoverComponent;
+identity FruitOrBerryCrop is CoverComponent;
+identity GrapevineCrop is CoverComponent;
+identity HeathVegetation is CoverComponent;
+identity IndustrialOrCommercialSurface is CoverComponent;
+identity InlandMarshVegetation is CoverComponent;
+identity IntertidalSediment is CoverComponent;
+identity IrrigatedCrop is CoverComponent;
+identity LagoonWater is CoverComponent;
+identity MarineWater is CoverComponent;
+identity NaturalHerbaceousVegetation is CoverComponent;
+identity NaturalVegetation is CoverComponent;
+identity OliveCrop is CoverComponent;
+identity PastureVegetation is CoverComponent;
+identity PeatFormingVegetation is CoverComponent;
+identity PermanentCrop is CoverComponent;
+identity PortSurface is CoverComponent;
+identity RainfedCrop is CoverComponent;
+identity RecreationSurface is CoverComponent;
+identity RiceCrop is CoverComponent;
+identity RoadOrRailSurface is CoverComponent;
+identity RockSurface is CoverComponent;
+identity SaltExtractionSurface is CoverComponent;
+identity SaltMarshVegetation is CoverComponent;
+identity SandSurface is CoverComponent;
+identity SclerophyllousVegetation is CoverComponent;
+identity Shrub is CoverComponent;
+identity SnowOrIce is CoverComponent;
+identity SparseVegetation is CoverComponent;
+identity StandingInlandWater is CoverComponent;
+identity SuccessionalWoodyVegetation is CoverComponent;
+identity SurfaceWater is CoverComponent;
+identity Tree is CoverComponent;
+identity UrbanVegetation is CoverComponent;
+identity Vegetation is CoverComponent;
+identity WasteDeposit is CoverComponent;
+identity WetlandVegetation is CoverComponent;

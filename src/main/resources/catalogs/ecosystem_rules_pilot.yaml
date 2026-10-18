@@ -1,0 +1,340 @@
+# Invented rule fixtures, not official classification definitions.
+schemaVersion: 2
+id: "ecosystem_rules_pilot"
+title: "Typed ecosystem rules: invented test fixtures"
+domain: "ECOSYSTEM"
+version: "draft-1"
+sourceVersion: "GET 2.1 / EUNIS 2021 source-class inspirations; rule prototype 2"
+source: "https://www.eea.europa.eu/en/datahub/datahubitem-view/638330ea-90e6-4e41-81ea-e70f25ae7117/"
+tentative: true
+acceptsProposals: false
+notes:
+  - "Separate opt-in examples for the typed rule API. They do not replace or refine official GET/EUNIS definitions."
+  - "The pH bounds, annual six-month inundation and 3:1 duration are deliberately invented. No numeric class crosswalk is asserted."
+entries:
+  -
+    code: "T17"
+    alias: "AcidBeechSoilRule"
+    label: "Acid-soil beech forest: invented pH fixture"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Beech),ecosystem.seed:Substrate(ecosystem.seed:AcidSoil))"
+    source: "https://www.eea.europa.eu/en/datahub/datahubitem-view/638330ea-90e6-4e41-81ea-e70f25ae7117/"
+    notes:
+      - "Invented executable-structure fixture inspired by this source class. All thresholds, supports, modalities and prototype concepts require community review; not an official class definition."
+    rule:
+      schemaVersion: 2
+      composition: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Beech),ecosystem.seed:Substrate(ecosystem.seed:AcidSoil))"
+      participants:
+        -
+          id: "soil"
+          path:
+            - 1
+          bearer: "ecosystem.rules.seed:SoilPatch"
+      profiles: []
+      criteria:
+        kind: "constraint"
+        participant: "soil"
+        observable: "ecosystem.rules.seed:SoilPH"
+        unit: "1"
+        minimum: null
+        minimumInclusive: false
+        maximum: 5
+        maximumInclusive: false
+        support:
+          space: "habitat-patch"
+          time: "reference-year"
+          aggregation: "annual-mean"
+      provenance:
+        source: "https://www.eea.europa.eu/en/datahub/datahubitem-view/638330ea-90e6-4e41-81ea-e70f25ae7117/"
+        sourceCode: "T17"
+        note: "Invented executable-structure fixture inspired by this source class. All thresholds, supports, modalities and prototype concepts require community review; not an official class definition."
+  -
+    code: "T18"
+    alias: "NonAcidBeechSoilRule"
+    label: "Non-acid beech forest: invented pH fixture"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Beech),ecosystem.seed:Substrate(ecosystem.seed:NonAcidSoil))"
+    source: "https://www.eea.europa.eu/en/datahub/datahubitem-view/638330ea-90e6-4e41-81ea-e70f25ae7117/"
+    notes:
+      - "Invented executable-structure fixture inspired by this source class. All thresholds, supports, modalities and prototype concepts require community review; not an official class definition."
+    rule:
+      schemaVersion: 2
+      composition: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Beech),ecosystem.seed:Substrate(ecosystem.seed:NonAcidSoil))"
+      participants:
+        -
+          id: "soil"
+          path:
+            - 1
+          bearer: "ecosystem.rules.seed:SoilPatch"
+      profiles: []
+      criteria:
+        kind: "constraint"
+        participant: "soil"
+        observable: "ecosystem.rules.seed:SoilPH"
+        unit: "1"
+        minimum: 5
+        minimumInclusive: true
+        maximum: 8
+        maximumInclusive: true
+        support:
+          space: "habitat-patch"
+          time: "reference-year"
+          aggregation: "annual-mean"
+      provenance:
+        source: "https://www.eea.europa.eu/en/datahub/datahubitem-view/638330ea-90e6-4e41-81ea-e70f25ae7117/"
+        sourceCode: "T18"
+        note: "Invented executable-structure fixture inspired by this source class. All thresholds, supports, modalities and prototype concepts require community review; not an official class definition."
+  -
+    code: "M3.7"
+    alias: "ChemosyntheticAlternativesRule"
+    label: "Chemosynthetic ecosystem: alternative settings fixture"
+    expression: "ecosystem.seed:Ecosystem(ecosystem.seed:Environment(ecosystem.seed:DeepMarine))"
+    source: "https://global-ecosystems.org/explore/groups/M3.7"
+    notes:
+      - "Invented executable-structure fixture inspired by this source class. All thresholds, supports, modalities and prototype concepts require community review; not an official class definition."
+    rule:
+      schemaVersion: 2
+      composition: "ecosystem.seed:Ecosystem(ecosystem.seed:Environment(ecosystem.seed:DeepMarine))"
+      participants:
+        -
+          id: "patch"
+          path: []
+          bearer: "ecosystem.rules.seed:EcosystemPatch"
+      profiles: []
+      criteria:
+        kind: "group"
+        operator: "ANY"
+        minimum: 0
+        children:
+          -
+            kind: "qualification"
+            participant: "patch"
+            type: "IDENTITY"
+            predicate: "ecosystem.rules.seed:HydrothermalVent"
+            present: true
+            support:
+              space: "habitat-patch"
+              time: "reference-year"
+              aggregation: "annual-mean"
+          -
+            kind: "qualification"
+            participant: "patch"
+            type: "IDENTITY"
+            predicate: "ecosystem.rules.seed:ColdSeep"
+            present: true
+            support:
+              space: "habitat-patch"
+              time: "reference-year"
+              aggregation: "annual-mean"
+          -
+            kind: "qualification"
+            participant: "patch"
+            type: "IDENTITY"
+            predicate: "ecosystem.rules.seed:OrganicFall"
+            present: true
+            support:
+              space: "habitat-patch"
+              time: "reference-year"
+              aggregation: "annual-mean"
+      provenance:
+        source: "https://global-ecosystems.org/explore/groups/M3.7"
+        sourceCode: "M3.7"
+        note: "Invented executable-structure fixture inspired by this source class. All thresholds, supports, modalities and prototype concepts require community review; not an official class definition."
+  -
+    code: "T2.6"
+    alias: "PyricForestRule"
+    label: "Pyric forest: traits, process and advisory fire fixture"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SclerophyllousVegetation))"
+    source: "https://global-ecosystems.org/explore/groups/T2.6"
+    notes:
+      - "Invented executable-structure fixture inspired by this source class. All thresholds, supports, modalities and prototype concepts require community review; not an official class definition."
+    rule:
+      schemaVersion: 2
+      composition: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SclerophyllousVegetation))"
+      participants:
+        -
+          id: "patch"
+          path: []
+          bearer: "ecosystem.rules.seed:EcosystemPatch"
+        -
+          id: "canopy"
+          path:
+            - 0
+            - 0
+          bearer: "ecosystem.rules.seed:VegetationStand"
+      profiles: []
+      criteria:
+        kind: "group"
+        operator: "ALL"
+        minimum: 0
+        children:
+          -
+            kind: "qualification"
+            participant: "canopy"
+            type: "ATTRIBUTE"
+            predicate: "ecosystem.rules.seed:Sclerophyllous"
+            present: true
+            support:
+              space: "habitat-patch"
+              time: "reference-year"
+              aggregation: "annual-mean"
+          -
+            kind: "occurrent"
+            participant: "patch"
+            type: "PROCESS"
+            concept: "ecosystem.rules.seed:Regeneration"
+            present: true
+            support:
+              space: "habitat-patch"
+              time: "reference-year"
+              aggregation: "annual-mean"
+          -
+            kind: "typical"
+            criterion:
+              kind: "occurrent"
+              participant: "patch"
+              type: "EVENT"
+              concept: "ecosystem.rules.seed:Fire"
+              present: true
+              support:
+                space: "habitat-patch"
+                time: "reference-year"
+                aggregation: "annual-mean"
+            note: "A recent fire is illustrative only; it does not establish a fire-dependent regime."
+          -
+            kind: "relationship"
+            source: "patch"
+            target: "canopy"
+            type: "SEMANTIC"
+            relation: "ecosystem.rules.seed:HasVegetation"
+            support:
+              space: "habitat-patch"
+              time: "reference-year"
+              aggregation: "annual-mean"
+      provenance:
+        source: "https://global-ecosystems.org/explore/groups/T2.6"
+        sourceCode: "T2.6"
+        note: "Invented executable-structure fixture inspired by this source class. All thresholds, supports, modalities and prototype concepts require community review; not an official class definition."
+  -
+    code: "TF1.4"
+    alias: "SeasonalMarshCycleRule"
+    label: "Seasonal marsh: invented duration and succession fixture"
+    expression: "ecosystem.seed:HydroperiodCycle(+++physical:HorizontalArrangement(ecosystem.seed:InundatedPhase),+physical:HorizontalArrangement(ecosystem.seed:ExposedPhase))"
+    source: "https://global-ecosystems.org/explore/groups/TF1.4"
+    notes:
+      - "Invented executable-structure fixture inspired by this source class. All thresholds, supports, modalities and prototype concepts require community review; not an official class definition."
+    rule:
+      schemaVersion: 2
+      composition: "ecosystem.seed:HydroperiodCycle(+++physical:HorizontalArrangement(ecosystem.seed:InundatedPhase),+physical:HorizontalArrangement(ecosystem.seed:ExposedPhase))"
+      participants:
+        -
+          id: "marsh"
+          path: []
+          bearer: "ecosystem.rules.seed:WetlandPatch"
+        -
+          id: "wet"
+          path:
+            - 0
+          bearer: "ecosystem.rules.seed:WetlandPatch"
+        -
+          id: "dry"
+          path:
+            - 1
+          bearer: "ecosystem.rules.seed:WetlandPatch"
+      profiles:
+        -
+          path: []
+          interpretation: "urn:land:profiles:hydroperiod-duration:1"
+          measure: "DURATION"
+          order: "CYCLE"
+          support:
+            space: "habitat-patch"
+            time: "one-unanchored-cycle"
+            aggregation: "total-phase-occupancy"
+          exhaustive: false
+      criteria:
+        kind: "group"
+        operator: "ALL"
+        minimum: 0
+        children:
+          -
+            kind: "constraint"
+            participant: "marsh"
+            observable: "ecosystem.rules.seed:InundatedDuration"
+            unit: "month"
+            minimum: 6
+            minimumInclusive: true
+            maximum: null
+            maximumInclusive: false
+            support:
+              space: "habitat-patch"
+              time: "reference-year"
+              aggregation: "total-duration"
+          -
+            kind: "relationship"
+            source: "wet"
+            target: "dry"
+            type: "TEMPORAL"
+            relation: "urn:land:relations:precedes-within-cycle:1"
+            support:
+              space: "habitat-patch"
+              time: "one-unanchored-cycle"
+              aggregation: "total-phase-occupancy"
+      provenance:
+        source: "https://global-ecosystems.org/explore/groups/TF1.4"
+        sourceCode: "TF1.4"
+        note: "Invented executable-structure fixture inspired by this source class. All thresholds, supports, modalities and prototype concepts require community review; not an official class definition."
+  -
+    code: "M1.1"
+    alias: "SeagrassDiagnosticsRule"
+    label: "Seagrass meadow: invented diagnostic cardinality fixture"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Seagrass))"
+    source: "https://global-ecosystems.org/explore/groups/M1.1"
+    notes:
+      - "Invented executable-structure fixture inspired by this source class. All thresholds, supports, modalities and prototype concepts require community review; not an official class definition."
+    rule:
+      schemaVersion: 2
+      composition: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Seagrass))"
+      participants:
+        -
+          id: "meadow"
+          path: []
+          bearer: null
+      profiles: []
+      criteria:
+        kind: "group"
+        operator: "AT_LEAST"
+        minimum: 2
+        children:
+          -
+            kind: "qualification"
+            participant: "meadow"
+            type: "REALM"
+            predicate: "ecosystem.rules.seed:Marine"
+            present: true
+            support:
+              space: "habitat-patch"
+              time: "reference-year"
+              aggregation: "annual-mean"
+          -
+            kind: "qualification"
+            participant: "meadow"
+            type: "ROLE"
+            predicate: "ecosystem.rules.seed:HabitatEngineer"
+            present: true
+            support:
+              space: "habitat-patch"
+              time: "reference-year"
+              aggregation: "annual-mean"
+          -
+            kind: "qualification"
+            participant: "meadow"
+            type: "ATTRIBUTE"
+            predicate: "ecosystem.rules.seed:DenseCanopy"
+            present: true
+            support:
+              space: "habitat-patch"
+              time: "reference-year"
+              aggregation: "annual-mean"
+      provenance:
+        source: "https://global-ecosystems.org/explore/groups/M1.1"
+        sourceCode: "M1.1"
+        note: "Invented executable-structure fixture inspired by this source class. All thresholds, supports, modalities and prototype concepts require community review; not an official class definition."

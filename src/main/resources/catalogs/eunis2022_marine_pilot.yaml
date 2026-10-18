@@ -1,0 +1,142 @@
+# Prototype ecosystem definitions for review, not an operational crosswalk.
+schemaVersion: 1
+id: eunis2022_marine_pilot
+title: "EUNIS marine ecosystem pilot"
+domain: ECOSYSTEM
+version: draft-1
+sourceVersion: "EUNIS marine 2022; benthic, pelagic and ice-associated sheets"
+source: "https://doi.org/10.2909/8a5eccda-e6ea-4018-a373-5c76a8eeec78"
+tentative: true
+acceptsProposals: false
+notes:
+  - "Selected pilot only; complete level-3 source inventories are separate reference resources."
+  - "Invented ecosystem.seed functors retain categorical dimensions; they are not validated worldview semantics."
+  - "Source profile characteristics may be typical rather than necessary. Numeric, causal, temporal and taxonomic criteria still need specification."
+  - "No official GET-EUNIS equivalence or national-class override is asserted."
+entries:
+  - code: "MA12"
+    alias: AtlanticLittoralRock
+    label: "Atlantic littoral rock"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:RockSurface),ecosystem.seed:Hydrology(ecosystem.seed:IntertidalExposure),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))"
+    source: "https://doi.org/10.2909/8a5eccda-e6ea-4018-a373-5c76a8eeec78"
+    notes:
+      - "Regional community, exposure and biological zonation require review; source level 3."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Benthic habitats sheet, row 5; level 3; edition EUNIS marine 2022; benthic, pelagic and ice-associated sheets."
+  - code: "MA15"
+    alias: MediterraneanLittoralRock
+    label: "Mediterranean littoral rock"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:RockSurface),ecosystem.seed:Hydrology(ecosystem.seed:IntertidalExposure),ecosystem.seed:Biogeography(ecosystem.seed:Mediterranean))"
+    source: "https://doi.org/10.2909/8a5eccda-e6ea-4018-a373-5c76a8eeec78"
+    notes:
+      - "Comparable to MA12 only after separating biogeography and assemblages; source level 3."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Benthic habitats sheet, row 124; level 3; edition EUNIS marine 2022; benthic, pelagic and ice-associated sheets."
+  - code: "MA52"
+    alias: AtlanticLittoralSand
+    label: "Atlantic littoral sand"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SandSurface),ecosystem.seed:Hydrology(ecosystem.seed:IntertidalExposure),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))"
+    source: "https://doi.org/10.2909/8a5eccda-e6ea-4018-a373-5c76a8eeec78"
+    notes:
+      - "Grain size, mobile sediments, exposure duration and assemblages need constraints; source level 3."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Benthic habitats sheet, row 324; level 3; edition EUNIS marine 2022; benthic, pelagic and ice-associated sheets."
+  - code: "MA62"
+    alias: AtlanticLittoralMud
+    label: "Atlantic littoral mud"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:MudSubstrate),ecosystem.seed:Hydrology(ecosystem.seed:IntertidalExposure),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))"
+    source: "https://doi.org/10.2909/8a5eccda-e6ea-4018-a373-5c76a8eeec78"
+    notes:
+      - "Sediment definition, oxygen and estuarine influences are unresolved; source level 3."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Benthic habitats sheet, row 382; level 3; edition EUNIS marine 2022; benthic, pelagic and ice-associated sheets."
+  - code: "MB12"
+    alias: AtlanticInfralittoralRock
+    label: "Atlantic infralittoral rock"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:RockSurface),ecosystem.seed:Hydrology(ecosystem.seed:Infralittoral),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))"
+    source: "https://doi.org/10.2909/8a5eccda-e6ea-4018-a373-5c76a8eeec78"
+    notes:
+      - "Cannot assume every unit is a kelp forest or photic coral reef; source level 3."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Benthic habitats sheet, row 424; level 3; edition EUNIS marine 2022; benthic, pelagic and ice-associated sheets."
+  - code: "MB15"
+    alias: MediterraneanInfralittoralRock
+    label: "Mediterranean infralittoral rock"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:RockSurface),ecosystem.seed:Hydrology(ecosystem.seed:Infralittoral),ecosystem.seed:Biogeography(ecosystem.seed:Mediterranean))"
+    source: "https://doi.org/10.2909/8a5eccda-e6ea-4018-a373-5c76a8eeec78"
+    notes:
+      - "Algal, animal and mixed communities may differ from GET functional groups; source level 3."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Benthic habitats sheet, row 566; level 3; edition EUNIS marine 2022; benthic, pelagic and ice-associated sheets."
+  - code: "MA522"
+    alias: AtlanticLittoralSandSeagrass
+    label: "Seagrass beds on Atlantic littoral sand"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Seagrass,landcover.seed:SandSurface),ecosystem.seed:Hydrology(ecosystem.seed:IntertidalExposure),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))"
+    source: "https://doi.org/10.2909/8a5eccda-e6ea-4018-a373-5c76a8eeec78"
+    notes:
+      - "Deliberately selected deeper level-4 community to compare with GET M1.1; source level is not inferred from code length."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Benthic habitats sheet, row 327; level 4; edition EUNIS marine 2022; benthic, pelagic and ice-associated sheets."
+  - code: "MA623"
+    alias: AtlanticLittoralMudSeagrass
+    label: "Seagrass beds on Atlantic littoral mud"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Seagrass,ecosystem.seed:MudSubstrate),ecosystem.seed:Hydrology(ecosystem.seed:IntertidalExposure),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))"
+    source: "https://doi.org/10.2909/8a5eccda-e6ea-4018-a373-5c76a8eeec78"
+    notes:
+      - "Level 4; substrate and tidal context refine the seagrass case, subject to consistent meadow/bed interpretation."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Benthic habitats sheet, row 397; level 4; edition EUNIS marine 2022; benthic, pelagic and ice-associated sheets."
+  - code: "MB522"
+    alias: AtlanticInfralittoralSandSeagrass
+    label: "Seagrass beds on Atlantic infralittoral sand"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:Seagrass,landcover.seed:SandSurface),ecosystem.seed:Hydrology(ecosystem.seed:Infralittoral),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))"
+    source: "https://doi.org/10.2909/8a5eccda-e6ea-4018-a373-5c76a8eeec78"
+    notes:
+      - "Level 4; not synonymous with the global seagrass functional group; extent and species assemblages need review."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Benthic habitats sheet, row 788; level 4; edition EUNIS marine 2022; benthic, pelagic and ice-associated sheets."
+  - code: "MB252"
+    alias: PosidoniaOceanicaBiocenosis
+    label: "Biocenosis of Posidonia oceanica"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:PosidoniaOceanica),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:Biogeography(ecosystem.seed:Mediterranean))"
+    source: "https://doi.org/10.2909/8a5eccda-e6ea-4018-a373-5c76a8eeec78"
+    notes:
+      - "Level 4; species identity is an invented stand-in, not an authority-resolved taxon. No numeric taxonomy code is guessed."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Benthic habitats sheet, row 642; level 4; edition EUNIS marine 2022; benthic, pelagic and ice-associated sheets."
+  - code: "MH12"
+    alias: AtlanticNeuston
+    label: "Atlantic neuston"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(ecosystem.seed:NeustonBiota),ecosystem.seed:WaterColumn(ecosystem.seed:SeaAirInterface),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))"
+    source: "https://doi.org/10.2909/8a5eccda-e6ea-4018-a373-5c76a8eeec78"
+    notes:
+      - "Level 3; an interface community must not be equated to an entire GET epipelagic water column."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Pelagic habitats sheet, row 7; level 3; edition EUNIS marine 2022; benthic, pelagic and ice-associated sheets."
+  - code: "MH22"
+    alias: AtlanticMixedReducedSalinity
+    label: "Atlantic completely mixed water column with reduced salinity"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:MarineWater),ecosystem.seed:WaterColumn(ecosystem.seed:CompletelyMixed),ecosystem.seed:WaterChemistry(ecosystem.seed:ReducedSalinity),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))"
+    source: "https://doi.org/10.2909/8a5eccda-e6ea-4018-a373-5c76a8eeec78"
+    notes:
+      - "Level 3; mixing, salinity and seasonality require explicit observation support and thresholds."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Pelagic habitats sheet, row 24; level 3; edition EUNIS marine 2022; benthic, pelagic and ice-associated sheets."
+  - code: "MH32"
+    alias: AtlanticMixedFullSalinity
+    label: "Atlantic completely mixed water column with full salinity"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:MarineWater),ecosystem.seed:WaterColumn(ecosystem.seed:CompletelyMixed),ecosystem.seed:WaterChemistry(ecosystem.seed:FullSalinity),ecosystem.seed:Biogeography(ecosystem.seed:Atlantic))"
+    source: "https://doi.org/10.2909/8a5eccda-e6ea-4018-a373-5c76a8eeec78"
+    notes:
+      - "Level 3; full salinity is a source-relative qualitative category, not an invented universal number."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Pelagic habitats sheet, row 51; level 3; edition EUNIS marine 2022; benthic, pelagic and ice-associated sheets."
+  - code: "MJ11"
+    alias: ArcticSeaIce
+    label: "Arctic sea ice"
+    expression: "ecosystem.seed:Ecosystem(physical:HorizontalArrangement(landcover.seed:SnowOrIce),ecosystem.seed:Environment(ecosystem.seed:Marine),ecosystem.seed:Biogeography(ecosystem.seed:Arctic),ecosystem.seed:BioticTraits(ecosystem.seed:SympagicCommunity))"
+    source: "https://doi.org/10.2909/8a5eccda-e6ea-4018-a373-5c76a8eeec78"
+    notes:
+      - "Level 3; freezing, brine, seasonal coverage and sea-ice community require more than frozen cover presence."
+      - "Prototype categorical characterization; missing or typical evidence must not be treated as a necessary source criterion."
+      - "Source: Ice associated sheet, row 4; level 3; edition EUNIS marine 2022; benthic, pelagic and ice-associated sheets."

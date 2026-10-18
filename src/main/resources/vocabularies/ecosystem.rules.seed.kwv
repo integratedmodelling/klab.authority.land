@@ -1,0 +1,22 @@
+/** Invented typed-rule vocabulary. Consistency and applicability require worldview review. */
+ontology ecosystem.rules.seed
+    version 0.1
+    using imod, ecosystem.seed, landcover.seed
+    in domain imod:Knowledge;
+
+thing EcosystemPatch is imod:Subject;
+thing SoilPatch is imod:Subject;
+thing VegetationStand is imod:Subject;
+thing WetlandPatch is EcosystemPatch;
+identity HydrothermalVent;
+identity ColdSeep;
+identity OrganicFall;
+attribute Sclerophyllous applies to VegetationStand;
+attribute DenseCanopy applies to EcosystemPatch;
+realm Marine;
+role HabitatEngineer;
+quantity SoilPH is imod:Quantity of SoilPatch;
+duration InundatedDuration is imod:Duration of WetlandPatch;
+event Fire is imod:Event;
+process Regeneration is imod:Process;
+relationship HasVegetation is imod:Relationship links EcosystemPatch to VegetationStand;
