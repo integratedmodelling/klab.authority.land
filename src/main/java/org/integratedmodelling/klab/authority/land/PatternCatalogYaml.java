@@ -26,7 +26,7 @@ public final class PatternCatalogYaml {
     } catch (IOException e) { throw new IllegalArgumentException("Cannot read catalog: " + resource, e); }
   }
 
-  /** The caller owns the stream. Version 2 adds optional typed rule envelopes to catalog entries. */
+  /** The caller owns the stream. Versions 1/2 retain their syntax checks; version 3 separates entries from optional definitions. */
   public static PatternCatalog load(InputStream input) {
     try {
       byte[] bytes = input.readNBytes(MAX_BYTES + 1);
@@ -39,21 +39,30 @@ public final class PatternCatalogYaml {
       fields(root, Set.of("schemaVersion", "id", "domain", "version", "source", "entries",
           "title", "sourceVersion", "tentative", "acceptsProposals", "notes"));
       if (!root.path("schemaVersion").isIntegralNumber() || !root.path("schemaVersion").canConvertToInt()
-          || (root.path("schemaVersion").intValue() != 1 && root.path("schemaVersion").intValue() != 2))
-        throw new IllegalArgumentException("Expected catalog schemaVersion: 1 or 2");
+          || (root.path("schemaVersion").intValue() < 1 || root.path("schemaVersion").intValue() > 3))
+        throw new IllegalArgumentException("Expected catalog schemaVersion: 1, 2 or 3");
       URI source = URI.create(string(root, "source"));
       if (!root.path("entries").isArray() || root.path("entries").isEmpty())
         throw new IllegalArgumentException("entries must be a nonempty list");
       var entries = new ArrayList<PatternCatalog.Entry>();
       for (var entry : root.path("entries")) {
-        fields(entry, root.path("schemaVersion").intValue() == 1
-            ? Set.of("code", "alias", "label", "expression", "source", "notes")
-            : Set.of("code", "alias", "label", "expression", "source", "notes", "rule"));
+        int schema = root.path("schemaVersion").intValue();
+        var supported = new HashSet<>(Set.of("code", "alias", "label", "expression", "source", "notes"));
+        if (schema >= 2) supported.add("rule");
+        if (schema == 3) supported.addAll(Set.of("entryVerification", "definitionReview", "aliases"));
+        fields(entry, supported);
         PatternRule rule = entry.has("rule") ? PatternRuleYaml.load(new java.io.ByteArrayInputStream(
             entry.get("rule").toString().getBytes(java.nio.charset.StandardCharsets.UTF_8))) : null;
+        String expression = schema < 3 ? PatternParser.parse(string(entry, "expression")).canonical()
+            : entry.has("expression") ? string(entry, "expression") : null;
         entries.add(new PatternCatalog.Entry(string(entry, "alias"), string(entry, "label"),
-            string(entry, "expression"), string(entry, "code"),
-            entry.has("source") ? URI.create(string(entry, "source")) : source, strings(entry, "notes"), rule));
+            expression, string(entry, "code"),
+            entry.has("source") ? URI.create(string(entry, "source")) : source, strings(entry, "notes"), rule,
+            schema == 3 ? PatternCatalog.EntryVerification.valueOf(string(entry, "entryVerification"))
+                : PatternCatalog.EntryVerification.UNVERIFIED,
+            schema == 3 ? PatternCatalog.DefinitionReview.valueOf(string(entry, "definitionReview"))
+                : PatternCatalog.DefinitionReview.DRAFT,
+            entry.has("aliases") ? strings(entry, "aliases") : List.of()));
       }
       return new PatternCatalog(string(root, "id"), PatternCatalog.Domain.valueOf(string(root, "domain")),
           string(root, "version"), source, entries,

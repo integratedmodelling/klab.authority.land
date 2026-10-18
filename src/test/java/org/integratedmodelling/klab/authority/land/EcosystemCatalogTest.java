@@ -130,7 +130,7 @@ class EcosystemCatalogTest {
     assertTrue(authority.getCodelists(bridge).get(PILOTS.get(1)).getDescription().contains("2021_1"));
     assertTrue(authority.getCodelists(bridge).get(PILOTS.get(2)).getDescription().contains("2022"));
     assertTrue(authority.getCodelists(bridge).get(PILOTS.get(3)).getDescription().contains("2012"));
-    assertTrue(authority.resolveIdentity(bridge, entry(authority,PILOTS.get(2),"MB252").expression())
+    assertTrue(authority.resolveIdentity(bridge, authority.getCatalogs().get(PILOTS.get(2)).identityCode(entry(authority,PILOTS.get(2),"MB252")))
         .getDescription().contains("level 4"));
     assertEquals(1, authority.search("C2.5", null, bridge).size());
   }

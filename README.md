@@ -11,7 +11,10 @@ The initial [fuzzy mediation engine](#fuzzy-mediation) compares relative quantit
 triangular weights, exact rational alpha cuts and an immutable policy for each authority bridge.
 It supports spatial cover and relative phase duration when their measure and support are defined.
 The [mediation specification](docs/MEDIATION.md) gives the mathematics and remaining limitations.
-Two tentative classpath YAML catalogs now supply all 44 CORINE level-3 aliases and all 17
+Catalog annotation identities now preserve catalog ID, pinned revision, source edition and exact
+source code independently of optional patterns/rules. See [entry identities and notation](docs/ENTRY_IDENTITIES.md)
+for verification/review status, schema 3, conservative matching and migration from old pattern-valued
+codelists. Two tentative classpath YAML catalogs now supply all 44 CORINE level-3 aliases and all 17
 MODIS MCD12Q1 IGBP aliases. These are deliberately incomplete semantic translations for testing,
 not official implementations. See [Seed catalogs and maintenance](docs/SEED_CATALOGS.md) for their
 sources, vocabulary proposal, known collisions, YAML schema and Reasoner UI working-list workflow.
@@ -145,8 +148,9 @@ is documented below; it is parsed into an immutable policy rather than retaining
 domain, pinned version, source URI and entries containing an alias, label and pattern expression.
 Optional catalog metadata records title, source edition, tentative status, notes and proposal policy;
 entries can retain the original source code, per-class source URI and omitted-criteria notes.
-Registration checks syntax and unique aliases. Bridge configuration validates every selected entry
-against its own worldview and rejects a catalog from the other domain. Catalog IDs are immutable
+Registration checks source keys and unique primary aliases. Bridge configuration validates the
+identity root and explicitly reviewed interpretations, and rejects a catalog from the other domain.
+Draft or absent interpretations do not block source-entry annotations. Catalog IDs are immutable
 within a provider instance; revisions should use new IDs, such as `corine_2018_translation_v1`.
 Sources identify provenance; this API does not attest that a submitted translation is official.
 The no-argument constructor automatically registers `/catalogs/corine_2018_draft.yaml` and
@@ -154,8 +158,9 @@ The no-argument constructor automatically registers `/catalogs/corine_2018_draft
 requested through `catalogs`. See the [ecosystem assessments](docs/ECOSYSTEM_INTEROPERABILITY.md)
 for their source inventory and vocabulary proposal.
 `PatternCatalogYaml` loads schema-versioned YAML from a stream or the classpath and rejects unknown
-fields, duplicate keys/codes/aliases, invalid expressions and malformed types. Loading is bounded at
-1 MiB. Semantic validation still happens at bridge configuration, never merely from loading YAML.
+fields, duplicate keys/codes/primary aliases and malformed types. Schemas 1/2 retain expression syntax
+checks; schema 3 permits annotation-only entries and unparsed draft definitions. Loading is bounded
+at 1 MiB. Reviewed definitions undergo semantic validation at bridge configuration.
 `getCatalogs()` exposes immutable data and provenance for inspection. Remote registry loading remains
 a future extension.
 
@@ -183,18 +188,17 @@ The namespace then exposes `land.cover:BeechDominatedCover`. Configure a separat
 `domain: "ECOSYSTEM"` and another root identity for ecosystem types. These are independent bindings,
 not search-filter sub-authorities.
 
-`resolveIdentity` accepts a pattern and returns its canonical expression as the provider code,
-a full SHA-256-based concept name, an escaped standard authority locator, Markdown description,
-and the configured identity root. Nested patterns are arguments, never superclass edges.
-Parse/semantic failures return error notifications and no concept name/base/locator. Unknown or
-released configuration handles throw. Caches are disabled so host caches cannot bypass worldview
-validation. Canonical codes preserve the plus counts even when a future mediation policy might
-judge two different codes equivalent.
+`resolveIdentity` accepts a selected source-entry envelope or, separately, a direct pattern/rule.
+Both return a full SHA-256-based concept name, a standard authority locator and the configured
+identity root. Nested patterns never become superclass edges. Entry descriptions expose source
+verification and interpretation-review status; unreviewed definitions cannot authorize mediation.
+Malformed or unselected identities return error notifications and no concept name/base/locator.
+Unknown or released configuration handles throw. Caches remain disabled.
 
-`search` matches selected catalog IDs, original source codes, aliases and labels, deduplicates by canonical pattern, and returns
-up to 100 deterministically ordered, resolvable identities. `reconcile` accepts exactly `expression`,
-or `alias` with optional `catalog`. An ambiguous alias is an error; no first match is selected.
-Codelists map concept aliases to canonical pattern expressions and carry source/version metadata.
+`search` retains distinct source entries, including entries sharing one draft pattern. `reconcile`
+accepts an exact alias/name/code with optional catalog/revision/sourceEdition qualifiers, or one direct
+`expression` / opaque `entry` selector. Ambiguous exact names are rejected. Codelists map concept
+aliases to catalog-entry envelopes rather than proposed definitions. See the [entry contract](docs/ENTRY_IDENTITIES.md).
 Provider catalogs reject proposals by default; YAML metadata explicitly records the policy. The
 worldview may separately bind community lists under the standard codelist contract. Provider seeds
 are read-only in the existing Reasoner UI, even when proposals are allowed. Editable managed copies
@@ -221,8 +225,8 @@ counts such as 3:1 versus 6:2, remain unresolved by this policy-independent help
 unknown semantic relationships nor disjoint taxa establish incompatible covers: different bearers
 can coexist. This helper does not claim quantitative incompatibility.
 
-`auditCatalog` compares every pair of selected catalog entries (quadratic cost). Equivalent entries
-are duplicate definitions worth reviewing; strict refinement can flag potential overlap for review.
+`auditCatalog` compares optional definitions diagnostically (quadratic cost). Equivalent definitions
+are proposals worth reviewing, not equivalent source entries; strict refinement can flag potential overlap for review.
 `UNKNOWN` is not evidence of inconsistency, ambiguity or compatibility. This first audit is not an
 internal satisfiability proof for a whole classification. Cross-catalog pairs can be submitted through
 `comparePatterns`; an indexed, provenance-rich classification mediation API remains future work.
@@ -233,7 +237,7 @@ pattern distance delegates through the shared Authority hook and normal Reasoner
 
 Fuzzy comparison is **opt-in for each authority configuration**. Omitting `mediation` preserves the
 previous exact behavior; `mediate()` then reports `DISABLED` with no numeric overlap score. Existing
-catalogs and identity codes do not change. These are initial mathematical defaults for testing,
+direct-definition codes do not change. Source-entry codes never enter fuzzy mediation. These are initial mathematical defaults for testing,
 not thresholds calibrated against CORINE, GET, EUNIS or a particular ecosystem community.
 
 ### Configure a bridge
@@ -486,7 +490,12 @@ They deliberately do not claim a quantitative duration evaluator or official GET
 The exploratory team workbook was read-only; its digest and selected review leads are documented
 in the [WEED assessment](docs/ECOSYSTEM_INTEROPERABILITY.md).
 
-Verification on 2026-10-18: `mvn -o package` passed all 80 tests against the updated shared API and
+Source-entry identity verification: the full offline test suite now includes 19 new entry-envelope,
+collision, source-code, edition/revision, annotation-only, review-gate and ambiguity tests against the
+shared API build from services `df9c92af`. No host wiring or deployed worldview acceptance is claimed.
+The exact build/test command and dependency hashes are retained in the separate review packet.
+
+Earlier illustrative baseline, before source-entry separation: `mvn -o package` passed 80 tests and
 generated the component archive. The JAR includes seven YAML catalogs, three proposed vocabularies,
 the typed rule API and separate source-reference indexes. The shared distance patch passed 43 focused
 tests; broader shared-suite limitations are recorded in the [handoff notes](docs/patches/README.md).

@@ -63,7 +63,7 @@ class PatternRuleTest {
     for(var entry:DATA.entries()) {
       var identity=a.reconcile(bridge,Map.of("alias",entry.alias(),"catalog",CATALOG));
       assertTrue(identity.getNotifications().isEmpty(),identity.getDescription());
-      assertEquals(entry.identityCode(),identity.getId());
+      assertEquals(DATA.identityCode(entry),identity.getId());
       assertEquals(identity.getId(),a.resolveIdentity(bridge,identity.getId()).getId());
       String token=identity.getLocator();
       assertEquals(identity.getId(),org.integratedmodelling.klab.api.services.reasoner.objects.AuthorityIdentitySyntax.decode(token.substring(4)));

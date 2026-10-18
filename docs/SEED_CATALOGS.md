@@ -43,7 +43,7 @@ namespace, `landcover.seed`.
 `src/main/resources/vocabularies/landcover.seed.kwv` supplies a small **test-only proposal** containing
 `CoverClass`, `CoverComponent` and the leaf identities used by both catalogs. It is not automatically
 loaded, installed into imod, or accepted as a semantic bypass. Add it explicitly to a test worldview,
-or provide equivalent reviewed concepts and revise the expressions, before configuring these catalogs
+or provide equivalent reviewed concepts and revise the expressions, before reviewing definitions or resolving direct patterns from these catalogs (annotation-only bridges need only their real identity root)
 against a real Reasoner. The host semantic binding described in the main README is still required.
 The `.kwv` file has not been ingested and validated in a deployed worldview in this change.
 
@@ -78,17 +78,18 @@ example, sibling ordering is a stable draft serialization choice rather than an 
 relation. A future configuration-specific interpretation may require replacing those choices.
 No fuzzy membership functions, tolerances or decision thresholds are selected by these catalogs.
 
-Two aliases with the same pattern intentionally resolve to the same canonical authority identity.
-The IGBP draft therefore has 17 aliases but only 15 distinct pattern identities. Their merged identity
-labels and descriptions retain both source classes and their omission notes. Auditing marks the
-closed/open shrubland and woody-savanna/savanna pairs structurally equivalent **as translated**.
-That is evidence that these draft patterns lost distinctions, not evidence that IGBP is internally
-inconsistent. Similar coarse matches across catalogs must be treated with the same caution.
+Source entries now retain separate catalog/revision/edition/code identities even when proposed
+patterns coincide. IGBP has 17 source-entry annotation identities; its 15 distinct draft pattern
+definitions still expose omitted distinctions for diagnostic review. The closed/open shrubland and
+woody-savanna/savanna pairs remain UNKNOWN for source-entry mediation. See
+[entry identities](ENTRY_IDENTITIES.md) for schema 3, independent verification/review status and
+migration from the old pattern-valued codelists.
 
 ## Selecting and binding the seeds
 
-After loading the proposed vocabulary into the test worldview and binding semantic access to the
-provider instance, select catalog IDs through `catalogs`. For a source declaration, replace the
+Bind semantic access to the real identity root, then select catalog IDs through `catalogs` for
+source-entry annotations. Proposed vocabulary is needed only for explicit direct-definition checks
+or reviewed interpretations; selecting draft annotations does not import it into a worldview. For a source declaration, replace the
 fixture's plain `identity CoverClass;` with a requirement such as:
 
 ```text
@@ -155,7 +156,7 @@ require a separate host API decision. No Reasoner source or running UI data was 
 `PatternCatalogYaml` accepts exactly one schema-version-1 mapping. No polymorphic Java object
 construction, external file includes or remote loading is used. Unknown fields, duplicate YAML keys,
 wrong scalar types, duplicate aliases/source codes and malformed patterns fail loading. The reader
-caps input at 1 MiB. Catalog syntax is checked on load; concepts are validated against the actual
+caps input at 1 MiB. Legacy catalog expression syntax is checked on load; reviewed definitions are validated against the actual
 worldview only when a selected bridge is configured.
 
 ```yaml

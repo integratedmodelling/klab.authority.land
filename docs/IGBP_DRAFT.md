@@ -1,5 +1,8 @@
 # IGBP land-cover translation attempt
 
+Source-entry annotation IDs now remain distinct even where the draft definitions below collide.
+See [entry identities](ENTRY_IDENTITIES.md). Shared draft patterns do not authorize cross-entry mediation.
+
 This document reviews `igbp_modis61_draft`, a tentative translation of the 17 IGBP classes in
 MODIS MCD12Q1 `LC_Type1`. It is testing material, not an official IGBP implementation or a validated
 crosswalk. The machine-readable proposal is

@@ -142,12 +142,13 @@ class LandAuthorityTest {
     authority.registerCatalog(catalog("example_b", pattern(B)));
     var id = authority.configure(request("LAND", "land:Root", Map.of("catalogs", List.of("example_a", "example_b"))));
     var lists = authority.getCodelists(id);
-    assertEquals(pattern(A), lists.get("example_a").value("Woodland"));
+    assertEquals(authority.getCatalogs().get("example_a").identityCode(
+        authority.getCatalogs().get("example_a").entries().getFirst()), lists.get("example_a").value("Woodland"));
     assertFalse(authority.getCodelistDefinitions(id).get("example_a").acceptsProposals());
     for (var list : lists.values()) for (var code : list.codes())
       assertTrue(authority.resolveIdentity(id, (String) list.value(code)).getNotifications().isEmpty());
     assertFalse(authority.reconcile(id, Map.of("alias", "Woodland")).getNotifications().isEmpty());
-    assertEquals(pattern(A), authority.reconcile(id, Map.of("alias", "Woodland", "catalog", "example_a")).getId());
+    assertEquals(lists.get("example_a").value("Woodland"), authority.reconcile(id, Map.of("alias", "Woodland", "catalog", "example_a")).getId());
     for (var hit : authority.search("wood", null, id)) assertEquals(hit.getId(), authority.resolveIdentity(id, hit.getId()).getId());
     assertEquals(2, authority.search("wood", null, id).size());
     assertThrows(IllegalArgumentException.class, () -> authority.registerCatalog(catalog("example_a", pattern(B))));

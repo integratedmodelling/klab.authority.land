@@ -120,9 +120,12 @@ class PatternCatalogYamlTest {
     assertEquals(entry(igbp, "6").expression(), entry(igbp, "7").expression());
     assertEquals(entry(igbp, "8").expression(), entry(igbp, "9").expression());
     assertNotEquals(entry(corine, "313").expression(), entry(igbp, "5").expression());
-    var colliding = authority.resolveIdentity(bridge, entry(igbp, "6").expression());
-    assertTrue(colliding.getLabel().contains("Closed shrublands"));
-    assertTrue(colliding.getLabel().contains("Open shrublands"));
+    var closed = authority.resolveIdentity(bridge, igbp.identityCode(entry(igbp, "6")));
+    var open = authority.resolveIdentity(bridge, igbp.identityCode(entry(igbp, "7")));
+    assertEquals("Closed shrublands", closed.getLabel());
+    assertEquals("Open shrublands", open.getLabel());
+    assertNotEquals(closed.getId(), open.getId());
+    assertEquals(Authority.DistanceStatus.UNKNOWN, authority.semanticDistance(bridge, closed.getId(), open.getId()).status());
     var findings = authority.auditCatalog(bridge, IGBP);
     assertEquals(136, findings.size());
     assertTrue(findings.stream().anyMatch(f -> f.left().equals("ClosedShrubland") && f.right().equals("OpenShrubland")
@@ -146,7 +149,7 @@ class PatternCatalogYamlTest {
         return reference;
       }
     });
-    assertThrows(IllegalArgumentException.class, () -> bare.configure(new Authority.ConfigurationRequest(
+    assertDoesNotThrow(() -> bare.configure(new Authority.ConfigurationRequest(
         "seed.testing", "LAND", "landcover.seed:CoverClass", Map.of("urn", LandAuthority.URN, "domain", "LULC", "catalogs", List.of(IGBP)))));
   }
 

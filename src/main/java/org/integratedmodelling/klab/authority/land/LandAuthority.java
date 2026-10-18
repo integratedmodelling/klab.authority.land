@@ -22,8 +22,9 @@ public final class LandAuthority implements Authority {
   private final Map<String, PatternSemantics> worldviews = new ConcurrentHashMap<>();
   private final Map<String, PatternCatalog> catalogs = new ConcurrentHashMap<>();
   private final Map<String, Bridge> bridges = new ConcurrentHashMap<>();
+  private record BoundEntry(PatternCatalog catalog, PatternCatalog.Entry entry) {}
   private record Bridge(ConfigurationRequest request, PatternSemantics semantics,
-                        List<PatternCatalog> catalogs, Map<String, String> identities, MediationPolicy mediation) {}
+                        List<PatternCatalog> catalogs, Map<String, BoundEntry> entries, MediationPolicy mediation) {}
 
   /** Load syntax-checked seed data; worldview validation still occurs separately for each bridge. */
   public LandAuthority() {
@@ -63,7 +64,7 @@ public final class LandAuthority implements Authority {
   }
 
   @Override public String getUrn() { return URN; }
-  @Override public CachePolicy getCachePolicy() { return new CachePolicy("cover-fuzzy-ratios-1", 0, 0, 0); }
+  @Override public CachePolicy getCachePolicy() { return new CachePolicy("catalog-entry-identities-1", 0, 0, 0); }
 
   @Override public String configure(ConfigurationRequest request) {
     if (!URN.equals(request.parameters().get("urn"))) throw new IllegalArgumentException("Wrong LAND provider URN");
@@ -82,7 +83,7 @@ public final class LandAuthority implements Authority {
     Object selection = request.parameters().getOrDefault("catalogs", List.of());
     if (!(selection instanceof List<?> ids)) throw new IllegalArgumentException("catalogs must be a list of registered catalog IDs");
     var selected = new ArrayList<PatternCatalog>();
-    var patterns = new LinkedHashMap<String, String>();
+    var entries = new LinkedHashMap<String, BoundEntry>();
     var unique = new HashSet<String>();
     for (var id : ids) {
       var catalog = id instanceof String ? catalogs.get(id) : null;
@@ -90,12 +91,20 @@ public final class LandAuthority implements Authority {
         throw new IllegalArgumentException("Unknown, duplicate or wrong-domain catalog: " + id);
       selected.add(catalog);
       for (var entry : catalog.entries()) {
-        String code = entry.identityCode();
-        patterns.put(code, validateCode(code, semantics));
+        if (entry.definitionReview() == PatternCatalog.DefinitionReview.REVIEWED) {
+          if (entry.rule() == null) validateCode(entry.definitionCode(), semantics);
+          else {
+            if (!(semantics instanceof RuleSemantics))
+              throw new IllegalStateException("Reviewed typed definitions require RuleSemantics");
+            if (!validateRule(entry.rule(), semantics).ready())
+              throw new IllegalArgumentException("Reviewed definition still has unresolved obligations");
+          }
+        }
+        entries.put(catalog.identityCode(entry), new BoundEntry(catalog, entry));
       }
     }
     String id = UUID.randomUUID().toString();
-    bridges.put(id, new Bridge(request, semantics, List.copyOf(selected), Map.copyOf(patterns),mediation));
+    bridges.put(id, new Bridge(request, semantics, List.copyOf(selected), Map.copyOf(entries),mediation));
     return id;
   }
 
@@ -138,7 +147,17 @@ public final class LandAuthority implements Authority {
         : validate(PatternParser.parse(code),semantics).canonical();
   }
   public PatternComparison compareIdentities(String configurationId, String left, String right) {
-    var semantics = bridge(configurationId).semantics;
+    var bridge = bridge(configurationId);
+    if (CatalogEntryId.isEntryCode(left) || CatalogEntryId.isEntryCode(right)) {
+      boolean a = CatalogEntryId.isEntryCode(left), b = CatalogEntryId.isEntryCode(right);
+      if (a) requireEntry(bridge, left);
+      if (b) requireEntry(bridge, right);
+      return a && b && left.equals(right)
+          ? new PatternComparison(PatternComparison.Status.EQUIVALENT, List.of("Same pinned source entry"))
+          : new PatternComparison(PatternComparison.Status.UNKNOWN,
+              List.of("Source entries and definitions require an explicit reviewed mapping; no mapping is configured"));
+    }
+    var semantics = bridge.semantics;
     if (left.startsWith(PatternRuleYaml.PREFIX) && right.startsWith(PatternRuleYaml.PREFIX))
       return RuleComparison.compare(validateRule(configurationId,PatternRuleYaml.decode(left)).rule(),
           validateRule(configurationId,PatternRuleYaml.decode(right)).rule(),semantics);
@@ -147,11 +166,19 @@ public final class LandAuthority implements Authority {
     return comparePatterns(configurationId,left,right);
   }
   @Override public SemanticDistance semanticDistance(String configurationId, String targetId, String candidateId) {
-    var comparison = compareIdentities(configurationId,targetId,candidateId);
+    bridge(configurationId);
+    boolean entryRoute = CatalogEntryId.isEntryCode(targetId) || CatalogEntryId.isEntryCode(candidateId);
+    PatternComparison comparison;
+    try { comparison = compareIdentities(configurationId,targetId,candidateId); }
+    catch (IllegalArgumentException failure) {
+      if (!entryRoute) throw failure;
+      return SemanticDistance.unknown("Entry identity is malformed or not selected by this bridge");
+    }
     if (comparison.status() == PatternComparison.Status.EQUIVALENT)
       return new SemanticDistance(DistanceStatus.COMPATIBLE,0,comparison.explanations());
     if (comparison.status() == PatternComparison.Status.RIGHT_REFINES_LEFT)
       return new SemanticDistance(DistanceStatus.COMPATIBLE,1,comparison.explanations());
+    if (entryRoute) return SemanticDistance.unknown("No reviewed mapping between these source entries or definitions");
     var result = mediate(configurationId,targetId,candidateId);
     var explanation = new ArrayList<>(result.explanations());
     explanation.add("Mediation policy " + result.policyFingerprint() + "; overlap=" + result.overlap());
@@ -170,6 +197,10 @@ public final class LandAuthority implements Authority {
   public MediationResult mediate(String configurationId,String left,String right) {
     var bridge = bridge(configurationId);
     var exact = compareIdentities(configurationId,left,right);
+    if (CatalogEntryId.isEntryCode(left) || CatalogEntryId.isEntryCode(right))
+      return new MediationResult(MediationResult.Status.UNKNOWN,null,MediationResult.OverlapDecision.UNASSESSED,
+          false,false,false,false,exact,bridge.mediation,bridge.mediation.fingerprint(),bridge.semantics.worldview(),left,right,List.of(),
+          List.of("Source-entry annotations do not supply executable fuzzy definitions or reviewed mappings"));
     boolean a = left.startsWith(PatternRuleYaml.PREFIX), b = right.startsWith(PatternRuleYaml.PREFIX);
     if (a != b) return new MediationResult(MediationResult.Status.UNKNOWN,null,MediationResult.OverlapDecision.UNASSESSED,
         false,false,false,false,exact,bridge.mediation,bridge.mediation.fingerprint(),bridge.semantics.worldview(),left,right,List.of(),
@@ -183,7 +214,8 @@ public final class LandAuthority implements Authority {
 
   public record AuditFinding(String left, String right, PatternComparison comparison) {}
 
-  /** UNKNOWN pairs are unresolved, never findings of inconsistency. Cost is quadratic in entry count. */
+  /** Diagnostic definition audit only, never entry equivalence or mediation authorization.
+   * UNKNOWN pairs are unresolved. Cost is quadratic in entry count. */
   public List<AuditFinding> auditCatalog(String configurationId, String catalogId) {
     var bridge = bridge(configurationId);
     var catalog = bridge.catalogs.stream().filter(c -> c.id().equals(catalogId)).findFirst()
@@ -191,7 +223,15 @@ public final class LandAuthority implements Authority {
     var findings = new ArrayList<AuditFinding>();
     for (int i = 0; i < catalog.entries().size(); i++) for (int j = i + 1; j < catalog.entries().size(); j++) {
       var a = catalog.entries().get(i); var b = catalog.entries().get(j);
-      findings.add(new AuditFinding(a.alias(), b.alias(), compareIdentities(configurationId, a.identityCode(), b.identityCode())));
+      PatternComparison comparison;
+      try {
+        comparison = a.definitionCode() == null || b.definitionCode() == null
+            ? new PatternComparison(PatternComparison.Status.UNKNOWN, List.of("Optional definition absent"))
+            : compareIdentities(configurationId, a.definitionCode(), b.definitionCode());
+      } catch (RuntimeException failure) {
+        comparison = new PatternComparison(PatternComparison.Status.UNKNOWN, List.of("Optional definition cannot be validated"));
+      }
+      findings.add(new AuditFinding(a.alias(), b.alias(), comparison));
     }
     return List.copyOf(findings);
   }
@@ -199,6 +239,12 @@ public final class LandAuthority implements Authority {
   @Override public Identity resolveIdentity(String configurationId, String identityId) {
     var bridge = bridge(configurationId);
     try {
+      if (CatalogEntryId.isEntryCode(identityId)) {
+        var bound = requireEntry(bridge, identityId);
+        return new LandIdentity(identityId, conceptName(identityId), bridge.request.name(), bridge.request.rootIdentity(),
+            entryDescription(bound.catalog(), bound.entry()), bound.entry().label(),
+            AuthorityIdentitySyntax.encode(bridge.request.name(), identityId), List.of());
+      }
       String canonical = validateCode(identityId, bridge.semantics);
       var descriptions = new ArrayList<String>();
       if (canonical.startsWith(PatternRuleYaml.PREFIX)) {
@@ -206,33 +252,42 @@ public final class LandAuthority implements Authority {
         descriptions.add(validation.ready() ? "Typed rule semantic checks completed; observations and evaluator bindings remain separate."
             : "Provisional typed definition. Outstanding obligations:\n\n- " + String.join("\n- ",validation.obligations()));
       }
-      var labels = new LinkedHashSet<String>();
-      for (var catalog : bridge.catalogs) for (var entry : catalog.entries())
-        if (canonical.equals(bridge.identities.get(entry.identityCode()))) {
-          labels.add(entry.label());
-          descriptions.add(entryDescription(catalog, entry));
-        }
       return new LandIdentity(canonical, conceptName(canonical), bridge.request.name(), bridge.request.rootIdentity(),
           "Earth-cover pattern:\n\n```text\n" + canonical + "\n```\n\n" + String.join("\n\n", descriptions),
-          labels.isEmpty() ? canonical : String.join(" / ", labels),
+          canonical,
           AuthorityIdentitySyntax.encode(bridge.request.name(), canonical), List.of());
     } catch (RuntimeException e) { return failure(bridge, identityId, e.getMessage()); }
   }
 
   @Override public Identity reconcile(String configurationId, Map<String, String> fields) {
     var bridge = bridge(configurationId);
-    if (fields == null || fields.isEmpty() || !Set.of("expression", "alias", "catalog").containsAll(fields.keySet()))
-      return failure(bridge, "", "Use expression, or alias with optional catalog");
-    if (fields.containsKey("expression")) {
-      if (fields.size() != 1) return failure(bridge, "", "expression cannot be combined with alias fields");
-      return resolveIdentity(configurationId, fields.get("expression"));
+    if (fields == null || fields.isEmpty()
+        || !Set.of("expression", "entry", "alias", "name", "code", "catalog", "revision", "sourceEdition").containsAll(fields.keySet())
+        || fields.values().stream().anyMatch(value -> value == null || value.isBlank()))
+      return failure(bridge, "", "Use a direct expression, entry envelope, or one exact alias/name/code selector");
+    if (fields.containsKey("expression") || fields.containsKey("entry")) {
+      if (fields.size() != 1) return failure(bridge, "", "Direct identity selectors must be used alone");
+      boolean entry = fields.containsKey("entry"); String code = fields.get(entry ? "entry" : "expression");
+      if (entry != CatalogEntryId.isEntryCode(code)) return failure(bridge, "", "Entry and direct-definition routes are separate");
+      return resolveIdentity(configurationId, code);
     }
+    if (List.of("alias", "name", "code").stream().filter(fields::containsKey).count() != 1)
+      return failure(bridge, "", "Choose one exact alias, name or source code");
     var matches = new TreeSet<String>();
-    for (var catalog : bridge.catalogs) if (!fields.containsKey("catalog") || catalog.id().equals(fields.get("catalog")))
-      for (var entry : catalog.entries()) if (entry.alias().equals(fields.get("alias")))
-        matches.add(bridge.identities.get(entry.identityCode()));
+    for (var bound : bridge.entries.entrySet()) {
+      var catalog = bound.getValue().catalog(); var entry = bound.getValue().entry();
+      if (fields.containsKey("catalog") && !catalog.id().equals(fields.get("catalog"))
+          || fields.containsKey("revision") && !catalog.version().equals(fields.get("revision"))
+          || fields.containsKey("sourceEdition") && !catalog.metadata().sourceVersion().equals(fields.get("sourceEdition"))) continue;
+      boolean alias = fields.containsKey("alias") && (entry.alias().equals(fields.get("alias"))
+          || entry.aliases().contains(fields.get("alias")));
+      boolean name = fields.containsKey("name") && (entry.label().equals(fields.get("name"))
+          || entry.alias().equals(fields.get("name")) || entry.aliases().contains(fields.get("name")));
+      if (fields.containsKey("alias") && alias || fields.containsKey("name") && name
+          || fields.containsKey("code") && entry.sourceCode().equals(fields.get("code"))) matches.add(bound.getKey());
+    }
     return matches.size() == 1 ? resolveIdentity(configurationId, matches.first())
-        : failure(bridge, Objects.toString(fields.get("alias"), ""), "Alias is absent or ambiguous; specify a catalog");
+        : failure(bridge, "", "Exact selector is absent or ambiguous; pin catalog/revision/source edition");
   }
 
   @Override public List<Identity> search(String query, String subAuthority, String configurationId) {
@@ -243,8 +298,8 @@ public final class LandAuthority implements Authority {
     var matches = new TreeSet<String>();
     for (var catalog : bridge.catalogs) for (var entry : catalog.entries())
       if ((catalog.id() + " " + Objects.toString(entry.sourceCode(), "") + " " + entry.alias()
-          + " " + entry.label()).toLowerCase(Locale.ROOT).contains(q))
-        matches.add(bridge.identities.get(entry.identityCode()));
+          + " " + entry.label() + " " + String.join(" ", entry.aliases())).toLowerCase(Locale.ROOT).contains(q))
+        matches.add(catalog.identityCode(entry));
     return matches.stream().limit(100).map(p -> resolveIdentity(configurationId, p)).toList();
   }
 
@@ -260,7 +315,7 @@ public final class LandAuthority implements Authority {
           + catalog.metadata().sourceVersion() + "; source: " + catalog.source() + "\n\n"
           + String.join("\n\n", catalog.metadata().notes()));
       list.setEntries(catalog.entries().stream().map(entry -> new CodelistImpl.Entry(bridge.request.name(),
-          entry.alias(), bridge.identities.get(entry.identityCode()), entryDescription(catalog, entry), true)).toList());
+          entry.alias(), catalog.identityCode(entry), entryDescription(catalog, entry), true)).toList());
       result.put(catalog.id(), list);
     }
     return Collections.unmodifiableMap(result);
@@ -292,6 +347,13 @@ public final class LandAuthority implements Authority {
     if (bridge == null) throw new IllegalArgumentException("Unknown or released LAND configuration");
     return bridge;
   }
+  private static BoundEntry requireEntry(Bridge bridge, String code) {
+    CatalogEntryId.decode(code);
+    var entry = bridge.entries.get(code);
+    if (entry == null) throw new IllegalArgumentException("Entry catalog, revision, source edition or exact code is not selected");
+    return entry;
+  }
+
   private Identity failure(Bridge bridge, String id, String message) {
     return new LandIdentity(id, null, bridge.request.name(), null, message, id, null,
         List.of(Notification.error("LAND: " + message)));
@@ -302,10 +364,12 @@ public final class LandAuthority implements Authority {
         + (entry.sourceCode() == null ? "" : ", source code " + entry.sourceCode()) + "). "
         + "Source edition: " + catalog.metadata().sourceVersion() + ". "
         + "[Source](" + (entry.source() == null ? catalog.source() : entry.source()) + ").\n\n"
+        + "Entry verification: " + entry.entryVerification() + "; definition review: " + entry.definitionReview() + ". "
+        + "This source-entry reference does not authorize cross-entry mediation.\n\n"
         + String.join("\n\n", entry.notes());
   }
   private static String conceptName(String canonical) {
-    try { return "Pattern_" + HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(canonical.getBytes(StandardCharsets.UTF_8))); }
+    try { return (CatalogEntryId.isEntryCode(canonical) ? "Entry_" : "Pattern_") + HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(canonical.getBytes(StandardCharsets.UTF_8))); }
     catch (NoSuchAlgorithmException e) { throw new IllegalStateException(e); }
   }
 }
