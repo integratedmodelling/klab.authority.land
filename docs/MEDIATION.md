@@ -1,105 +1,121 @@
-# Mediation design notes (not an implemented specification)
+# Initial mediation specification: fuzzy-ratios-1
 
-The mediation engine must distinguish semantic evidence, uncertain abundance and classification
-policy. Current `comparePatterns` performs conservative structural checks only. This document
-records a possible design and decisions that must be made before implementing fuzzy arithmetic.
+The [README](../README.md#fuzzy-mediation) provides configuration, parameter bounds, defaults,
+examples and API usage. This document specifies the implemented mathematical model. It replaces
+the earlier design alternatives; this remains a relative-quantity solver rather than a general
+ecosystem satisfiability or observation-classification engine.
 
-Typed rules now add conservative logical/interval entailment through the normal shared
-`Authority.semanticDistance(configurationId, targetId, candidateId)` hook. See
-[typed rules](TYPED_RULES.md) and the [shared contract](../../klab-services/docs/AUTHORITY_DISTANCE.md).
-Candidate entailment is required for a nonnegative distance; mere overlap is insufficient. The current
-provider reports UNKNOWN rather than inventing fuzzy scores or claiming disjointness.
+## Separate exact implication, overlap and admission
 
-Relative quantity is not restricted to abundance: temporal configurations may assign marks to
-relative phase durations. A configuration profile must bind the measure and reference support,
-including cycles, events, gaps and sampling. The [ecosystem pattern proposal](ECOSYSTEM_PATTERN_EVOLUTION.md)
-develops these requirements. Ratios from different measures or supports cannot be compared merely
-because they use the same integer marks.
+`comparePatterns` and `compareIdentities` retain policy-independent structural/semantic checks.
+Typed-rule intervals remain crisp. `mediate` adds quantitative possibility, full fuzzy containment
+and operational admission. `Authority.semanticDistance` exposes admitted candidates through normal
+Reasoner matching. Overlap alone never admits a candidate. LOW overlap is not ecological disjointness;
+UNKNOWN is not a numeric zero. In the integer Reasoner result, -1 means no admitted match.
 
-## Configuration ownership and reproducibility
+## Positive triangular weights and projective boxes
 
-Tolerances and thresholds belong to each **Authority.ConfigurationRequest / bridge**. Two bindings
-of this provider may use different policies, even inside one worldview. No component-global mutable
-tolerance should affect previously configured bridges. Store an immutable validated policy snapshot
-with each bridge, and include it in any future mediation cache fingerprint. Unknown fields, invalid
-ranges and unsupported policy versions must fail configuration rather than select a guessed default.
-
-A future policy schema should identify at least:
-
-- A versioned arithmetic/membership profile and its interpretation of a plus count.
-- Relative and/or absolute uncertainty parameters, with units, ranges and documented defaults.
-- The treatment of common scaling (3:1 versus 6:2), and the effect of mark count on uncertainty.
-- The alpha-cut schedule or analytic comparison method, and the chosen possibility/necessity measure.
-- Separate thresholds for possible overlap, strong compatibility and a classification decision.
-- The aggregation operator across sibling constraints and nested configurations.
-- Identity overlap, bearer aggregation, duplicate arguments and missing-evidence policies.
-
-These are proposed fields of a specification, not accepted parameter names. The implementation
-currently rejects mediation parameters. A later implementation should provide a complete example
-configuration, formulas and boundary examples for every parameter, explain threshold inclusivity,
-and disclose the cost and numerical precision of the selected profile.
-
-A result should report the exact policy version/parameters or stable fingerprint, worldview
-revision, catalog/source versions, matched positions, semantic evidence, abundance evidence and
-unresolved conditions. Changing mediation policy must not change the pattern's canonical identity;
-it may change its compatibility results. Caches must include the policy and semantic revision.
-
-## Candidate numerical representation
-
-Model each positive integer mark count n as a positive fuzzy weight W(n), rather than immediately
-normalizing it into a percentage. A triangular or trapezoidal membership function is one candidate,
-not a chosen default. At alpha > 0, its alpha-cut is a positive closed interval [l_n, u_n]. For two
-positive sibling weights, a candidate ratio enclosure is:
+For plus count n > 0 and configured 0 <= beta < 1:
 
 ```text
-W(i) / W(j) at alpha: [l_i / u_j, u_i / l_j]
+d(n) = beta*n       RELATIVE
+d(n) = beta         ABSOLUTE
+L_n(alpha) = n - d(n)*(1-alpha)
+U_n(alpha) = n + d(n)*(1-alpha),  0 <= alpha <= 1
 ```
 
-Require positive denominators; separately specify support and alpha=0 behavior. This interval
-calculation encloses possible ratios. It does not by itself define fuzzy equivalence, a distance,
-or an entailment score. Shared variables make sibling ratios dependent; independently overlapping
-pairwise intervals do not prove that all constraints admit one common assignment. Normalizing fuzzy
-weights to sum to one introduces the same dependency issue. A sound solver must retain these shared
-variables or document a conservative approximation.
+The mode is n, alpha=0 uses the closed support, and alpha=1 gives the singleton mode. Beta=0 is
+crisp. Every denominator is strictly positive, including n=1 at alpha=0. Wider absolute supports
+need another version. Relative spread is invariant under common scaling; absolute spread gives
+larger counts greater relative precision. This choice belongs to explicit bridge policy.
 
-An unmarked argument supplies no abundance constraint. It must never become W(1), zero, or an equal
-share. Constraints compare only explicitly marked siblings under the same enclosing configuration.
-Root marks have no parent comparison scope. Nesting does not transport ratios across configurations.
-Multiple identities can overlap taxonomically: abundance of a species and abundance of its genus
-cannot automatically be added or independently compared as disjoint classes. The bearer, measurement
-and aggregation rules need specification alongside the arithmetic.
+For the marked positions M, the quantity vector q is in a configuration's alpha-cut if one positive
+scale s satisfies s*L_i <= q_i <= s*U_i for every i in M. There is no automatic sum-to-one assumption.
+Unmarked arguments supply no ratio. A single mark supplies no relative constraint; an unquantified
+scope denotes the unrestricted positive domain, not equal shares.
 
-An example uncertainty function like W(n) = triangular(n-d, n, n+d) would make common scaling alter
-relative uncertainty. A profile based on relative spread could behave differently. Therefore current
-comparison does not declare 3:1 and 6:2 fuzzy-equivalent merely because their central ratios agree.
-Do not add either profile as an implicit policy before this distinction has been decided.
+Both quantified sides must use identical marked-position sets and equivalent quantified participants.
+Known taxonomic coupling and duplicate equivalent quantities are rejected. Unknown semantic relation
+does not prove independence: `independentArguments: true` is an explicit reviewed assertion that no
+additional local coupling/aggregation constraints need to be solved. Quantified inner definitions
+cannot change without additional aggregation semantics.
 
-## Java implementation options
+## Joint feasibility and possibility
 
-My recommendation is a small domain-specific fuzzy-number kernel behind an explicit policy interface.
-[Apache Commons Numbers Fraction](https://commons.apache.org/proper/commons-numbers/userguide/index.html)
-provides `Fraction` and arbitrary-precision `BigFraction`. The latter is a candidate for exact rational
-alpha-cut endpoints and central ratios. It supplies rational arithmetic, **not fuzzy arithmetic**;
-membership functions, interval bounds, dependency handling and comparison measures remain our code.
-No dependency has been added pending the specification. Floating-point implementations are another
-option, but must specify rounding and demonstrate conservative bounds near decision thresholds.
+The two projective cuts share an assignment exactly when one common scale ratio r satisfies:
 
-[jFuzzyLogic](https://jfuzzylogic.sourceforge.net/html/manual.html) implements FCL and fuzzy controller
-inference. [jfuzzylite](https://fuzzylite.com/) also targets fuzzy controllers, with membership terms,
-norms and defuzzification. These are relevant if classification eventually uses linguistic IF/THEN
-rules; their documented focus does not make them a direct choice for dependent fuzzy ratio arithmetic.
-I would not introduce a controller engine solely to compare relative cover abundance.
+```text
+max_i (L_left_i / U_right_i) <= r <= min_i (U_left_i / L_right_i)
+Pi(left,right) = sup { alpha in [0,1] : those joint cuts are feasible }
+```
 
-## Specification and verification work
+Every marked component participates in this intersection. Different scale values are not selected
+independently for different pairs. Feasibility is monotone as alpha increases and cuts shrink.
+Disjoint supports give Pi=0; shared modes give Pi=1. Otherwise exact bisection returns dyadic endpoints
+enclosing Pi with width at most 2^-steps. All arithmetic and decisions use reduced BigInteger fractions;
+only terminating dyadic report endpoints become BigDecimal values.
 
-Define the denotation of ordered configuration arguments and what constitutes a shared occurrence;
-resolve how taxonomic subsumption, arrangement equivalence and spatial/temporal extent interact.
-Then specify fuzzy compatibility separately from logical refinement or contradiction. A low overlap
-score must not be presented as a proven semantic incompatibility. Preserve UNKNOWN when evidence
-is missing, and distinguish it from measured intermediate compatibility.
+The threshold is not compared to a rounded midpoint. Feasibility at the exact decimal
+`overlapThreshold` decides Pi >= threshold, inclusively, even when that threshold is inside the
+reported enclosure. The coefficient concerns only the relative-quantity subsystem under its stated
+assumptions. It is not a joint satisfiability proof involving other observables or hidden correlations.
 
-Before accepting an engine, use reviewed examples and mathematical properties: symmetry of
-compatibility; directionality of entailment; monotonicity under relaxing a constraint; the selected
-scaling law; independence of nested scopes; unspecified abundance; zero-denominator boundaries;
-shared-variable feasibility; overlapping identities; and threshold-edge numerical behavior.
-Calibration against actual reviewed legend translations is needed before choosing defaults.
+## Full-model containment and operational admission
+
+For candidate C and target T, projective-box inclusion at one alpha is equivalent to all inequalities
+for distinct marked positions i,j:
+
+```text
+U_C_i(alpha) / L_C_j(alpha) <= U_T_i(alpha) / L_T_j(alpha)
+P_ij(alpha) = U_C_i(alpha)*L_T_j(alpha) - U_T_i(alpha)*L_C_j(alpha) <= 0
+```
+
+The target's common scale exists if and only if all pair bounds hold. Taking the candidate's extreme
+ratio therefore gives an exact containment test for every candidate vector. P is quadratic. To prove
+containment for all alpha in [0,1], check endpoints and, for a concave quadratic with an interior
+vertex, its exact maximum at that vertex. Sampling a finite set of alpha cuts is not used as proof.
+Cut inclusion at every alpha establishes membership inclusion for these normalized fuzzy models.
+
+Rule implication also requires a proven semantic direction after removing marks, retaining all typed
+criteria, participant/bearer declarations and profiles. Quantities cannot repair an unknown semantic
+relationship. Absolute observable intervals are not given an invented fuzzy halo.
+
+`PROVEN_ONLY` is the default admission policy. `ALPHA_CUT` deliberately chooses a weaker operational
+contract: the candidate's `admissionAlpha` cut must be entirely contained in the target's cut at that
+same alpha, and the possibility threshold must pass. Merely intersecting cuts is insufficient. This
+may admit different central ratios without asserting full fuzzy entailment. Strict implications and
+operational admission flags are reported separately. Changing alpha changes both cuts and is not a
+general monotonic tolerance control; calibrate it separately from the possibility threshold.
+
+Normal distance preserves exact equivalence/refinement as 0/1. Otherwise full fuzzy equivalence
+returns 0; an admitted candidate receives ceil(100*(1-Pi_lower)), clamped to 1..100. Using the lower
+bound makes rounding conservative. These are provider ranking units, not ontology edge counts.
+Unsupported/unadmitted cases return UNKNOWN/-1. This engine does not claim INCOMPATIBLE.
+
+## Scope, lifecycle and numerical limits
+
+Independent nested scopes aggregate possibility by minimum. Each occurrence has its own measure,
+support and interpretation; explicit rule profiles must match. Spatial and temporal quantities are
+not moved between scopes. Written ordering is preserved. A duration ratio supplies no calendar,
+recurrence period or causation. Constraints and data discovery remain separate operations.
+
+Policies are immutable per-bridge snapshots. Invalid values, unknown fields/versions and incomplete
+contexts fail configuration. A tolerance change does not rewrite canonical identity codes; a measure
+change is a bridge interpretation change. Normal shared matching isolates distinct bridges. No result
+cache is introduced, and semantic access retains its worldview/revision guard.
+
+Results contain canonical input codes, worldview, policy snapshot/fingerprint, occurrence paths,
+measure/support, marked positions, local enclosures and explanations. They do not capture a knowledge
+revision number; source editions remain available in catalog metadata.
+
+The budget permits 65536 alignment/coupling/inclusion pair checks. Feasibility and bisection are linear
+in marked count per cut, additionally bounded by parser limits and 4..40 steps. Exceeding the pair
+budget returns UNKNOWN with no aggregate score; any local scopes are partial evidence. The small
+exact fraction kernel avoids a fuzzy-controller dependency while preserving shared-scale reasoning.
+
+Tests cover analytic values, exact threshold edges inside coarse report bounds, scaling laws,
+directionality, symmetry, uncertainty relaxation, whole sibling vectors, nesting, missing marks,
+context mismatches, coupling, immutable policy isolation, budget exhaustion and CORINE/GET fixtures.
+Community calibration remains necessary. Future versions may add other distributions, per-measure
+uncertainty, differing partial variable sets, unit/support mediation, aggregation across taxa, coupled
+absolute/relative constraints and full logical satisfiability.

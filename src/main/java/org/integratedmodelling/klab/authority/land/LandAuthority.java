@@ -23,7 +23,7 @@ public final class LandAuthority implements Authority {
   private final Map<String, PatternCatalog> catalogs = new ConcurrentHashMap<>();
   private final Map<String, Bridge> bridges = new ConcurrentHashMap<>();
   private record Bridge(ConfigurationRequest request, PatternSemantics semantics,
-                        List<PatternCatalog> catalogs, Map<String, String> identities) {}
+                        List<PatternCatalog> catalogs, Map<String, String> identities, MediationPolicy mediation) {}
 
   /** Load syntax-checked seed data; worldview validation still occurs separately for each bridge. */
   public LandAuthority() {
@@ -63,17 +63,19 @@ public final class LandAuthority implements Authority {
   }
 
   @Override public String getUrn() { return URN; }
-  @Override public CachePolicy getCachePolicy() { return new CachePolicy("cover-rule-2", 0, 0, 0); }
+  @Override public CachePolicy getCachePolicy() { return new CachePolicy("cover-fuzzy-ratios-1", 0, 0, 0); }
 
   @Override public String configure(ConfigurationRequest request) {
     if (!URN.equals(request.parameters().get("urn"))) throw new IllegalArgumentException("Wrong LAND provider URN");
     for (var key : request.parameters().keySet())
-      if (!Set.of("urn", "domain", "catalogs", "semanticBoundaries").contains(key))
+      if (!Set.of("urn", "domain", "catalogs", "semanticBoundaries", "mediation").contains(key))
         throw new IllegalArgumentException("Unknown LAND parameter: " + key);
     request.requireSupportedBoundaries(Set.of());
     var semantics = worldviews.get(request.worldview());
     if (semantics == null) throw new IllegalStateException("Bind semantic access for worldview " + request.worldview() + " before configuring LAND");
     semantics.validate(request.rootIdentity(), PatternSemantics.Role.IDENTITY);
+    MediationPolicy mediation = request.parameters().containsKey("mediation")
+        ? MediationPolicy.parse(request.parameters().get("mediation"),semantics) : MediationPolicy.disabled();
     if (!(request.parameters().get("domain") instanceof String domainName))
       throw new IllegalArgumentException("domain must be LULC or ECOSYSTEM");
     var domain = PatternCatalog.Domain.valueOf(domainName);
@@ -93,7 +95,7 @@ public final class LandAuthority implements Authority {
       }
     }
     String id = UUID.randomUUID().toString();
-    bridges.put(id, new Bridge(request, semantics, List.copyOf(selected), Map.copyOf(patterns)));
+    bridges.put(id, new Bridge(request, semantics, List.copyOf(selected), Map.copyOf(patterns),mediation));
     return id;
   }
 
@@ -146,11 +148,37 @@ public final class LandAuthority implements Authority {
   }
   @Override public SemanticDistance semanticDistance(String configurationId, String targetId, String candidateId) {
     var comparison = compareIdentities(configurationId,targetId,candidateId);
-    return switch (comparison.status()) {
-      case EQUIVALENT -> new SemanticDistance(DistanceStatus.COMPATIBLE,0,comparison.explanations());
-      case RIGHT_REFINES_LEFT -> new SemanticDistance(DistanceStatus.COMPATIBLE,1,comparison.explanations());
-      default -> new SemanticDistance(DistanceStatus.UNKNOWN,-1,comparison.explanations());
-    };
+    if (comparison.status() == PatternComparison.Status.EQUIVALENT)
+      return new SemanticDistance(DistanceStatus.COMPATIBLE,0,comparison.explanations());
+    if (comparison.status() == PatternComparison.Status.RIGHT_REFINES_LEFT)
+      return new SemanticDistance(DistanceStatus.COMPATIBLE,1,comparison.explanations());
+    var result = mediate(configurationId,targetId,candidateId);
+    var explanation = new ArrayList<>(result.explanations());
+    explanation.add("Mediation policy " + result.policyFingerprint() + "; overlap=" + result.overlap());
+    if (result.status() != MediationResult.Status.DEFINED || !result.rightAdmittedForLeft())
+      return new SemanticDistance(DistanceStatus.UNKNOWN,-1,explanation);
+    if (result.leftEntailsRight() && result.rightEntailsLeft()) return new SemanticDistance(DistanceStatus.COMPATIBLE,0,explanation);
+    int distance = java.math.BigDecimal.ONE.subtract(result.overlap().lower()).multiply(new java.math.BigDecimal("100"))
+        .setScale(0,java.math.RoundingMode.CEILING).intValueExact();
+    return new SemanticDistance(DistanceStatus.COMPATIBLE,Math.max(1,Math.min(100,distance)),explanation);
+  }
+
+  /** Immutable snapshot. Changing a policy requires configuring a new independent bridge. */
+  public MediationPolicy getMediationPolicy(String configurationId) { return bridge(configurationId).mediation; }
+
+  /** Symmetric fuzzy overlap plus both directional proofs/admissions; never substitutes overlap for entailment. */
+  public MediationResult mediate(String configurationId,String left,String right) {
+    var bridge = bridge(configurationId);
+    var exact = compareIdentities(configurationId,left,right);
+    boolean a = left.startsWith(PatternRuleYaml.PREFIX), b = right.startsWith(PatternRuleYaml.PREFIX);
+    if (a != b) return new MediationResult(MediationResult.Status.UNKNOWN,null,MediationResult.OverlapDecision.UNASSESSED,
+        false,false,false,false,exact,bridge.mediation,bridge.mediation.fingerprint(),bridge.semantics.worldview(),left,right,List.of(),
+        List.of("Expression-only and typed-rule identities require an explicit semantic bridge"));
+    PatternRule ar = a ? validateRule(configurationId,PatternRuleYaml.decode(left)).rule() : null;
+    PatternRule br = b ? validateRule(configurationId,PatternRuleYaml.decode(right)).rule() : null;
+    CoverPattern ap = a ? PatternParser.parse(ar.composition()) : validatePattern(configurationId,left);
+    CoverPattern bp = b ? PatternParser.parse(br.composition()) : validatePattern(configurationId,right);
+    return FuzzyMediation.compare(ap,bp,ar,br,bridge.semantics,bridge.mediation,exact);
   }
 
   public record AuditFinding(String left, String right, PatternComparison comparison) {}

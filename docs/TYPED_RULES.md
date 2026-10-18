@@ -163,10 +163,10 @@ updated sibling API; see the [shared patch handoff](patches/README.md).
 ## Comparison through normal Reasoner distance
 
 LAND implements the shared `Authority.semanticDistance(configurationId, targetId, candidateId)` hook.
-Direction matters: the candidate must entail the target. Exact equivalence returns COMPATIBLE/0;
-a proven candidate refinement returns COMPATIBLE/1. This is a conservative ranking step, not a fuzzy
-similarity or a count of ontology edges. An unproven direction returns UNKNOWN/-1. Overlap alone does
-not admit a candidate, and UNKNOWN does not assert ecological disjointness.
+Direction matters: exact equivalence returns COMPATIBLE/0 and proven candidate refinement returns
+COMPATIBLE/1. Optional [fuzzy mediation](../README.md#fuzzy-mediation) adds relative-quantity containment
+or explicitly configured alpha-cut admission. Overlap alone does not admit a candidate, and UNKNOWN
+does not assert ecological disjointness. The exact APIs below remain policy-independent.
 
 `RuleComparison` proves a limited set of implications: existing composition refinement, identical
 participant/bearer declarations and profiles, same-support/unit interval containment including
@@ -181,9 +181,10 @@ restrictions. The typed shared result preserves UNKNOWN versus INCOMPATIBLE; nor
 matching maps both to a rejected candidate. Existing providers' UNSUPPORTED default retains hierarchy
 matching. LAND's current solver does not claim INCOMPATIBLE.
 
-No fuzzy parameters are accepted yet. Tolerances and thresholds remain a **per-authority-configuration**
-design obligation in [MEDIATION.md](MEDIATION.md), separate from source definition intervals. No new
-global Reasoner tolerance was introduced. Distance is uncached, and the shared matcher bypasses
+The initial `mediation` parameters are specified in the [README](../README.md#fuzzy-mediation)
+and [MEDIATION.md](MEDIATION.md). Tolerances and thresholds are **per authority configuration**,
+separate from source definition intervals. No global Reasoner tolerance was introduced.
+Distance is uncached, and the shared matcher bypasses
 aggregate distance caches while authorities are configured pending a policy-revision contract.
 
 ## Reference observation evaluation
@@ -203,7 +204,7 @@ values cannot establish an ecosystem occurrence. Callers own semantic validation
 admissibility. This evaluator is separate from class-definition mediation and is not yet exposed as
 a k.LAB `@Library`, observation service or generated model.
 
-Remaining extensions include reviewed profile evaluators, bearer inference, contextual unit/aggregation
-mediation, full logical satisfiability, cycle equivalence, uncertain quantity arithmetic, richer distance
+Remaining extensions include reviewed observation/profile evaluators, bearer inference, contextual unit/aggregation
+mediation, full logical satisfiability, cycle equivalence, coupled quantity arithmetic, richer distance
 explanations in service transport and k.IM generation. The new AST records their inputs and obligations
 without treating unsupported criteria as false or assigning invented compatibility scores.

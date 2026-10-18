@@ -1,0 +1,17 @@
+# Matches the invented SeasonalMarshCycleRule profile, not an official GET duration threshold.
+version: fuzzy-ratios-1
+spreadMode: RELATIVE
+spread: "0.25"
+steps: 24
+overlapThreshold: "0.5"
+admission: PROVEN_ONLY
+admissionAlpha: "0.5"
+configurations:
+  "ecosystem.seed:HydroperiodCycle":
+    interpretation: "urn:land:profiles:hydroperiod-duration:1"
+    measure: DURATION
+    support:
+      space: habitat-patch
+      time: one-unanchored-cycle
+      aggregation: total-phase-occupancy
+    independentArguments: true

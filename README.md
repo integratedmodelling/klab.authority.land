@@ -7,8 +7,10 @@ names rather than the expressions themselves.
 
 This is an initial implementation of the pattern language, semantic validation adapter, standard
 Authority provider, versioned catalog/codelist API, typed rule envelopes and conservative entailment.
-The fuzzy mediation engine needs a separate specification; its proposed design and open decisions
-are in [Mediation design](docs/MEDIATION.md). No fuzzy thresholds or tolerances are implemented.
+The initial [fuzzy mediation engine](#fuzzy-mediation) compares relative quantities using positive
+triangular weights, exact rational alpha cuts and an immutable policy for each authority bridge.
+It supports spatial cover and relative phase duration when their measure and support are defined.
+The [mediation specification](docs/MEDIATION.md) gives the mathematics and remaining limitations.
 Two tentative classpath YAML catalogs now supply all 44 CORINE level-3 aliases and all 17
 MODIS MCD12Q1 IGBP aliases. These are deliberately incomplete semantic translations for testing,
 not official implementations. See [Seed catalogs and maintenance](docs/SEED_CATALOGS.md) for their
@@ -27,7 +29,8 @@ GET/EUNIS review cases. The [typed rule guide](docs/TYPED_RULES.md) documents pa
 observable intervals, alternatives/cardinality, qualifications, events/processes, relationships,
 temporal profiles, validation obligations and reference evidence evaluation. LAND now implements
 the shared Authority semantic-distance hook through normal Reasoner matching; the accompanying
-[klab-services patch](docs/patches/README.md) is required. This remains exact, conservative mediation.
+[klab-services patch](docs/patches/README.md) supplies the shared contract. Exact comparison remains
+available alongside optional fuzzy mediation; no further sibling edits are needed for this engine.
 
 ## Pattern language
 
@@ -135,8 +138,8 @@ Configuration parameters currently accepted are:
 | `semanticBoundaries` | Only an empty mapping is supported in this first version |
 
 The Reasoner retains the standard reserved `codelists` namespace mapping and removes it before
-provider configuration. Unknown provider parameters are rejected, including prospective mediation
-settings until their schema and interpretation are specified.
+provider configuration. Unknown provider parameters are rejected. The optional `mediation` parameter
+is documented below; it is parsed into an immutable policy rather than retaining mutable input maps.
 
 `registerCatalog(PatternCatalog)` accepts immutable legend translations with a provider-local ID,
 domain, pinned version, source URI and entries containing an alias, label and pattern expression.
@@ -214,17 +217,197 @@ This is a conservative structural helper, **not the fuzzy mediation engine**:
 Refinement assumes ordered positive-presence requirements. Configuration functors must be equivalent;
 no covariance is assumed for arbitrary configuration types. Substitution of a species for its genus
 does not transport relative abundance constraints. Different marked ratios, including proportional
-counts such as 3:1 versus 6:2, remain unresolved until uncertainty semantics are specified. Neither
+counts such as 3:1 versus 6:2, remain unresolved by this policy-independent helper. Neither
 unknown semantic relationships nor disjoint taxa establish incompatible covers: different bearers
-can coexist. No incompatibility result or numeric mediation distance is currently claimed.
+can coexist. This helper does not claim quantitative incompatibility.
 
 `auditCatalog` compares every pair of selected catalog entries (quadratic cost). Equivalent entries
 are duplicate definitions worth reviewing; strict refinement can flag potential overlap for review.
 `UNKNOWN` is not evidence of inconsistency, ambiguity or compatibility. This first audit is not an
 internal satisfiability proof for a whole classification. Cross-catalog pairs can be submitted through
 `comparePatterns`; an indexed, provenance-rich classification mediation API remains future work.
-The standard Authority name-reconciliation API is separate from pattern comparison. The current
-klab-services Authority contract has no pattern-distance delegation hook or remote route for this API.
+The standard Authority name-reconciliation API is separate from pattern comparison. Configured
+pattern distance delegates through the shared Authority hook and normal Reasoner matching routes.
+
+## Fuzzy mediation
+
+Fuzzy comparison is **opt-in for each authority configuration**. Omitting `mediation` preserves the
+previous exact behavior; `mediate()` then reports `DISABLED` with no numeric overlap score. Existing
+catalogs and identity codes do not change. These are initial mathematical defaults for testing,
+not thresholds calibrated against CORINE, GET, EUNIS or a particular ecosystem community.
+
+### Configure a bridge
+
+For a spatial cover interpretation, extend an existing worldview authority declaration as follows:
+
+```text
+identity CoverClass requires authority LAND {
+    urn: "klab.authority.land",
+    domain: "LULC",
+    catalogs: ["corine_2018_draft"],
+    codelists: { corine_2018_draft: "land.cover" },
+    mediation: {
+        version: "fuzzy-ratios-1",
+        spreadMode: "RELATIVE",
+        spread: 0.25,
+        steps: 24,
+        overlapThreshold: 0.5,
+        admission: "PROVEN_ONLY",
+        admissionAlpha: 0.5,
+        configurations: {
+            "physical:HorizontalArrangement": {
+                interpretation: "urn:land:profiles:horizontal-area:1",
+                measure: "AREA",
+                support: {
+                    space: "habitat-patch",
+                    time: "reference-window",
+                    aggregation: "total-area"
+                },
+                independentArguments: true
+            }
+        }
+    }
+};
+```
+
+The same mapping can be passed as `parameters.get("mediation")` in a Java
+`Authority.ConfigurationRequest`. Host semantic access must already be bound, as described above.
+The context is a reviewed definition of how to compare quantities, not a data resource or an
+automatic spatial/temporal alignment operation. Missing context yields `UNKNOWN`, not an area default.
+Complete standalone policy mappings are bundled as
+[`fuzzy-area-example.yaml`](src/main/resources/mediation/fuzzy-area-example.yaml) and
+[`fuzzy-duration-example.yaml`](src/main/resources/mediation/fuzzy-duration-example.yaml).
+Load a mapping with the host YAML tooling and pass it as `mediation`; these files are not selected
+automatically. Both are exercised by the numerical tests.
+
+| Field | Default / required value | Meaning and validation |
+| --- | --- | --- |
+| `version` | Required: `fuzzy-ratios-1` | Pins this numerical and decision specification. Unknown versions fail configuration. |
+| `spreadMode` | `RELATIVE` | `RELATIVE` uses half-width `spread*n`; `ABSOLUTE` uses half-width `spread`. |
+| `spread` | `0.25` | Decimal in [0,1). Zero gives crisp ratios. The upper bound guarantees positive denominators even for one plus. |
+| `steps` | `24` | Integral value 4..40. Possibility enclosure width is at most `2^-steps`; 24 gives approximately 0.0000000596. |
+| `overlapThreshold` | `0.5` | Decimal in (0,1], inclusive. Tests the quantitative possibility exactly, including threshold boundaries. |
+| `admission` | `PROVEN_ONLY` | `PROVEN_ONLY` requires candidate containment at every alpha. `ALPHA_CUT` opts into directional operational admission at one alpha. |
+| `admissionAlpha` | `0.5` | Decimal in (0,1], used only by `ALPHA_CUT`. It is separate from the overlap threshold. |
+| `configurations` | Empty mapping | Up to 64 quantity-functor bindings. An empty mapping permits no quantified scope. Keys resolve as worldview configurations. |
+| Binding `interpretation` | Required | Pinned identifier for the quantity interpretation. Typed-rule profiles must match it exactly. |
+| Binding `measure` | Required | `AREA`, `VOLUME`, `DURATION`, `COUNT`, `BIOMASS` or `OTHER`. OTHER must be explained by the pinned interpretation. |
+| Binding `support` | Required | Nonblank `space`, `time`, `aggregation` identifiers. These identify comparison support, not observed coordinates or inferred units. |
+| Binding `independentArguments` | Required: `true` | Explicit review assertion that local quantity variables have no additional coupling/aggregation constraints for this solver. False is unsupported and rejected. |
+
+Numeric parameters accept decimal numbers or decimal strings; strings avoid loss of precision in
+clients. `steps` must have an integral value. Decimal precision/scale are bounded; NaN, infinity,
+unknown fields, incomplete contexts, duplicate canonical functors and malformed types are rejected.
+Each context is immutable. Configure a new bridge to change policy; one bridge cannot change another's
+tolerance. The policy snapshot and SHA-256 fingerprint are available in every mediation result and
+through `getMediationPolicy(configurationId)`.
+
+The binding's measure/support/interpretation are bridge semantics, while spread and admission settings
+are comparison policy. Changing a measure requires a distinct or reconfigured bridge interpretation;
+it cannot make area and duration interchangeable. Changing uncertainty does not rewrite canonical
+identity codes. Normal shared matching isolates independently configured bridges, and distance caches
+remain disabled. `Capabilities.isFuzzy()` retains its existing identifier/alias-search meaning; numerical
+mediation is controlled by this policy and advertised through the semantic-distance capability.
+
+### Use the API and interpret the result
+
+```java
+String left = "physical:HorizontalArrangement(+++landcover.seed:Crop,+landcover.seed:NaturalVegetation)";
+String right = "physical:HorizontalArrangement(++++landcover.seed:Crop,+landcover.seed:NaturalVegetation)";
+MediationResult result = authority.mediate(configurationId, left, right);
+
+result.status();                  // DEFINED, UNKNOWN or DISABLED
+result.overlap();                 // certified [lower, upper] possibility enclosure, or null
+result.overlapDecision();         // SUFFICIENT, LOW or UNASSESSED
+result.leftEntailsRight();        // proof under the full configured fuzzy model
+result.rightEntailsLeft();
+result.rightAdmittedForLeft();    // candidate=right, target=left; includes the configured admission policy
+result.scopes();                  // configuration paths, context, marked positions and local results
+result.policyFingerprint();       // immutable policy provenance
+
+Authority.SemanticDistance distance = authority.semanticDistance(configurationId, left, right);
+```
+
+The first expression is the **invented** 3:1 dominance fixture for CORINE 243, not an official class
+ratio; the 4:1 expression is another testing variant. With the policy above, their quantitative
+possibility is approximately **0.7128129211**, above 0.5. Neither entails the other, so normal
+Reasoner matching still returns `UNKNOWN/-1`. Overlap can motivate community review without
+authorizing a replacement classification. A low score is not an ecological disjointness proof.
+
+`RELATIVE` spread makes proportional counts such as 3:1 and 6:2 fuzzy-equivalent: common scaling
+does not change uncertainty. `ABSOLUTE` spread makes 6:2 more precise than 3:1, so it can supply the
+broader 3:1 target while the reverse is unproven. The original `comparePatterns`/`compareIdentities`
+methods and `auditCatalog` retain their exact, policy-independent results; use `mediate` for fuzzy
+evidence. Inputs must be expressions or canonical `rule2:` identity codes; resolve catalog aliases
+through reconciliation/codelists first.
+
+For an explicitly tolerant operational classifier, use e.g. `spreadMode: "ABSOLUTE"`, `spread: 0.75`,
+`admission: "ALPHA_CUT"`, `admissionAlpha: 0.5`. A 7:2 candidate's 0.5-cut is contained in a 3:1
+target's 0.5-cut. Their possibility is approximately 0.8974358974; at overlap threshold 0.5, normal
+distance is **11**. This is a configured alpha-cut admission, not full fuzzy entailment. Raising the
+overlap threshold to 0.95 rejects it. Increasing admission alpha need not monotonically tighten
+containment: both candidate and target cuts change, so calibrate these two controls separately.
+
+The hook preserves existing exact equivalence/refinement (distance 0/1). Otherwise, full-model fuzzy
+equivalence returns 0, and an admitted candidate receives
+`max(1, ceil(100*(1-overlap.lower)))`, bounded at 100. Using the lower bound makes rounding conservative.
+Unsupported or non-admitted comparisons return `UNKNOWN/-1`; LAND does not use a low score to return
+`INCOMPATIBLE`. Explanations identify the policy and numeric enclosure. No new shared distance API or
+LAND-specific HTTP route is required.
+
+### Duration and nested scopes
+
+The existing `SeasonalMarshCycleRule` fixture supplies a DURATION profile. To compare its invented
+3:1 phase ratio with a 4:1 variant, bind `ecosystem.seed:HydroperiodCycle` to:
+
+```yaml
+interpretation: "urn:land:profiles:hydroperiod-duration:1"
+measure: DURATION
+support:
+  space: habitat-patch
+  time: one-unanchored-cycle
+  aggregation: total-phase-occupancy
+independentArguments: true
+```
+
+The complete support must match the rule profile. It measures relative time spans within a cycle,
+not nine versus three calendar months. The fixture's separate six-month annual interval remains a
+crisp defining constraint. Spatial child quantities use their own AREA binding and reference support;
+they are not combined with a duration ratio. Nested independent quantitative possibilities aggregate
+by minimum. Written phase order is retained; this engine does not discover temporal causality,
+align cyclic rotations, align extents, infer bearers or evaluate occurrence observations.
+
+### Arithmetic and supported boundary
+
+For plus count `n`, let `d=spread*n` (RELATIVE) or `d=spread` (ABSOLUTE). Its triangular weight has
+center `n`, support `[n-d,n+d]`, and alpha-cut `[n-d*(1-alpha),n+d*(1-alpha)]`. A configuration is a
+**projective box**: its marked quantities may take those weights up to one common positive scale.
+It is not automatically normalized into cover percentages. Unmarked arguments impose no ratio;
+a single marked argument also imposes no relative constraint. An unmarked vector is unrestricted,
+so adding marks refines it rather than treating it as equal shares.
+
+At a fixed alpha, the two aligned vectors overlap only if **one scale** satisfies every marked
+component. The solver intersects `[left.lower/right.upper, left.upper/right.lower]` over all marked
+positions. This retains shared-variable dependence. Possibility is the highest feasible alpha;
+bisection returns an enclosure, while threshold feasibility is tested directly with exact rational
+arithmetic. Full fuzzy containment is proved over **all** alpha values using exact quadratic maxima,
+not inferred from a finite sampling grid. No external fuzzy-controller library is required.
+
+The initial solver needs a proven structural/semantic direction after removing marks, identical
+marked-position sets when both sides specify ratios, and equivalent quantified participants. It
+rejects repeated equivalent quantities and known species/genus coupling. Unknown taxonomic overlap
+is not proof of independence: the explicit context assertion must be reviewed. A changed inner
+definition of an already quantified component requires aggregation semantics and yields UNKNOWN.
+One side may be wholly unquantified. Root marks remain unscoped and cannot receive a fuzzy score.
+
+Typed rules retain their criteria, participant/bearer declarations and profiles during comparison.
+Absolute intervals remain crisp; different units, supports or unresolved logical directions are not
+smoothed away. The overlap score concerns the relative-quantity subsystem, conditional on those
+structural checks and the declared independence assumptions. It is not a full joint satisfiability
+proof involving other observables, hidden correlations or data support. Missing/unsupported evidence
+has a null score, never zero. A 65,536-pair work budget returns UNKNOWN rather than a partial score.
+General variable matching, differing partial mark sets, aggregation across taxa, automatic unit/support
+mediation and coupled observable/ratio constraints remain future extensions.
 
 ## Future model generation
 
@@ -303,7 +486,7 @@ They deliberately do not claim a quantitative duration evaluator or official GET
 The exploratory team workbook was read-only; its digest and selected review leads are documented
 in the [WEED assessment](docs/ECOSYSTEM_INTEROPERABILITY.md).
 
-Verification on 2026-10-18: `mvn -o package` passed all 65 tests against the updated shared API and
+Verification on 2026-10-18: `mvn -o package` passed all 80 tests against the updated shared API and
 generated the component archive. The JAR includes seven YAML catalogs, three proposed vocabularies,
 the typed rule API and separate source-reference indexes. The shared distance patch passed 43 focused
 tests; broader shared-suite limitations are recorded in the [handoff notes](docs/patches/README.md).

@@ -1,0 +1,17 @@
+# Explicit test policy, not community-calibrated classification tolerances. No automatic selection.
+version: fuzzy-ratios-1
+spreadMode: RELATIVE
+spread: "0.25"
+steps: 24
+overlapThreshold: "0.5"
+admission: PROVEN_ONLY
+admissionAlpha: "0.5"
+configurations:
+  "physical:HorizontalArrangement":
+    interpretation: "urn:land:profiles:horizontal-area:1"
+    measure: AREA
+    support:
+      space: habitat-patch
+      time: reference-window
+      aggregation: total-area
+    independentArguments: true
