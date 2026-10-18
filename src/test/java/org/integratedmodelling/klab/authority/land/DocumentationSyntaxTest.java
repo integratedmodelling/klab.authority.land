@@ -37,7 +37,7 @@ class DocumentationSyntaxTest {
 
   @Test void everyDocumentedAuthorityBindingParsesWithoutChangingItsText() throws Exception {
     var parser = new WorldviewStandaloneSetup().createInjectorAndDoEMFRegistration().getInstance(IParser.class);
-    var snippets = snippets(); assertEquals(6, snippets.size(), "Audit all documented binding examples");
+    var snippets = snippets(); assertEquals(7, snippets.size(), "Audit all documented binding examples");
     for (var snippet : snippets) {
       var parsed = parser.parse(new StringReader(HEADER + snippet.declaration()));
       var errors = new ArrayList<String>();

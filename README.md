@@ -1,5 +1,9 @@
 # Earth cover authority
 
+For exact catalog entries hosted without pattern reasoning, see
+[Entry-only hosting and offline replay](docs/ENTRY_ONLY_HOSTING.md). This explicit mode retains
+the Reasoner's root and authority checks and supports deterministic configured snapshots.
+
 `klab.authority.land` describes earth-cover and ecosystem classes through ordered patterns of
 worldview configurations and identities. Its purpose is to make verbal classification legends
 explicit enough to compare, mediate, and review. Users normally encounter curated codelist

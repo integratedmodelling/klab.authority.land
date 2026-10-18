@@ -9,6 +9,8 @@ import org.integratedmodelling.klab.api.collections.Pair;
 import org.integratedmodelling.klab.api.knowledge.Codelist;
 import org.integratedmodelling.klab.api.knowledge.impl.CodelistImpl;
 import org.integratedmodelling.klab.api.services.Authority;
+import org.integratedmodelling.klab.api.services.SnapshottingAuthority;
+import org.integratedmodelling.klab.api.services.ConfiguredAuthoritySnapshot;
 import org.integratedmodelling.klab.api.services.reasoner.objects.AuthorityIdentitySyntax;
 import org.integratedmodelling.klab.api.services.runtime.Notification;
 
@@ -17,11 +19,18 @@ import org.integratedmodelling.klab.api.services.runtime.Notification;
     urn = LandAuthority.URN, version = "1.0.0", embeddable = true, searchable = true,
     codelists = {"corine_2018_draft", "igbp_modis61_draft", "get21_ecosystem_pilot",
         "eunis2021_terrestrial_pilot", "eunis2022_marine_pilot", "eunis2012_inland_pilot", "ecosystem_rules_pilot"})
-public final class LandAuthority implements Authority {
+public final class LandAuthority implements SnapshottingAuthority {
   public static final String URN = "klab.authority.land";
   private final Map<String, PatternSemantics> worldviews = new ConcurrentHashMap<>();
   private final Map<String, PatternCatalog> catalogs = new ConcurrentHashMap<>();
   private final Map<String, Bridge> bridges = new ConcurrentHashMap<>();
+  private boolean closed;
+  /** Entry bridges carry no pattern reasoning capability. The host checks the declared root. */
+  private record EntrySemantics(String worldview) implements PatternSemantics {
+    @Override public String validate(String reference, Role role) {
+      throw new IllegalStateException("ENTRY_ONLY bridges cannot validate or execute pattern/rule definitions");
+    }
+  }
   private record BoundEntry(PatternCatalog catalog, PatternCatalog.Entry entry) {}
   private record Bridge(ConfigurationRequest request, PatternSemantics semantics,
                         List<PatternCatalog> catalogs, Map<String, BoundEntry> entries, MediationPolicy mediation) {}
@@ -41,7 +50,8 @@ public final class LandAuthority implements Authority {
   public Map<String, PatternCatalog> getCatalogs() { return Map.copyOf(catalogs); }
 
   /** Register on the actual provider instance before configuring its worldview bridge. */
-  public void bindWorldview(PatternSemantics semantics) {
+  public synchronized void bindWorldview(PatternSemantics semantics) {
+    requireOpen();
     Objects.requireNonNull(semantics);
     if (semantics.worldview() == null || semantics.worldview().isBlank())
       throw new IllegalArgumentException("A semantic context needs a worldview");
@@ -51,12 +61,13 @@ public final class LandAuthority implements Authority {
   }
 
   /** Release every bridge for this worldview when unloading it. */
-  public void unbindWorldview(String worldview) {
+  public synchronized void unbindWorldview(String worldview) {
     worldviews.remove(worldview);
     bridges.entrySet().removeIf(e -> e.getValue().request.worldview().equals(worldview));
   }
 
-  public void registerCatalog(PatternCatalog catalog) {
+  public synchronized void registerCatalog(PatternCatalog catalog) {
+    requireOpen();
     Objects.requireNonNull(catalog);
     var existing = catalogs.putIfAbsent(catalog.id(), catalog);
     if (existing != null && !existing.equals(catalog))
@@ -66,15 +77,22 @@ public final class LandAuthority implements Authority {
   @Override public String getUrn() { return URN; }
   @Override public CachePolicy getCachePolicy() { return new CachePolicy("catalog-entry-identities-1", 0, 0, 0); }
 
-  @Override public String configure(ConfigurationRequest request) {
+  @Override public synchronized String configure(ConfigurationRequest request) {
+    requireOpen();
     if (!URN.equals(request.parameters().get("urn"))) throw new IllegalArgumentException("Wrong LAND provider URN");
     for (var key : request.parameters().keySet())
-      if (!Set.of("urn", "domain", "catalogs", "semanticBoundaries", "mediation").contains(key))
+      if (!Set.of("urn", "domain", "catalogs", "semanticBoundaries", "mediation", "mode").contains(key))
         throw new IllegalArgumentException("Unknown LAND parameter: " + key);
     request.requireSupportedBoundaries(Set.of());
-    var semantics = worldviews.get(request.worldview());
+    boolean entriesOnly = request.parameters().containsKey("mode");
+    if (entriesOnly && !"ENTRY_ONLY".equals(request.parameters().get("mode")))
+      throw new IllegalArgumentException("The explicit LAND mode must be ENTRY_ONLY");
+    if (entriesOnly && request.parameters().containsKey("mediation"))
+      throw new IllegalArgumentException("ENTRY_ONLY cannot configure pattern mediation");
+    if (entriesOnly) request = new ConfiguredAuthoritySnapshot(EntrySnapshotCodec.FORMAT, URN, request, new byte[]{1}).request();
+    PatternSemantics semantics = entriesOnly ? new EntrySemantics(request.worldview()) : worldviews.get(request.worldview());
     if (semantics == null) throw new IllegalStateException("Bind semantic access for worldview " + request.worldview() + " before configuring LAND");
-    semantics.validate(request.rootIdentity(), PatternSemantics.Role.IDENTITY);
+    if (!entriesOnly) semantics.validate(request.rootIdentity(), PatternSemantics.Role.IDENTITY);
     MediationPolicy mediation = request.parameters().containsKey("mediation")
         ? MediationPolicy.parse(request.parameters().get("mediation"),semantics) : MediationPolicy.disabled();
     if (!(request.parameters().get("domain") instanceof String domainName))
@@ -91,7 +109,7 @@ public final class LandAuthority implements Authority {
         throw new IllegalArgumentException("Unknown, duplicate or wrong-domain catalog: " + id);
       selected.add(catalog);
       for (var entry : catalog.entries()) {
-        if (entry.definitionReview() == PatternCatalog.DefinitionReview.REVIEWED) {
+        if (!entriesOnly && entry.definitionReview() == PatternCatalog.DefinitionReview.REVIEWED) {
           if (entry.rule() == null) validateCode(entry.definitionCode(), semantics);
           else {
             if (!(semantics instanceof RuleSemantics))
@@ -108,7 +126,32 @@ public final class LandAuthority implements Authority {
     return id;
   }
 
-  @Override public void releaseConfiguration(String id) { if (id != null) bridges.remove(id); }
+  @Override public synchronized void releaseConfiguration(String id) { if (id != null) bridges.remove(id); }
+
+  @Override public synchronized ConfiguredAuthoritySnapshot captureConfiguration(String id) {
+    var bridge = bridge(id);
+    if (!(bridge.semantics instanceof EntrySemantics))
+      throw new IllegalStateException("Only ENTRY_ONLY bridges have an offline snapshot contract");
+    return EntrySnapshotCodec.capture(bridge.request, bridge.catalogs);
+  }
+
+  @Override public synchronized String restoreConfiguration(ConfigurationRequest request, ConfiguredAuthoritySnapshot snapshot) {
+    requireOpen();
+    var selected = EntrySnapshotCodec.restore(request, snapshot);
+    var entries = new LinkedHashMap<String, BoundEntry>();
+    for (var catalog : selected) for (var entry : catalog.entries())
+      entries.put(catalog.identityCode(entry), new BoundEntry(catalog, entry));
+    String id = UUID.randomUUID().toString();
+    bridges.put(id, new Bridge(snapshot.request(), new EntrySemantics(request.worldview()),
+        selected, Map.copyOf(entries), MediationPolicy.disabled()));
+    return id;
+  }
+
+  @Override public synchronized void close() {
+    closed = true;
+    bridges.clear(); worldviews.clear(); catalogs.clear();
+  }
+  private void requireOpen() { if (closed) throw new IllegalStateException("LAND provider is closed"); }
 
   /** Validate concepts individually, without imposing inherency or supplying identity bearers. */
   public CoverPattern validatePattern(String configurationId, String expression) {
@@ -322,9 +365,10 @@ public final class LandAuthority implements Authority {
   }
 
   @Override public Map<String, CodelistDefinition> getCodelistDefinitions(String configurationId) {
+    var bridge = bridge(configurationId);
     var result = new LinkedHashMap<String, CodelistDefinition>();
     getCodelists(configurationId).forEach((id, list) -> result.put(id,
-        new CodelistDefinition(list, catalogs.get(id).metadata().acceptsProposals())));
+        new CodelistDefinition(list, bridge.catalogs.stream().filter(c -> c.id().equals(id)).findFirst().orElseThrow().metadata().acceptsProposals())));
     return Map.copyOf(result);
   }
 
