@@ -27,7 +27,7 @@ illustrative; the host must already supply the real worldview and validated iden
 identity CoverIdentity requires authority LAND {
     urn: "klab.authority.land",
     domain: "LULC",
-    catalogs: ["igbp_modis61_draft"],
+    catalogs: ("igbp_modis61_draft"),
     codelists: { igbp_modis61_draft: "land.igbp" }
 };
 

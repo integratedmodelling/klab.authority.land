@@ -20,8 +20,9 @@ not generated classifications or official crosswalks. Translation revision `draf
 from the source edition. Each entry retains a quoted source code, a legal concept alias, label,
 pattern, source link and notes about omitted criteria. Catalog-level notes apply to every entry.
 These notes reach codelist descriptions and resolved identity descriptions, so users can see losses
-without opening the source YAML. Search accepts source codes as text; `resolveIdentity` still
-expects a pattern, not an unqualified source number such as `311`.
+without opening the source YAML. Search accepts source codes as text; `resolveIdentity` accepts a
+selected entry envelope or a separate direct pattern/rule definition, not an unqualified source
+number such as `311`.
 
 The separate [CORINE translation attempt](CORINE_DRAFT.md) and [IGBP translation attempt](IGBP_DRAFT.md)
 record classification-specific choices, unresolved ambiguities and complete entry inventories.
@@ -96,7 +97,7 @@ fixture's plain `identity CoverClass;` with a requirement such as:
 identity CoverClass requires authority LAND {
     urn: "klab.authority.land",
     domain: "LULC",
-    catalogs: ["corine_2018_draft", "igbp_modis61_draft"],
+    catalogs: ("corine_2018_draft", "igbp_modis61_draft"),
     codelists: {
         corine_2018_draft: "landcover.corine",
         igbp_modis61_draft: "landcover.igbp",
@@ -113,7 +114,7 @@ provider. No selection means no seed codelists, even though the YAML is register
 
 The seed namespaces expose aliases such as `landcover.corine:BroadLeavedForest` and
 `landcover.igbp:EvergreenNeedleleafForest`. On the Java API, inspect provenance through
-`getCatalogs()`, use `getCodelists(bridge)` for alias-to-pattern mappings, and select a specific catalog
+`getCatalogs()`, use `getCodelists(bridge)` for alias-to-entry-ID mappings, and select a specific catalog
 when reconciling aliases shared between classifications:
 
 ```java

@@ -179,7 +179,7 @@ and bind its namespace through the worldview, after adding the host wiring above
 identity CoverIdentity requires authority LAND {
     urn: "klab.authority.land",
     domain: "LULC",
-    catalogs: ["illustrative_v1"],
+    catalogs: ("illustrative_v1"),
     codelists: { illustrative_v1: "land.cover" }
 };
 ```
@@ -248,7 +248,7 @@ For a spatial cover interpretation, extend an existing worldview authority decla
 identity CoverClass requires authority LAND {
     urn: "klab.authority.land",
     domain: "LULC",
-    catalogs: ["corine_2018_draft"],
+    catalogs: ("corine_2018_draft"),
     codelists: { corine_2018_draft: "land.cover" },
     mediation: {
         version: "fuzzy-ratios-1",

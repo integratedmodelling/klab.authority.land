@@ -34,7 +34,7 @@ Select this catalog independently:
 identity EcosystemClass requires authority ECOSYSTEM {
     urn: "klab.authority.land",
     domain: "ECOSYSTEM",
-    catalogs: ["ecosystem_rules_pilot"],
+    catalogs: ("ecosystem_rules_pilot"),
     codelists: { ecosystem_rules_pilot: "ecosystems.rules" }
 };
 ```

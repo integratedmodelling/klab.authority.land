@@ -135,8 +135,8 @@ the latter's plain `identity EcosystemClass;` declaration with a binding such as
 identity EcosystemClass requires authority ECOSYSTEM {
     urn: "klab.authority.land",
     domain: "ECOSYSTEM",
-    catalogs: ["get21_ecosystem_pilot", "eunis2021_terrestrial_pilot",
-               "eunis2022_marine_pilot", "eunis2012_inland_pilot"],
+    catalogs: ("get21_ecosystem_pilot", "eunis2021_terrestrial_pilot",
+               "eunis2022_marine_pilot", "eunis2012_inland_pilot"),
     codelists: {
         get21_ecosystem_pilot: "ecosystems.get",
         eunis2021_terrestrial_pilot: "ecosystems.eunis_terrestrial",

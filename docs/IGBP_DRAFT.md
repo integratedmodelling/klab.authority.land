@@ -61,10 +61,10 @@ The cited class descriptions distinguish these classes by tree cover; this draft
 unsupported mandatory understory. A more complete ecological description could be provided separately,
 with its own evidence and measurement model.
 
-After alias deduplication, these two pairs account for 17 source aliases mapping to only **15 distinct
-pattern identities**. Resolution retains both source labels and their notes. Auditing reports the
-same structural expression for each pair; this is an expected test of information loss, not a finding
-that IGBP is inconsistent. Different numeric thresholds must eventually remain distinct constraints
+These two pairs account for **17 distinct source-entry identities** with only **15 distinct optional
+draft definitions**. Each entry retains its own source label and notes. Diagnostic auditing reports
+the same structural expression for each pair without equating the source entries; this is an
+expected test of information loss, not a finding that IGBP is inconsistent. Different numeric thresholds must eventually remain distinct constraints
 rather than being hidden behind names such as “open” and “closed”.
 
 ## Other classes: 10-17
