@@ -59,10 +59,10 @@ Whitespace between tokens is ignored. Comments, negation, percentages, alternati
 observable expressions are not part of this first grammar.
 
 ```text
-physical:HorizontalCover(+++taxonomy.species:FagusSylvatica,+taxonomy.species:Pinus)
+physical:HorizontalCover(+++taxonomy.species:FagusSylvatica,+taxonomy.genera:Pinus)
 
 physical:VerticalCover(
-    physical:HorizontalCover(+++taxonomy.species:FagusSylvatica,+taxonomy.species:Pinus),
+    physical:HorizontalCover(+++taxonomy.species:FagusSylvatica,+taxonomy.genera:Pinus),
     ++physical:HorizontalCover(vegetation:GrassIdentity)
 )
 ```
@@ -89,9 +89,7 @@ Parsing is bounded at 65,536 characters, 64 nesting levels, 2,048 nodes and 128 
 Errors include the input offset. `CoverPattern` is an immutable ordered tree; `canonical()` removes
 token whitespace and preserves reference spelling, order and plus counts.
 
-The parser is a small recursive descent implementation with its grammar next to the code. I reviewed
-[dropincc.java](https://github.com/pfmiles/dropincc.java), which expresses Java grammars fluently and
-compiles them dynamically. Direct parsing currently gives this small grammar bounded recursion,
+The parser is a small recursive descent implementation with its grammar next to the code. Direct parsing currently gives this small grammar bounded recursion,
 precise offsets and no dynamic compiler/classloader dependency in a hosted component. The immutable
 syntax tree and semantic APIs allow replacing the parser if the grammar grows. No parser-generator
 dependency has been added.
