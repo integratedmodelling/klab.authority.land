@@ -436,9 +436,8 @@ provides context for the newer LCML-based tooling.
 Planned curated translations need pinned releases, source definitions, explicit unsupported criteria,
 and community review. Initial source families are [CORINE nomenclature](https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index.html),
 FAO LCCS, [IGBP/MODIS](https://lpdaac.usgs.gov/documents/196/wms_UserGuide_v1.3.pdf), national land-cover
-systems, [EUNIS](https://www.eea.europa.eu/en/datahub/datahubitem-view/123d0c9a-a6fa-4f2d-b887-5d8e5468faed),
-and [IUCN GET](https://global-ecosystems.org/). The brief mentions “NLCS”; that name is retained as an
-unresolved catalog target rather than assumed to mean the US [NLCD](https://www.usgs.gov/ngp-standards-and-specifications/national-map-land-cover-content).
+systems such as  US [NLCD](https://www.usgs.gov/ngp-standards-and-specifications/national-map-land-cover-content), [EUNIS](https://www.eea.europa.eu/en/datahub/datahubitem-view/123d0c9a-a6fa-4f2d-b887-5d8e5468faed),
+and [IUCN GET](https://global-ecosystems.org/).
 Thresholds such as absolute cover percentage, land use, climate and diagnostic ecological processes
 must not be silently approximated by plus marks when translating legends.
 
