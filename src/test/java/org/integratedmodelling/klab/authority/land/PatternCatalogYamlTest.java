@@ -57,7 +57,7 @@ class PatternCatalogYamlTest {
 
   @Test void bundlesTheTwoCompletePinnedCodeSetsWithoutNoData() {
     var catalogs = new LandAuthority().getCatalogs();
-    assertEquals(Set.of(CORINE, IGBP, "get21_ecosystem_pilot", "eunis2021_terrestrial_pilot",
+    assertEquals(Set.of("corine_entry_hierarchy_example", CORINE, IGBP, "get21_ecosystem_pilot", "eunis2021_terrestrial_pilot",
         "eunis2022_marine_pilot", "eunis2012_inland_pilot", "ecosystem_rules_pilot"), catalogs.keySet());
     assertEquals(44, catalogs.get(CORINE).entries().size());
     assertEquals(17, catalogs.get(IGBP).entries().size());
@@ -74,7 +74,8 @@ class PatternCatalogYamlTest {
       assertFalse(catalog.metadata().sourceVersion().isBlank());
       for (var entry : catalog.entries()) {
         assertNotNull(entry.source()); assertFalse(entry.notes().isEmpty());
-        assertEquals(entry.expression(), PatternParser.parse(entry.expression()).canonical());
+        if (entry.expression() != null) assertEquals(entry.expression(), PatternParser.parse(entry.expression()).canonical());
+        else assertEquals(PatternCatalog.DefinitionReview.ABSENT,entry.definitionReview());
       }
     }
     assertThrows(UnsupportedOperationException.class, catalogs::clear);
@@ -186,4 +187,22 @@ class PatternCatalogYamlTest {
     assertEquals(catalog.source(), catalog.entries().getFirst().source());
     assertThrows(UnsupportedOperationException.class, () -> catalog.entries().getFirst().notes().clear());
   }
+  @Test void schemaFourRetainsExplicitParentsAndRejectsMalformedHierarchy() throws Exception {
+    var resource = "/catalogs/corine_entry_hierarchy_example.yaml";
+    String source;
+    try (var input = getClass().getResourceAsStream(resource)) {
+      source = new String(input.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
+    }
+    assertEquals(List.of("31"), entry(load(source), "311").classParents());
+    assertTrue(entry(load(source.replace("    classParents: []\n", "")), "1").classParents().isEmpty());
+    for (var replacement : List.of("classParents: 31", "classParents: [31]",
+        "classParents: [\"unknown\"]", "classParents: [\"311\"]",
+        "classParents: [\"31\", \"31\"]")) {
+      var changed = source.replace("classParents: [\"31\"]", replacement);
+      assertThrows(IllegalArgumentException.class, () -> load(changed), replacement);
+    }
+    assertThrows(IllegalArgumentException.class, () -> load(source.replace("schemaVersion: 4", "schemaVersion: 3")));
+    assertThrows(IllegalArgumentException.class, () -> load(source.replace("classParents: []", "classParents: [\"311\"]")));
+  }
+
 }

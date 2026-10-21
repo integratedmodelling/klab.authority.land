@@ -1,0 +1,76 @@
+# LOCAL DEMONSTRATION hierarchy over source codes/labels, not an official CORINE hierarchy.
+schemaVersion: 4
+id: corine_entry_hierarchy_example
+title: "Local hierarchy demonstration using CORINE codes and labels"
+domain: LULC
+version: illustrative-1
+sourceVersion: "CLC 1990-2018 nomenclature, guidelines version 10 (2019)"
+source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index.html"
+tentative: true
+acceptsProposals: false
+notes:
+  - "Provenance: demonstration authored 2026-10-21 for hierarchy mechanism tests; the owner will supply a curated scientific hierarchy separately."
+  - "Eight source-code/label references in a local demonstration, not the complete or authoritative CORINE classification."
+  - "classParents contains locally asserted illustrative class inclusion, not official CORINE entailments; never infer from code prefixes alone."
+  - "No spatial allocation, coverage, regulatory compliance, classification rule or cross-scheme equivalence is provided."
+entries:
+  - code: "1"
+    alias: ArtificialSurfaces
+    label: "Artificial Surfaces"
+    entryVerification: UNVERIFIED
+    definitionReview: ABSENT
+    classParents: []
+    notes: ["Source label/code reference, with locally chosen illustrative parents; category 1; source class only."]
+  - code: "11"
+    alias: UrbanFabric
+    label: "Urban fabric"
+    entryVerification: UNVERIFIED
+    definitionReview: ABSENT
+    classParents: ["1"]
+    notes: ["Local illustrative inclusion follows the displayed grouping of 1.1 within category 1."]
+  - code: "111"
+    alias: ContinuousUrbanFabric
+    label: "Continuous urban fabric"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-111.html"
+    entryVerification: UNVERIFIED
+    definitionReview: ABSENT
+    classParents: ["11"]
+    notes: ["Local illustrative inclusion follows the displayed grouping of 1.1.1 within Urban fabric; no surface-classification rule encoded."]
+  - code: "112"
+    alias: DiscontinuousUrbanFabric
+    label: "Discontinuous urban fabric"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-112.html"
+    entryVerification: UNVERIFIED
+    definitionReview: ABSENT
+    classParents: ["11"]
+    notes: ["Local illustrative inclusion follows the displayed grouping of 1.1.2 within Urban fabric."]
+  - code: "3"
+    alias: ForestAndSeminaturalAreas
+    label: "Forest and seminatural areas"
+    entryVerification: UNVERIFIED
+    definitionReview: ABSENT
+    classParents: []
+    notes: ["Source label/code reference, with locally chosen illustrative parents; category 3; source class only."]
+  - code: "31"
+    alias: Forest
+    label: "Forest"
+    entryVerification: UNVERIFIED
+    definitionReview: ABSENT
+    classParents: ["3"]
+    notes: ["Official nomenclature section 3.1 supplies the forest category; no universal forest definition is introduced."]
+  - code: "311"
+    alias: BroadLeavedForest
+    label: "Broad-leaved forest"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-311.html"
+    entryVerification: UNVERIFIED
+    definitionReview: ABSENT
+    classParents: ["31"]
+    notes: ["Local illustrative Forest inclusion. Includes evergreen as well as deciduous broad-leaved vegetation; not an alias for DeciduousForest."]
+  - code: "312"
+    alias: ConiferousForest
+    label: "Coniferous forest"
+    source: "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-312.html"
+    entryVerification: UNVERIFIED
+    definitionReview: ABSENT
+    classParents: ["31"]
+    notes: ["Local illustrative Forest inclusion; no evergreen/deciduous inference encoded."]

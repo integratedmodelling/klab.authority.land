@@ -103,8 +103,8 @@ annotation as a failed identity merely because its interpretation is absent or p
 ## Matching, search and reconciliation
 
 The exact same admitted source entry, including any of its curated aliases, has distance zero.
-Different entries return `UNKNOWN` even if definitions, labels or aliases coincide and even when both
-definitions are reviewed. Entry-to-direct-definition comparisons are also `UNKNOWN`. A separately
+Different entries return `UNKNOWN` unless the selected exact catalogue explicitly declares class inclusion.
+Equal definitions, labels or aliases never establish inclusion, even when both definitions are reviewed. Entry-to-direct-definition comparisons are also `UNKNOWN`. A separately
 specified, reviewed mapping would be needed to authorize more; this implementation introduces no
 mapping registry, fuzzy entry admission or executable class-membership assertion. Existing direct
 pattern/rule comparison and optional fuzzy mathematics remain confined to their explicit route.
@@ -126,9 +126,61 @@ Old codelist values were direct pattern/rule identities; new codelist values ide
 Existing saved direct definitions remain valid on their separate route. They cannot be automatically
 migrated to a source entry because multiple source records may have collapsed into the old code.
 Pin a reviewed source catalog/revision/code when migrating annotations. The provider cache-policy
-revision changes to `catalog-entry-identities-1`; no existing host cache or capture is rewritten.
+revision changes to `catalog-entry-identities-2`; no existing host cache or capture is rewritten.
 
 This patch does not import draft catalogs or proposed vocabulary into a worldview, implement a
 classifier, add a remote protocol, register/configure a running provider, or extend host snapshot
-support. `LandIdentity` still has no pattern-derived parent edges and uses the actual configured
-identity root. Existing host binding, authorization and component-version checks remain required.
+support. `LandIdentity` exports only explicitly declared source-class parent edges, never pattern-derived parents,
+and uses the actual configured identity root. Existing host binding, authorization and component-version checks remain required.
+
+
+## Explicit entry-only class hierarchy (schema 4)
+
+Entry-only classifications may declare `classParents` as a list of **exact source-code strings in
+this same catalogue, pinned revision and source edition**. Multiple parents are permitted. Roots omit
+the list or use `[]`. These are curator assertions of class inclusion, not navigational broader links,
+code-prefix inference, observed membership, patterns, geometry or cross-scheme equivalence.
+
+```yaml
+# Within an otherwise complete schemaVersion: 4 catalogue
+entries:
+  - code: "31"
+    alias: Forest
+    label: Forest
+    entryVerification: VERIFIED
+    definitionReview: ABSENT
+    classParents: []
+    notes: []
+  - code: "311"
+    alias: BroadLeavedForest
+    label: Broad-leaved forest
+    entryVerification: VERIFIED
+    definitionReview: ABSENT
+    classParents: ["31"]
+    notes: []
+```
+
+Unknown parents, self-links, duplicates and cycles are rejected when the catalogue loads. Parent
+locators retain the complete versioned entry key. Snapshot format `land.catalog-entries.v2` preserves
+the explicit DAG; obsolete v1 snapshots are rejected rather than silently flattened. Existing pattern
+catalogue schemas remain supported; this does not change unrelated authority interfaces.
+
+`semanticDistance(configuration, target, candidate)` returns zero for the same admitted term and
+**1 for a proven strict refinement**, including transitive ancestors. This reuses LAND's existing
+strict-refinement convention; it is not path length or a new weighted metric. Reverse, unrelated,
+cross-catalogue and unadmitted-edition requests are `UNKNOWN`, not provably incompatible. Explicit
+`INCOMPATIBLE` remains distinct in the authority API. Strict `Authority.subsumption` is separate from policy-admitted `semanticDistance`: fuzzy acceptance
+does not prove inclusion. The reasoner delegates strict proof before using exported OWL ancestry;
+`UNKNOWN` cannot authorize a relation by fallback. Cached bridges and frozen configured snapshots
+forward both operations using their owned bridge IDs; uncaptured legacy responses never cause live
+configuration during noninteractive candidate compilation. Eligibility/admission still precede
+ranking. Fuzzy `mediate` does not acquire a new entry-to-entry mapping route.
+
+The bundled `corine_entry_hierarchy_example`, revision `illustrative-1`, is a **local demonstration**
+over eight CORINE source codes/labels, not an official CORINE semantic hierarchy or a complete
+classification. The [source nomenclature](https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index.html)
+is provenance for names/codes and displayed grouping, not evidence authorizing these illustrative
+class-inclusion edges. Parent assertions are locally authored mechanism examples (2026-10-21);
+the owner's team will supply its curated hierarchy separately. No edges are inferred from code
+prefixes. This catalogue supplies no pattern or classifier. CORINE Broad-leaved forest includes
+deciduous and evergreen vegetation; the synthetic DeciduousForest test is not a CORINE alias.

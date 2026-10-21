@@ -27,7 +27,13 @@ public record PatternCatalog(String id, Domain domain, String version, URI sourc
   public record Entry(String alias, String label, String expression, String sourceCode,
                       URI source, List<String> notes, PatternRule rule,
                       EntryVerification entryVerification, DefinitionReview definitionReview,
-                      List<String> aliases) {
+                      List<String> aliases, List<String> classParents) {
+    /** Class parents mean explicit source-class inclusion, never navigational broader links. */
+    public Entry(String alias, String label, String expression, String sourceCode, URI source,
+        List<String> notes, PatternRule rule, EntryVerification verification, DefinitionReview review,
+        List<String> aliases) {
+      this(alias,label,expression,sourceCode,source,notes,rule,verification,review,aliases,List.of());
+    }
     public Entry(String alias, String label, String expression, String sourceCode, URI source, List<String> notes) {
       this(alias, label, expression, sourceCode, source, notes, null);
     }
@@ -46,7 +52,10 @@ public record PatternCatalog(String id, Domain domain, String version, URI sourc
       if (sourceCode == null || sourceCode.isBlank()) throw new IllegalArgumentException("An exact source code is required");
       if (source != null && !source.isAbsolute()) throw new IllegalArgumentException("Source must be absolute");
       Objects.requireNonNull(entryVerification); Objects.requireNonNull(definitionReview);
-      notes = List.copyOf(notes); aliases = List.copyOf(aliases);
+      notes = List.copyOf(notes); aliases = List.copyOf(aliases); classParents = List.copyOf(classParents);
+      if (classParents.size() > 256 || new HashSet<>(classParents).size() != classParents.size()
+          || classParents.stream().anyMatch(code -> code == null || code.isBlank() || code.equals(sourceCode)))
+        throw new IllegalArgumentException("Invalid, duplicate or self class parent");
       if (aliases.stream().anyMatch(name -> name == null || name.isBlank()))
         throw new IllegalArgumentException("Curated aliases must be nonblank strings");
       if (rule != null && expression == null) expression = rule.composition();
@@ -67,6 +76,21 @@ public record PatternCatalog(String id, Domain domain, String version, URI sourc
     if (!entries.contains(entry)) throw new IllegalArgumentException("Entry is not in this catalog");
     return new CatalogEntryId(id, version, metadata.sourceVersion(), entry.sourceCode()).code();
   }
+  /** Directed source-class inclusion only, confined to this exact pinned catalog. */
+  public boolean strictlyIncludes(Entry parent, Entry child) {
+    if (!entries.contains(parent) || !entries.contains(child) || parent.sourceCode().equals(child.sourceCode())) return false;
+    var byCode = new java.util.HashMap<String, Entry>();
+    for (var entry : entries) byCode.put(entry.sourceCode(), entry);
+    var pending = new java.util.ArrayDeque<>(child.classParents());
+    var seen = new HashSet<String>();
+    while (!pending.isEmpty()) {
+      var code = pending.removeFirst();
+      if (code.equals(parent.sourceCode())) return true;
+      if (seen.add(code)) pending.addAll(byCode.get(code).classParents());
+    }
+    return false;
+  }
+
   public PatternCatalog {
     if (id == null || !id.matches("[a-z][a-z0-9_]*") || version == null || version.isBlank())
       throw new IllegalArgumentException("A catalog needs a lowercase ID and pinned version");
@@ -82,5 +106,23 @@ public record PatternCatalog(String id, Domain domain, String version, URI sourc
       new CatalogEntryId(id, version, metadata.sourceVersion(), entry.sourceCode()).code();
       if (!codes.add(entry.sourceCode())) throw new IllegalArgumentException("Duplicate source code: " + entry.sourceCode());
     }
+    var indegree = new java.util.HashMap<String,Integer>();
+    var children = new java.util.HashMap<String,java.util.List<String>>();
+    for (var entry : entries) {
+      indegree.put(entry.sourceCode(), entry.classParents().size());
+      for (var parent : entry.classParents()) {
+        if (!codes.contains(parent)) throw new IllegalArgumentException("Unknown class parent: " + parent);
+        children.computeIfAbsent(parent, key -> new java.util.ArrayList<>()).add(entry.sourceCode());
+      }
+    }
+    var ready = new java.util.ArrayDeque<String>();
+    indegree.forEach((code,count) -> { if (count == 0) ready.add(code); });
+    int visited = 0;
+    while (!ready.isEmpty()) {
+      var code = ready.removeFirst(); visited++;
+      for (var child : children.getOrDefault(code,List.of()))
+        if (indegree.compute(child,(key,count) -> count - 1) == 0) ready.add(child);
+    }
+    if (visited != entries.size()) throw new IllegalArgumentException("Cycle in source-class hierarchy");
   }
 }

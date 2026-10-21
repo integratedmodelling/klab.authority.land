@@ -11,7 +11,7 @@ import org.integratedmodelling.klab.api.services.ConfiguredAuthoritySnapshot;
 
 /** Data-only entry snapshots. Optional definitions remain annotations, never executable grants. */
 final class EntrySnapshotCodec {
-  static final String FORMAT = "land.catalog-entries.v1";
+  static final String FORMAT = "land.catalog-entries.v2";
   static final int MAX_BYTES = 8 * 1024 * 1024;
   private static final ObjectMapper JSON = new ObjectMapper(JsonFactory.builder()
       .streamReadConstraints(StreamReadConstraints.builder().maxNestingDepth(32).maxStringLength(131072).build())
@@ -24,14 +24,14 @@ final class EntrySnapshotCodec {
 
   private record Entry(String alias, String label, String expression, String sourceCode,
       URI source, List<String> notes, String rule, PatternCatalog.EntryVerification entryVerification,
-      PatternCatalog.DefinitionReview definitionReview, List<String> aliases) {
+      PatternCatalog.DefinitionReview definitionReview, List<String> aliases, List<String> classParents) {
     Entry(PatternCatalog.Entry e) {
       this(e.alias(), e.label(), e.expression(), e.sourceCode(), e.source(), e.notes(),
-          e.rule() == null ? null : PatternRuleYaml.canonical(e.rule()), e.entryVerification(), e.definitionReview(), e.aliases());
+          e.rule() == null ? null : PatternRuleYaml.canonical(e.rule()), e.entryVerification(), e.definitionReview(), e.aliases(), e.classParents());
     }
     PatternCatalog.Entry entry() {
       return new PatternCatalog.Entry(alias,label,expression,sourceCode,source,notes,
-          rule == null ? null : PatternRuleYaml.decode(rule),entryVerification,definitionReview,aliases);
+          rule == null ? null : PatternRuleYaml.decode(rule),entryVerification,definitionReview,aliases,classParents);
     }
   }
   private record Catalog(String id, PatternCatalog.Domain domain, String version, URI source,

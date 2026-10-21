@@ -92,6 +92,8 @@ class FuzzyMediationTest {
     var f = fixture(parameters); var result = f.compare(pattern(3,1),pattern(7,2));
     assertFalse(result.rightEntailsLeft()); assertTrue(result.rightAdmittedForLeft()); assertFalse(result.leftAdmittedForRight());
     assertEquals(11,f.distance(pattern(3,1),pattern(7,2)).distance());
+    assertEquals(Authority.Subsumption.UNKNOWN, f.authority().subsumption(f.bridge(),pattern(3,1),pattern(7,2)),
+        "Fuzzy admission must not become strict inheritance");
     assertEquals(Authority.DistanceStatus.UNKNOWN,f.distance(pattern(7,2),pattern(3,1)).status());
     parameters.put("overlapThreshold","0.95"); var strict = fixture(parameters);
     assertEquals(MediationResult.OverlapDecision.LOW,strict.compare(pattern(3,1),pattern(7,2)).overlapDecision());

@@ -17,7 +17,7 @@ import org.integratedmodelling.klab.api.services.runtime.Notification;
 /** Earth-cover patterns and worldview-scoped legend translations. */
 @org.integratedmodelling.klab.api.services.reasoner.Authority(
     urn = LandAuthority.URN, version = "1.0.0", embeddable = true, searchable = true,
-    codelists = {"corine_2018_draft", "igbp_modis61_draft", "get21_ecosystem_pilot",
+    codelists = {"corine_entry_hierarchy_example", "corine_2018_draft", "igbp_modis61_draft", "get21_ecosystem_pilot",
         "eunis2021_terrestrial_pilot", "eunis2022_marine_pilot", "eunis2012_inland_pilot", "ecosystem_rules_pilot"})
 public final class LandAuthority implements SnapshottingAuthority {
   public static final String URN = "klab.authority.land";
@@ -37,6 +37,7 @@ public final class LandAuthority implements SnapshottingAuthority {
 
   /** Load syntax-checked seed data; worldview validation still occurs separately for each bridge. */
   public LandAuthority() {
+    registerCatalog(PatternCatalogYaml.loadClasspath("/catalogs/corine_entry_hierarchy_example.yaml"));
     registerCatalog(PatternCatalogYaml.loadClasspath("/catalogs/corine_2018_draft.yaml"));
     registerCatalog(PatternCatalogYaml.loadClasspath("/catalogs/igbp_modis61_draft.yaml"));
     registerCatalog(PatternCatalogYaml.loadClasspath("/catalogs/get21_ecosystem_pilot.yaml"));
@@ -75,7 +76,7 @@ public final class LandAuthority implements SnapshottingAuthority {
   }
 
   @Override public String getUrn() { return URN; }
-  @Override public CachePolicy getCachePolicy() { return new CachePolicy("catalog-entry-identities-1", 0, 0, 0); }
+  @Override public CachePolicy getCachePolicy() { return new CachePolicy("catalog-entry-identities-2", 0, 0, 0); }
 
   @Override public synchronized String configure(ConfigurationRequest request) {
     requireOpen();
@@ -195,10 +196,16 @@ public final class LandAuthority implements SnapshottingAuthority {
       boolean a = CatalogEntryId.isEntryCode(left), b = CatalogEntryId.isEntryCode(right);
       if (a) requireEntry(bridge, left);
       if (b) requireEntry(bridge, right);
-      return a && b && left.equals(right)
-          ? new PatternComparison(PatternComparison.Status.EQUIVALENT, List.of("Same pinned source entry"))
-          : new PatternComparison(PatternComparison.Status.UNKNOWN,
-              List.of("Source entries and definitions require an explicit reviewed mapping; no mapping is configured"));
+      if (a && b && left.equals(right))
+        return new PatternComparison(PatternComparison.Status.EQUIVALENT,List.of("Same pinned source entry"));
+      if (a && b) {
+        var target = requireEntry(bridge,left); var candidate = requireEntry(bridge,right);
+        if (target.catalog == candidate.catalog && target.catalog.strictlyIncludes(target.entry,candidate.entry))
+          return new PatternComparison(PatternComparison.Status.RIGHT_REFINES_LEFT,
+              List.of("Explicit transitive source-class inclusion in the same pinned catalog"));
+      }
+      return new PatternComparison(PatternComparison.Status.UNKNOWN,
+          List.of("No explicit directional source-class inclusion or reviewed cross-entry mapping"));
     }
     var semantics = bridge.semantics;
     if (left.startsWith(PatternRuleYaml.PREFIX) && right.startsWith(PatternRuleYaml.PREFIX))
@@ -208,6 +215,18 @@ public final class LandAuthority implements SnapshottingAuthority {
       return new PatternComparison(PatternComparison.Status.UNKNOWN,List.of("Composition-only and typed rule identities require an explicit bridge"));
     return comparePatterns(configurationId,left,right);
   }
+  @Override public Subsumption subsumption(String configurationId, String targetId, String candidateId) {
+    bridge(configurationId);
+    try {
+      var proof = compareIdentities(configurationId, targetId, candidateId);
+      return proof.status() == PatternComparison.Status.EQUIVALENT
+          || proof.status() == PatternComparison.Status.RIGHT_REFINES_LEFT
+          ? Subsumption.SUBSUMES : Subsumption.UNKNOWN;
+    } catch (IllegalArgumentException failure) {
+      return Subsumption.UNKNOWN;
+    }
+  }
+
   @Override public SemanticDistance semanticDistance(String configurationId, String targetId, String candidateId) {
     bridge(configurationId);
     boolean entryRoute = CatalogEntryId.isEntryCode(targetId) || CatalogEntryId.isEntryCode(candidateId);
@@ -286,7 +305,9 @@ public final class LandAuthority implements SnapshottingAuthority {
         var bound = requireEntry(bridge, identityId);
         return new LandIdentity(identityId, conceptName(identityId), bridge.request.name(), bridge.request.rootIdentity(),
             entryDescription(bound.catalog(), bound.entry()), bound.entry().label(),
-            AuthorityIdentitySyntax.encode(bridge.request.name(), identityId), List.of());
+            AuthorityIdentitySyntax.encode(bridge.request.name(), identityId), List.of(),
+            bound.entry().classParents().stream().map(parent -> new CatalogEntryId(bound.catalog().id(),
+                bound.catalog().version(),bound.catalog().metadata().sourceVersion(),parent).code()).toList());
       }
       String canonical = validateCode(identityId, bridge.semantics);
       var descriptions = new ArrayList<String>();
@@ -409,7 +430,7 @@ public final class LandAuthority implements SnapshottingAuthority {
         + "Source edition: " + catalog.metadata().sourceVersion() + ". "
         + "[Source](" + (entry.source() == null ? catalog.source() : entry.source()) + ").\n\n"
         + "Entry verification: " + entry.entryVerification() + "; definition review: " + entry.definitionReview() + ". "
-        + "This source-entry reference does not authorize cross-entry mediation.\n\n"
+        + "Only explicit class-inclusion ancestry authorizes source-entry refinement; no cross-scheme mapping is implied.\n\n"
         + String.join("\n\n", entry.notes());
   }
   private static String conceptName(String canonical) {

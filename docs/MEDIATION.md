@@ -119,3 +119,7 @@ context mismatches, coupling, immutable policy isolation, budget exhaustion and 
 Community calibration remains necessary. Future versions may add other distributions, per-measure
 uncertainty, differing partial variable sets, unit/support mediation, aggregation across taxa, coupled
 absolute/relative constraints and full logical satisfiability.
+
+
+Entry-only source hierarchies now use explicit schema-4 `classParents` and snapshot v2.
+See [entry identities](ENTRY_IDENTITIES.md#explicit-entry-only-class-hierarchy-schema-4) for validation, direction and distance conventions.

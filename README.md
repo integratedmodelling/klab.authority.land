@@ -17,7 +17,7 @@ It supports spatial cover and relative phase duration when their measure and sup
 The [mediation specification](docs/MEDIATION.md) gives the mathematics and remaining limitations.
 Catalog annotation identities now preserve catalog ID, pinned revision, source edition and exact
 source code independently of optional patterns/rules. See [entry identities and notation](docs/ENTRY_IDENTITIES.md)
-for verification/review status, schema 3, conservative matching and migration from old pattern-valued
+for verification/review status, schema 4 explicit parent lists, conservative matching and migration from old pattern-valued
 codelists. Two tentative classpath YAML catalogs now supply all 44 CORINE level-3 aliases and all 17
 MODIS MCD12Q1 IGBP aliases. These are deliberately incomplete semantic translations for testing,
 not official implementations. See [Seed catalogs and maintenance](docs/SEED_CATALOGS.md) for their
@@ -503,3 +503,10 @@ tests; broader shared-suite limitations are recorded in the [handoff notes](docs
 Earlier in the implementation, the sibling archetype's
 `mvn -o verify` also passed both full and minimal generation/compilation checks after correcting its
 Authority starter, provided dependency scope and server artifact coordinates.
+
+
+Entry-only source hierarchies now use explicit schema-4 `classParents` and snapshot v2.
+See [entry identities](docs/ENTRY_IDENTITIES.md#explicit-entry-only-class-hierarchy-schema-4) for validation, direction and distance conventions.
+
+The opt-in `corine_entry_hierarchy_example` is a local eight-entry mechanism demonstration,
+not an official CORINE hierarchy. It has no patterns; parent links are illustrative and explicitly configured.
