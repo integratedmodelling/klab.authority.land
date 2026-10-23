@@ -10,12 +10,15 @@ import java.util.regex.Pattern;
 public final class PatternParser {
   public static final int MAX_LENGTH = 65536;
   public static final int MAX_DEPTH = 64;
-  private static final Pattern REFERENCE = Pattern.compile("[A-Za-z][A-Za-z0-9_.]*:[A-Za-z0-9_][A-Za-z0-9_.:-]*");
+  private static final Pattern REFERENCE =
+      Pattern.compile("[A-Za-z][A-Za-z0-9_.]*:[A-Za-z0-9_][A-Za-z0-9_.:-]*");
   private final String source;
   private int position;
   private int nodes;
 
-  private PatternParser(String source) { this.source = source; }
+  private PatternParser(String source) {
+    this.source = source;
+  }
 
   public static CoverPattern parse(String source) {
     if (source == null || source.isBlank() || source.length() > MAX_LENGTH)
@@ -24,7 +27,8 @@ public final class PatternParser {
     var result = parser.node(0);
     parser.space();
     if (parser.position != source.length()) throw parser.error("Unexpected trailing input");
-    if (!result.isConfiguration()) throw parser.error("A pattern must have a configuration with arguments");
+    if (!result.isConfiguration())
+      throw parser.error("A pattern must have a configuration with arguments");
     return result;
   }
 
@@ -33,7 +37,10 @@ public final class PatternParser {
     if (++nodes > 2048) throw error("Maximum node count exceeded");
     space();
     int marks = 0;
-    while (take('+')) { marks++; space(); }
+    while (take('+')) {
+      marks++;
+      space();
+    }
     String reference = reference();
     space();
     var arguments = new ArrayList<CoverPattern>();
@@ -44,7 +51,8 @@ public final class PatternParser {
       space();
       while (take(',')) {
         if (arguments.size() >= 128) throw error("Maximum configuration arity exceeded");
-        arguments.add(node(depth + 1)); space();
+        arguments.add(node(depth + 1));
+        space();
       }
       if (!take(')')) throw error("Expected ',' or ')'");
     }
@@ -69,7 +77,10 @@ public final class PatternParser {
             if (position == source.length()) throw error("Unfinished ID escape");
             char escaped = source.charAt(position++);
             if (escaped != '\\' && escaped != ']') throw error("Invalid ID escape");
-          } else if (next == ']') { closed = true; break; }
+          } else if (next == ']') {
+            closed = true;
+            break;
+          }
         }
         if (!closed || position == payloadStart + 1) throw error("Empty or unclosed authority ID");
         return source.substring(start, position);
@@ -77,13 +88,26 @@ public final class PatternParser {
       position++;
     }
     String result = source.substring(start, position);
-    if (!REFERENCE.matcher(result).matches()) throw error("Expected a qualified concept or authority reference");
+    if (!REFERENCE.matcher(result).matches())
+      throw error("Expected a qualified concept or authority reference");
     return result;
   }
 
-  private boolean peek(char c) { return position < source.length() && source.charAt(position) == c; }
-  private boolean take(char c) { if (!peek(c)) return false; position++; return true; }
-  private void space() { while (position < source.length() && Character.isWhitespace(source.charAt(position))) position++; }
+  private boolean peek(char c) {
+    return position < source.length() && source.charAt(position) == c;
+  }
+
+  private boolean take(char c) {
+    if (!peek(c)) return false;
+    position++;
+    return true;
+  }
+
+  private void space() {
+    while (position < source.length() && Character.isWhitespace(source.charAt(position)))
+      position++;
+  }
+
   private IllegalArgumentException error(String message) {
     return new IllegalArgumentException(message + " at offset " + position);
   }
